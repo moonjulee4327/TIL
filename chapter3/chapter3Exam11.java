@@ -25,7 +25,7 @@ public class chapter3Exam11 {
 			System.out.println("로그인 실패:아이디 존재하지 않음");
 		
 		}
-		
+		scanner.close();
 	
 	}
 }
