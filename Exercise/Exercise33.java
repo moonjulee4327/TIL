@@ -9,24 +9,17 @@ public class Exercise33 {
 		
 		System.out.print("윤년인지를 확인할 연도를 입력하세요: ");
 		
-		String num1 = scanner.next();
+		int num1 = scanner.nextInt();
 		
 		String result1 = "윤년이 아닙니다.";
 		String result2 = "윤년입니다.";
 		
-		int result3 = Integer.parseInt(num1);
-		
-		
-		String result = ((result3%4 == 0 && result3%100 != 0)||result3%400==0)?result2:result1; 
-		
-		
+		String result = ((num1%4 == 0 && num1%100 != 0)|| num1%400==0)?result2:result1; 
 		
 		System.out.println(num1 + "년은 "+ result);
 	
 	
 		scanner.close();
-	
-	
 	}
 
 }
