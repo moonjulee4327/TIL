@@ -1,4 +1,4 @@
-package chapter4;
+package ddit;
 
 
 import java.util.Random;
@@ -19,6 +19,10 @@ public class chapter4Exam3 {
 					System.out.println("("+num1+","+num2+")");
 					
 					break;
+					
+				}else {
+					
+					System.out.println("("+num1+","+num2+")");
 					
 				}
 			

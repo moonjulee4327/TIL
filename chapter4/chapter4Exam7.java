@@ -1,4 +1,4 @@
-package chapter4;
+package ddit;
 
 import java.util.Scanner;
 
@@ -16,37 +16,34 @@ public class chapter4Exam7 {
 			System.out.print("선택> ");
 			
 			int num = scanner.nextInt();
-			int in;
-			int out;
 			
 			
 			switch(num) {
 			case 1 :
 				System.out.print("예금액>");
-				in  = scanner.nextInt();
-				balance = in;
+				balance  += scanner.nextInt();
 				break;
 				
 			case 2 :
 				System.out.print("출금액>");
-				out = scanner.nextInt();
-				balance -= out;
+				balance -= scanner.nextInt();
 				break;
 				
 			case 3 :
 				
-				System.out.println("잔고>"+balance);
+				System.out.print("잔고>"+balance+"\n");
 				break;
 				
 			case 4 :
 				
 				run=false;
-				
+				break;
 			}
 			
-			//if(num==4) {break;}
+			
 		}
-		System.out.println("\n" +"프로그램 종료");
+		System.out.println("");
+		System.out.println("프로그램 종료");
 		
 		scanner.close();
 	}
