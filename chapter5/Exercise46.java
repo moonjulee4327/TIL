@@ -18,15 +18,10 @@ public class Exercise46 {
 				
 				min = scores[i];
 				
-			}
-			
-				
-				
+			}	
 		}
-		
 		System.out.println("최댓값 : " + max);
 		System.out.println("최솟값 : " + min);
-		
 	}
 
 }
