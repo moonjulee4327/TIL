@@ -13,8 +13,12 @@ public class Exercise49 {
 		System.out.println("-------------");
 		
 		for(int i=0; i<10000; i++) {
-			int randomNum = random.nextInt(6)+1;
-			if(randomNum==1) {
+						
+			dice[random.nextInt(6)]++;
+			
+			}
+			
+		/*	if(randomNum==1) {
 				dice[0]++;
 			}else if(randomNum==2) {
 				dice[1]++;
@@ -26,9 +30,9 @@ public class Exercise49 {
 				dice[4]++;
 			}else if(randomNum==6) {
 				dice[5]++;
-			}
+			}	*/
 			
-		}
+		
 		for(int j=0; j<6; j++) {
 			System.out.println(j+1+"        "+dice[j]);
 		}

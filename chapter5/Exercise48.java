@@ -21,6 +21,7 @@ public class Exercise48 {
 		
 		int randomNum = random.nextInt(3);
 		System.out.println("인공지능 컴퓨터: "+RockScissorsPaper[randomNum]);
+		//String computer = RockScissorsPaper[random.nextInt(3)]; -> 22번줄을 안쓰고 
 		
 		if(gamer.equals(RockScissorsPaper[randomNum])) {
 			
@@ -32,9 +33,7 @@ public class Exercise48 {
 			
 			System.out.println("결과: 게이머 승리!");
 			
-		}else if((RockScissorsPaper[randomNum].equals(rock)&&gamer.equals(scissors))||
-				(RockScissorsPaper[randomNum].equals(scissors)&&gamer.equals(Paper))||
-				(RockScissorsPaper[randomNum].equals(Paper)&&gamer.equals(rock))) {
+		}else {
 			
 			System.out.println("결과: 인공지능 컴퓨터 승리!");
 		}
