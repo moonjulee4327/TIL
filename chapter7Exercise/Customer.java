@@ -11,19 +11,20 @@ public class Customer {
 	}
 	//메소드
 	public String getFirstName() {
-		return;
+		return firstName;
 	}
 	public String getLastName() {
-		return;
-	}
-	public BankAccount getAccount() {
-		return;
+		return lastName;
 	}
 	public void setAccount(BankAccount account) {
-		
+		this.account = account;
 	}
+	public BankAccount getAccount() {
+		return account;
+	}
+		
 	public String toString() {
-		return;
+		return firstName + lastName +" 고객님에 " + "잔액은: " + account + " 입니다." ;
 	}
 	
 }
