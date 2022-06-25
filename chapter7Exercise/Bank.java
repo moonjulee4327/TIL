@@ -7,26 +7,23 @@ public class Bank {
 	
 	//생성자
 	public Bank() {
-		Customer[] customers = new Customer[10];
-		this.customers=customers;
+		
+		this.customers = new Customer[10];
 	}
 	
 	//메소드
 	public void addCustomer(Customer customer) {
-		for(int i=0; i<10; i++) {
-		this.customers[i] = customer;
-		}
-		this.numberOfCustomer = numberOfCustomer++;
+		this.customers[numberOfCustomer++] = customer;
 	}
 	public int getNumberOfCustomers() {
 		return numberOfCustomer;
 	}
 	
-	public Customer[] getCustomers(int index) {
-		return customers[index];	
+	public Customer[] getCustomers() {
+		return customers;	
 	}
-	public Customer getCustomer(int customer) {
-		return customer;	
+	public Customer getCustomer(int index) {
+		return customers[index];	
 	}
 	
 }
