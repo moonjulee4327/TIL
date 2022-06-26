@@ -7,7 +7,8 @@ public class Customer {
 	private BankAccount account;
 	//생성자
 	public Customer(String firstName, String lastName) {
-		
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 	//메소드
 	public String getFirstName() {
@@ -24,7 +25,7 @@ public class Customer {
 	}
 		
 	public String toString() {
-		return firstName + lastName +" 고객님에 " + "잔액은: " + account + " 입니다." ;
+		return this.firstName + this.lastName +" 고객님에 " + "잔액은: " + account.getBalance() + " 입니다." ;
 	}
 	
 }

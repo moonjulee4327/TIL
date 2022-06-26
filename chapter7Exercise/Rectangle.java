@@ -19,11 +19,11 @@ public class Rectangle extends Shape{
 	@Override
 	public double perimeter() {
 		super.perimeter();
-		return (width+width)*2;
+		return (width+height)*2;
 	}
 	@Override
 	public String toString() {
-		return "도형의 종류: 사각형, 둘레:, "+ perimeter() +" 넓이: " + area() +"cm";
+		return "도형의 종류: 사각형, 둘레:, "+ perimeter() +" 넓이: " + area() +"㎠";
 	}
 
 }
