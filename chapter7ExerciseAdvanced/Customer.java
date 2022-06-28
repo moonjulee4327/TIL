@@ -11,7 +11,7 @@ public class Customer {
 	public Customer(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.accounts = new BankAccount[5];
+		accounts = new BankAccount[5];
 	}
 	//메소드
 	public String getFirstName() {
@@ -28,7 +28,6 @@ public class Customer {
 	}
 	public void addAccount(BankAccount account) {
 		this.accounts[numberOfAccounts++] = account;
-		numberOfAccounts++;
 	}
 	public BankAccount getAccount(int index) {
 		return accounts[index];
@@ -37,7 +36,7 @@ public class Customer {
 		return this.numberOfAccounts;
 	}
 	public String toString() {
-	return "확인";
+	return String.format("이름: %s %s, 계좌의 갯수: %,d", firstName, lastName, numberOfAccounts);
 	}
 	
 }
