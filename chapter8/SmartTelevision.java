@@ -5,11 +5,11 @@ public class SmartTelevision implements RemoteControl, Searchable{
 	
 	@Override
 	public void tunrOn() {
-		System.out.println("TV를 켭니다.");
+		System.out.println("SmartTV를 켭니다.");
 	}
 	@Override
 	public void tunrOff() {
-		System.out.println("TV를 끕니다.");	
+		System.out.println("SmartTV를 끕니다.");	
 	}
 	@Override
 	public void setVolume(int volume) {
@@ -20,7 +20,7 @@ public class SmartTelevision implements RemoteControl, Searchable{
 		}else {
 			this.volume = volume;
 		}
-		System.out.println("현재 TV 볼륨: " + this.volume);
+		System.out.println("현재 SmartTV 볼륨: " + this.volume);
 	}
 	@Override
 	public void search(String url) {
