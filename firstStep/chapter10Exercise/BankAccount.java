@@ -25,15 +25,15 @@ public abstract class BankAccount {
 		}
 	}
 	
-	public boolean transfer(int amount, BankAccount otherAccount) {
-		if(withdraw(amount)==true) {
+	public boolean transfer(int amount, BankAccount otherAccount) throws NullPointerException, IllegalArgumentException{
+		if(amount<0 || this.balance < amount) {
+			throw new IllegalArgumentException();	
+		}else if(withdraw(amount)==true) {
 			otherAccount.deposit(amount);
 			return true;
-		}else {
-			return false;
 		}
+		return false;
 	}
-	
 	public abstract String getAccountType();
 	
 	public String toString() {
