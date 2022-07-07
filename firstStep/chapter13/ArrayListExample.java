@@ -5,7 +5,14 @@ import java.util.List;
 
 public class ArrayListExample {
 	public static void main(String[] args) {
-		
+		//1.
+		ArrayList<String> strList = new ArrayList<>();
+		//2.
+		List<String> strList1 = new ArrayList<>();
+		//3.
+		List<String> strList2 = new ArrayList<>("123","123");
+
+//		--------------------------------------------------------------------		
 		List<String> list = new ArrayList<>(); // 다형성 -> 상위 클래스 타입이 온다.
 		
 		//add
