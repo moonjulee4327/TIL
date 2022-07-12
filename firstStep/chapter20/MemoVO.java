@@ -17,6 +17,18 @@ public class MemoVO {
 		
 		
 	}
+	
+	public MemoVO(String title, String contents) {
+		this.title = title;
+		this.contents = contents;
+	}
+	
+	public MemoVO(int id, String title, String contents) {
+		this.id = id;
+		this.title = title;
+		this.contents = contents;
+	}
+
 	public MemoVO(int id, String title, String contents, Date registerDate, Date modifyDate) {
 		this.id = id;
 		this.title = title;
@@ -57,8 +69,7 @@ public class MemoVO {
 	}
 	@Override
 	public String toString() {
-		return "memoVO [id=" + id + ", title=" + title + ", contents=" + contents + ", registerDate=" + registerDate
-				+ ", modifyDate=" + modifyDate + "]";
+		return String.format("%s \t %s \t %s \t %s \t %s \t \n", id, title, contents, registerDate, modifyDate);
 	}
 	@Override
 	public int hashCode() {
@@ -75,6 +86,7 @@ public class MemoVO {
 		MemoVO other = (MemoVO) obj;
 		return id == other.id;
 	}
-	
+
+
 	
 }
