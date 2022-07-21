@@ -42,6 +42,7 @@ public class T01ArrayListTest {
 		list1.remove(new Integer(111));
 		System.out.println("111 삭제후 " + list1);
 		
+		System.out.println("-----------------------------------------------");
 		// 제너릭을 지정하여 선언할 수 있다.
 		List<String> list2 = new ArrayList<String>();
 		list2.add("AAA");
@@ -51,7 +52,7 @@ public class T01ArrayListTest {
 		list2.add("EEE");
 		
 		for(int i=0; i<list2.size(); i++) {
-			System.out.println(i + " : " + list2.get(1));
+			System.out.println(i + " : " + list2.get(i));
 		}
 		System.out.println("-------------------------------------");
 		
@@ -71,7 +72,7 @@ public class T01ArrayListTest {
 		System.out.println("ZZZ의 index값 : " + list2.indexOf("ZZZ"));
 		System.out.println("------------------------------------");
 		
-		// toArray() => 리스트 안의 데이터들을 배열로 변환라여 반환한다.
+		// toArray() => 리스트 안의 데이터들을 배열로 변환하여 반환한다.
 		// 기본적으로 Object형 배열로 반환한다.
 		Object[] strArr = list2.toArray();
 		System.out.println("배열의 개수 : " + strArr.length);

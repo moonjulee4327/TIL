@@ -8,7 +8,7 @@ public class T02StackQueueTest {
 		// Queue => 선입선출법(FIFO)구조
 		
 		// Stack 과 Queue는 LinkedList를 이용하여 사용할 수 있다.
-		LinkedList<String> stack = new LinkedList<String>();
+		LinkedList<String> stack = new LinkedList<>();
 		
 		/*
 		 * stack 명령
