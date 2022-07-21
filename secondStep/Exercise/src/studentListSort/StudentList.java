@@ -11,7 +11,8 @@ public class StudentList {
 		List<Student> list = new ArrayList<>();
 		
 		// 학번, 이름, 국어점수, 영어점수, 수학점수 추가
-		
+
+		list.add(new Student("20144444", "강감찬", 50, 40, 50));
 		list.add(new Student("20141111", "이문주", 80, 90, 100));
 		list.add(new Student("20142222", "안하용", 50, 10, 90));
 		list.add(new Student("20147777", "최승훈", 40, 20, 0));
@@ -55,7 +56,7 @@ class TotalScoreSort implements Comparator<Student>{
 		if(std1.getTotalScore() == std2.getTotalScore()) {
 			return std1.getStudentNo().compareTo(std2.getStudentNo()) * -1;
 		}else {
-			return new Integer(std1.getTotalScore()).compareTo(std2.getTotalScore())*-1;
+			return Integer.compare(std1.getTotalScore(), std2.getTotalScore()) * -1;
 		}
 	}
 }

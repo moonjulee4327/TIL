@@ -87,13 +87,13 @@ public class Student implements Comparable<Student>{
 		return this.totalScore = koreanScore + englishScore + mathScore;
 	}
 	
-	public int rank(Student std) {
+	public void rank(Student std) {
 		if(this.totalScore > std.totalScore) {
-			return this.ranking = ranking++; 
+			 this.ranking = ranking++; 
 		}else if(this.totalScore < std.totalScore){
-			return this.ranking = ranking--;
+			this.ranking = ranking--;
 		}else {
-			return this.ranking = ranking;
+			this.ranking = ranking + 0;
 		}
 	}
 	
@@ -101,12 +101,14 @@ public class Student implements Comparable<Student>{
 	// 학번 정렬 comparable
 	@Override
 	public int compareTo(Student std) {
+		if(this.totalScore > std.totalScore) {
+			this.ranking = ranking--;
+		}else if(this.totalScore < std.totalScore) {
+			this.ranking = ranking++;
+		}else {
+			this.ranking = ranking + 0;
+		}
 		return this.getStudentNo().compareTo(std.getStudentNo());
 	}
-	
-
-		
-	
-		
 	
 }
