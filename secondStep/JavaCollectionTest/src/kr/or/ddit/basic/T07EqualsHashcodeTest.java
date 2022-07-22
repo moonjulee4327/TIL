@@ -1,5 +1,9 @@
 package kr.or.ddit.basic;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 public class T07EqualsHashcodeTest {
 	/*
 	 *  해시함수(hash function)는 임의의 길이의 데이터를 고정된 데이터로 매핑하는 함수이다.
@@ -25,9 +29,123 @@ public class T07EqualsHashcodeTest {
 	 */
 	
 	public static void main(String[] args) {
-		String str = "홍길동";
-		System.out.println(str.hashCode());
 		
+		Person p1 = new Person(1, "홍길동");
+		Person p2 = new Person(1, "홍길동");
+		Person p3 = new Person(1, "이순신");
+		
+		//해시충돌
+//		System.out.println("Aa".hashCode());
+//		System.out.println("BB".hashCode());
+		
+		System.out.println("p1.equals(p2) : " + p1.equals(p2));
+		System.out.println("p1 == p2 : " + (p1 == p2));
+		
+		Set<Person> set = new HashSet<>();
+		
+		set.add(p1);
+		set.add(p2);
+		System.out.println("p1, p2 등록 후 데이터 : ");
+		
+//		Iterator<Person> iter = set.iterator();
+//		while(iter.hasNext()) {
+//			Person p = iter.next();
+//			System.out.println(p.getId() + " : " + p.getName());
+//					
+//		}
+		
+		// Iterable 을 implements한 경우 향상된 for문 가능 
+		for(Person p : set) {
+			System.out.println(p.getId() + " : " + p.getName());
+		}
+		
+		System.out.println("add(p3) 성공여부 : " + set.add(p3));
+		System.out.println("add(p3) 후 데이터 : ");
+		for(Person p : set) {
+			System.out.println(p.getId() + " : " + p.getName());
+		}
+		
+		System.out.println("remove(p2) 성공여부 : " + set.remove(p2));
+		System.out.println("remove(p2) 후 데이터 : ");
+		for(Person p : set) {
+			System.out.println(p.getId() + " : " + p.getName());
+		}
 		
 	}
+}
+
+
+class Person{
+	
+	private int id;
+	private String name;
+	
+	public Person(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
+	
+	// String이 오버라이드 한 hashCode()를 썼다.
+//	@Override
+//	public int hashCode() {
+//		return (name + id).hashCode();
+//	}
+//	
+//	@Override
+//	public boolean equals(Object obj) {
+//		Person p = (Person) obj;
+//		return this.getId() == p.getId() && this.getName().equals(p.getName());
+//	}
+	
+	
+	
+	
+	
 }
