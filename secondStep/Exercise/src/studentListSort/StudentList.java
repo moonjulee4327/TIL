@@ -9,8 +9,6 @@ public class StudentList {
 	public static void main(String[] args) {
 		
 		List<Student> list = new ArrayList<>();
-		
-		// 학번, 이름, 국어점수, 영어점수, 수학점수 추가
 
 		list.add(new Student("20144444", "강감찬", 50, 40, 50));
 		list.add(new Student("20141111", "이문주", 80, 90, 100));
@@ -52,6 +50,7 @@ public class StudentList {
 }
 class TotalScoreSort implements Comparator<Student>{
 	
+	// 총점기준 정렬
 	public int compare(Student std1, Student std2) {
 		if(std1.getTotalScore() == std2.getTotalScore()) {
 			return std1.getStudentNo().compareTo(std2.getStudentNo()) * -1;

@@ -70,7 +70,7 @@ public class T08MapTest {
 		// Map.Entry 타입의 객체 모두 가져오기 => entrySet()이용
 		Set<Map.Entry<String, String>> entrySet = map.entrySet();
 		
-		// 가져온 Entry객체들을 순서대로 처리하기 위해서 Iterator객체이영
+		// 가져온 Entry객체들을 순서대로 처리하기 위해서 Iterator객체이용
 		Iterator<Map.Entry<String, String>> entryIt = entrySet.iterator();
 		
 		while(entryIt.hasNext()) {
