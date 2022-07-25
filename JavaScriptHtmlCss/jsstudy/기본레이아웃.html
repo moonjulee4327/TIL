@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    /*보통 전체를 감싸는 div를 wrapper container라는 id나
+      class를 주는 것이 관례*/
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    div {
+        border: 3px solid pink;
+    }
+    #wrapper {
+        width: 98vw;
+        height: 98vh;
+        border: 5px solid red; /*눈으로 보기*/
+    }
+    #header {
+        height: 25%;
+    }
+    #middle {
+        height: 50%;
+    }
+    #footer {
+        height: 25%;
+    }
+    #side,#content {
+        display: inline-block;
+    }
+    #side {
+        width: 40%;
+        height: 100%;
+    }
+    #content {
+        width: 60%;
+        height: 100%;
+    }
+</style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">머릿글</div>
+    <div id="middle">
+        <div id="side">메뉴</div>
+        <div id="content">내용</div>
+    </div>
+    <div id="footer">바닥글</div>
+</div>
+</body>
+</html>
