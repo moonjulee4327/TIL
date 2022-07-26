@@ -69,7 +69,7 @@ public class T02EnumTest {
 		System.out.println("name => " + ss.name()); 
 		System.out.println("ordinal => " + ss.ordinal());
 		System.out.println("get메소드 호출 => " + ss.getStr());
-		System.out.println("-------------------------------------------------");
+		System.out.println("----------------------------------------------");
 		
 		// 열거형이름.values() => 데이터를 배열로 가져온다.
 		Season[] enumArr = Season.values();
