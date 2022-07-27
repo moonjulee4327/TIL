@@ -21,7 +21,7 @@ public class SampleVO implements Serializable, Comparable<String> {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	@Deprecated
 	public String getId() {
 		return id;
 	}
