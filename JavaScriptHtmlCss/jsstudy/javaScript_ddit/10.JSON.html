@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // JSON으로 초기화시 처음은 문자열로 됨 명시적으로 ""을 붙이는게 관례
+    /*
+    var v_obj = {
+        "names":["박종환","김강산","김연수","이문주",["이승연","이준혁","최승훈","오재경"]],
+        sides: {
+            friends: ["심성보", "길선주", "허지현", "윤민석"]
+        }
+    };
+    */
+    var v_obj = {};
+    v_obj.names = ["박종환","김강산","김연수","이문주",["이승연","이준혁","최승훈","오재경"]];
+    v_obj.sides = {};
+    v_obj.sides.friends = ["심성보", "길선주", "허지현", "윤민석"];
+
+    console.log(v_obj); // 눈으로 데이터 모습을 자주 봐주면 생각보다 금방 익힌다.
+    
+
+    alert(v_obj.names[4][2]); // 최승훈
+    alert(v_obj.sides.friends[3]); // 윤민석
+
+    // JSON -> JavaScript Object Notation -> 자바스크립트 객체 명령법
+    // JSON의 중요함은 이루 말할 수가 없다. 절대 모르면 안됨
+    // XML을 제치고 데이터 전송포맷으로 자리 잡음
+    // 심지어 설정파일 형식으로도 사용됨
+    // 객체지향 데이터베이스 출현의 핵심
+    // 데이터 전송포맷으로 사용할 땐 일반적으로 method는 넣지 않는다
+
+    // var v_obj = {}; // new Object();
+    // v_obj.name="손흥민";
+    // v_obj.sound="브리티시잉글리쉬";
+    // v_obj.getName=function(){ //메소드 추가 
+    //     return this.name;
+    // }
+    // delete v_obj.name; // 속성 제거
+    // alert(v_obj.name); //? 
+    /*
+    var v_lee = {};
+    v_lee["name"]="이문주"; // 배열식 표기, 연관배열, 자바의 MAP
+    v_lee["age"]=28;
+    */
+    //v_lee.0aaa="이것은 될까?" //변수명의 시작은 숫자 불가, 특수문자는 $와_ 만 가능
+    
+    /*
+    v_obj["0aaa"] = "이것은 될까?"; //된다.
+    alert(v_lee["name"]);
+    alert(v_lee.name);
+    */
+
+    // 자바스크립트에선 namespace를 만들 때 빈 객체를 이용한다.
+    // var System = {}; // 빈 객체 생성(없다는게 아니고, 객체는 있는데 속성이 없다)
+    // System.out = {}; // 빈 객체의 속성으로 빈 객체 추가
+    // System.out.print = function(p_arg){
+    //     console.log(p_arg);
+    // }
+    
+    // System.out.print("이것은 자바가 아니다.");
+    // System.out.print("그저 자바를 훙내내고 있을뿐");
+    // System.out.print("스크립트를 잘 다루면 이렇게 행동이 가능");
+    // System.out.print("왜냐하면 있어 보이기 때문에, 다른 사람이 헷갈리라고..");
+    
+</script>
