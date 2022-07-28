@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!--선택상자 또는 콤보박스라고 불림, multiple은 모바일용-->
+    <select id="id_where" multiple size ="6" onchange="f_where(this)">
+        <option value="0" selected>거주지역이 어디십니까?</option>
+        <option value="daejeon">대전</option>
+        <option value="sejong">세종</option>
+        <option value="newyork">뉴욕</option>
+        <option value="africa">아프리카</option>
+
+    </select>
+<script>
+    function f_where(p_this){
+        alert(id_where.value); // 선택한 value 값이 나옴 (웹)
+        // p_this는 id_where 와 같음
+        // select는 항상 어렇게 사용되어 쉽게 정리해버림
+        var v_option = p_this.options; // 배열 객체 참조
+        var v_myselect = []; // 빈 배열
+        for(var i = 0; i < v_option.length; i++) { // 모바일
+            if(v_option[i].seleted){
+                v_myselect[v_myselect.length] = v_option[i].value;
+                
+                // return; 모바일시 리턴 x
+                alert("당신은 " + v_myselect + " 에 사시네요");
+            }  
+            //console.log(i + " ->" +v_option[i].seleted);
+        }
+        //console.log(p_this.options[0]);
+        //alert("선택 바꾸셨나봐요?");
+        
+    }
+</script>
+</body>
+</html>
+<!--
+if(v_option[i].seleted){
+    alert("당신은 " + v_option[i].value + " 에 사시네요");
+    return;
+} 
+
+alert(p_this.value);
+-->
+

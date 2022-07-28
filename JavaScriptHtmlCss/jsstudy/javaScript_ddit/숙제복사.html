@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디지털 시계 만들어오기</title>
+<style>
+    #id_clock{
+        color: yellow;
+        background-color: black;
+        font-size: 20px;
+    }
+</style>
+
+
+</head>
+<body>
+    <div id="id_clock">00:00:00</div>
+<script>
+    // 스크립트에서 현재 날짜 읽어오기
+    // 오늘의 과제는 setTimeout을 이용해서 1초마다
+    // 시계값이 업데이트 되도록 합니다.
+    // 형식은 시간 24시간 기준, 자릿수 두자리
+    // 힌트 : 재귀호출
+    var f_lee = function(){
+    var v_today = new Date(); // 아는 기능
+    var v_year = v_today.getFullYear(); // 년 
+    var v_month = v_today.getMonth(); // 월 주의? 눈으로 꼭 확인
+    //alert(v_month);
+    var v_date = v_today.getDate(); // 일
+
+    var v_hour = v_today.getHours(); // 시
+    var v_min = v_today.getMinutes(); // 분 
+    var v_secs = v_today.getSeconds(); // 초
+        
+    id_clock.innerHTML = v_hour + ":" + v_min + ":" + "0" + v_secs;
+    setTimeout(f_lee, 1000);
+    }
+    
+
+    setTimeout(f_lee, 1000);
+    
+        
+    
+    
+    
+</script>
+</body>
+</html>

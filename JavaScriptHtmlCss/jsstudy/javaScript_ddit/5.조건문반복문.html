@@ -19,9 +19,11 @@
     var v_sum = 0;
     for(var i = 0 ; i<10 ; i=i+2){
         alert(i);
-        if(i == 2) continue; // 증감식으로 다시 간다. , 만나면 아래 안함
+        if(i == 2)  // 증감식으로 다시 간다. , 만나면 아래 안함
         v_sum += i;
         alert(v_sum);
+        continue;
+        
         if(v_num == 5){ // 무한루핑에는 항상 빠져나갈 조건을 먼저 준다.
             break; // 밖으로 뻗어서 처음 만나는 반복문을 빠져나간다.(for, while문)
         }
