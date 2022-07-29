@@ -50,7 +50,7 @@ class CountDown extends Thread {
 		
 		for(int i=10; i>=1; i--) {
 			
-			if(!T06ThreadTest.inputCheck) {
+			if(T06ThreadTest.inputCheck) {
 				return; // return을 하면 메소드를 빠져 나간다. return이라는 걸 썼던걸 생각하자.
 			}
 			

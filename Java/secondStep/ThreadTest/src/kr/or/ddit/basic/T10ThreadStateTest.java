@@ -67,6 +67,7 @@ class StatePrintThread extends Thread {
 			
 			//종료상태인지 검사하여 무한루프 빠져나가기
 			if(state == Thread.State.TERMINATED) {
+				//targetThread.getState();
 				break;
 			}
 			

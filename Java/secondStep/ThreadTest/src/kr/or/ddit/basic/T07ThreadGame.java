@@ -12,7 +12,7 @@ public class T07ThreadGame {
 	public static void main(String[] args) {
 		
 		User user = new User();
-		CountDown countDown = new CountDown();
+		CountDown1 countDown = new CountDown1();
 		
 		user.start();
 		countDown.start();
@@ -68,7 +68,7 @@ class User extends Thread {
 	
 }
 
-class CountDown extends Thread {
+class CountDown1 extends Thread {
 	
 	@Override
 	public void run() {
