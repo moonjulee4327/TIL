@@ -15,11 +15,11 @@
         border-radius: 150px 150px; /* 넓이와 높이의 절반을 준다면 원이 된다.*/
     }
     #id_bar{
-        position: absolute; /*위치를 바꾸려면 static이면 안된다. default는 static*/
-        width: 200px; /*넓이를 조절. px(픽셀)를 빼먹지 말자 */
+        position: absolute; /* 위치를 바꾸려면 static이면 안된다. default는 static*/
+        width: 200px; /* 넓이를 조절. px(픽셀)를 빼먹지 말자 */
         height: 50px;
-        background-color: blueviolet; /*id_bar의 색깔*/
-        bottom: 50px; /*바닥과의 거리 조절*/
+        background-color: blueviolet; /* id_bar의 색깔*/
+        bottom: 50px; /* 바닥과의 거리 조절*/
     }
 
 </style>
@@ -68,8 +68,12 @@
         
         
         // v_ballRight(ball의 오른쪽 사이즈)는 v_ballLeft에서 background-size(300px)만큼 더해주면 된다.
+        // v_ballBottom(ball의 밑에 사이즈)는 v_ballTop에서
         var v_ballLeft = parseInt(v_ball.style.left);
         var v_ballRight = parseInt(v_ball.style.left) + 300;
+        var v_ballTop = parseInt(v_ball.style.top);
+        var v_ballBottom = parseInt(v_ball.style.top) + 300;
+
 
         // 좌우 충돌 구현
         // v_ballRight이 현재 탭의 사이즈와 같거나 크면 오른쪽에서 왼쪽으로 이동한다.
@@ -80,17 +84,44 @@
         }
 
         // 상하 충돌 구현
-        // 
-
-        
-        
+        // 위의 좌우 충돌 로직과 동일
+        if(v_ballBottom > window.innerHeight || v_ballTop <= 0){
+            v_mvHeight = -v_mvHeight;
+        }
         
         // 첫 번째 파라미터 함수포인터(함수 이름)가 실행된다.
         // 두 번째 파라미터 지연되는 시간을 밀리초로 설정한다.
         setTimeout(f_move,50);
     }
     
+    // keyCode는 브라우자 상에서 누르는 키보드의 값으 코드
+    // 37(왼쪽 키보드)을 누르면 왼쪽으로 -10px이동 39도 동일
+    
+    var v_mvWidth1 = 10;
+    
+    window.onkeydown = function() {
+        var v_barleft = parseInt(v_bar.style.left);
+        var v_barRight = parseInt(v_bar.style.left) +200;
+        if(event.keyCode == 37){ // 왼쪽 화살표
+            
+            console.log(v_bar.style.left);
+            console.log(v_barleft);
+            
+            if(v_barleft > 0){
+                v_bar.style.left = parseInt(v_bar.style.left) - 5 + "px";
+            }
+            
+        }
+        if(event.keyCode == 39){ // 오른쪽 화살표
+            
+            if(v_barRight <= window.innerWidth){
+                v_bar.style.left = parseInt(v_bar.style.left) + 5 + "px";
+            }
+           
+        }
 
+    }
+    
 
 </script>
 </body>

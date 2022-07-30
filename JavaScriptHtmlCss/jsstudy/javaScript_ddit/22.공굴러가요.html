@@ -88,18 +88,16 @@
     // 자바스크립트는 window 안에서 돌아감, window안에 URL이 바뀌면
     // 이전것은 다(선언되었던 변수 함수등등) 없어짐 
 
-window.onkeydown = function() {
-    if(event.keyCode == 37){ // 왼쪽 화살표
-        v_bar.style.left = parseInt(v_bar.style.left) - 10 + "px";
+    window.onkeydown = function() {
+        if(event.keyCode == 37){ // 왼쪽 화살표
+            v_bar.style.left = parseInt(v_bar.style.left) - 10 + "px";
+        }
+        if(event.keyCode == 39){
+            v_bar.style.left = parseInt(v_bar.style.left) + 10 + "px";
+        }    
+        //alert(event.keyCode); // 누른 키값 확인
+        // alert(event.key); 누른 키 확인
     }
-    if(event.keyCode == 39){
-        v_bar.style.left = parseInt(v_bar.style.left) + 10 + "px";
-    }
-    
-    
-    //alert(event.keyCode); // 누른 키값 확인
-    // alert(event.key); 누른 키 확인
-}
 
 </script>
 </body>
