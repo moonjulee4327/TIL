@@ -7,7 +7,7 @@
 <style>
 
     #id_ball{
-        background-image: url(../images/20190522131711166386.jpg);
+        background-image: url(../img/20190522131711166386.jpg);
         position: absolute;
         width: 300px; /* 넓이와 높이를 주지 않으면 생기지 않는다.*/
         height: 300px;
@@ -16,7 +16,7 @@
     }
     #id_bar{
         position: absolute; /* 위치를 바꾸려면 static이면 안된다. default는 static*/
-        width: 200px; /* 넓이를 조절. px(픽셀)를 빼먹지 말자 */
+        width: 500px; /* 넓이를 조절. px(픽셀)를 빼먹지 말자 */
         height: 50px;
         background-color: blueviolet; /* id_bar의 색깔*/
         bottom: 50px; /* 바닥과의 거리 조절*/
@@ -25,9 +25,9 @@
 </style>
 </head>
 <body>
-<div id="id_ball"></div>
+<div id="id_ball" style="top:0"></div>
 <!-- <div id ~~~> 이 태그 안의 id ~~~가 inline태그 -->
-<div id="id_bar" style="left:30px"></div> 
+<div id="id_bar" style="left:30px; top:1000px"></div> 
 <!-- 버튼을 만드는 input botton태그 onclick="f_move()" => 클릭하면 실행될 메소드 ()을 빼먹지말자.-->
 <input type="button" value="게임시작!" onclick="f_move()"> 
 <script>
@@ -37,9 +37,9 @@
     var v_ball = document.querySelector('#id_ball');
     var v_bar = document.querySelector("#id_bar");
     // 수평 이동거리
-    var v_mvWidth = 5;
+    var v_mvWidth = 10;
     // 수직 이동거리
-    var v_mvHeight = 5;
+    var v_mvHeight = 10;
     // 사용자가 보는 페이지에 사이즈 콘솔창으로 확인
     // window는 브라우저의 탭 하나를 가르킴
     // 밑에 window.innerWidth는 현재 탭의 넓이와 높이
@@ -95,29 +95,44 @@
     }
     
     // keyCode는 브라우자 상에서 누르는 키보드의 값으 코드
-    // 37(왼쪽 키보드)을 누르면 왼쪽으로 -10px이동 39도 동일
-    
-    var v_mvWidth1 = 10;
+    // 37(왼쪽 키보드)을 누르면 왼쪽으로 -20px이동 39도 동일
+
     
     window.onkeydown = function() {
         var v_barleft = parseInt(v_bar.style.left);
-        var v_barRight = parseInt(v_bar.style.left) +200;
+        var v_barRight = parseInt(v_bar.style.left) + 500;
+        var v_balltop = parseInt(v_ball.style.top);
+        var v_ballBottom = parseInt(v_ball.style.top) + 300;
+        var v_barTop = parseInt(v_bar.style.top);
+
+
         if(event.keyCode == 37){ // 왼쪽 화살표
             
-            console.log(v_bar.style.left);
-            console.log(v_barleft);
-            
             if(v_barleft > 0){
-                v_bar.style.left = parseInt(v_bar.style.left) - 5 + "px";
+                v_bar.style.left = parseInt(v_bar.style.left) - 20 + "px";
+            }
+            
+            if(v_barTop == v_ballBottom){
+                
+                v_ball.style.top = v_balltop - v_mvHeight + "px";   
+                v_mvHeight = -v_mvHeight;
+                
             }
             
         }
         if(event.keyCode == 39){ // 오른쪽 화살표
             
             if(v_barRight <= window.innerWidth){
-                v_bar.style.left = parseInt(v_bar.style.left) + 5 + "px";
+                v_bar.style.left = parseInt(v_bar.style.left) + 20 + "px";
             }
            
+            if(v_barTop == v_ballBottom){
+                
+                v_ball.style.top = v_balltop - v_mvHeight + "px";   
+                v_mvHeight = -v_mvHeight;
+
+            }
+            
         }
 
     }
