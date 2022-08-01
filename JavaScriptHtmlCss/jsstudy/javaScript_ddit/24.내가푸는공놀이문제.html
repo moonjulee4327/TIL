@@ -7,7 +7,7 @@
 <style>
 
     #id_ball{
-        background-image: url(../img/20190522131711166386.jpg);
+        background-image: url(../images/20190522131711166386.jpg);
         position: absolute;
         width: 300px; /* 넓이와 높이를 주지 않으면 생기지 않는다.*/
         height: 300px;
@@ -27,7 +27,7 @@
 <body>
 <div id="id_ball" style="top:0"></div>
 <!-- <div id ~~~> 이 태그 안의 id ~~~가 inline태그 -->
-<div id="id_bar" style="left:30px; top:1000px"></div> 
+<div id="id_bar" style="left:30px; top:700px"></div> 
 <!-- 버튼을 만드는 input botton태그 onclick="f_move()" => 클릭하면 실행될 메소드 ()을 빼먹지말자.-->
 <input type="button" value="게임시작!" onclick="f_move()"> 
 <script>
@@ -92,12 +92,12 @@
         // 첫 번째 파라미터 함수포인터(함수 이름)가 실행된다.
         // 두 번째 파라미터 지연되는 시간을 밀리초로 설정한다.
         setTimeout(f_move,50);
+
+        
     }
     
     // keyCode는 브라우자 상에서 누르는 키보드의 값으 코드
     // 37(왼쪽 키보드)을 누르면 왼쪽으로 -20px이동 39도 동일
-
-    
     window.onkeydown = function() {
         var v_barleft = parseInt(v_bar.style.left);
         var v_barRight = parseInt(v_bar.style.left) + 500;
