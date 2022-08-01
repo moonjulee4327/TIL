@@ -1,37 +1,76 @@
+
 package horseRace;
 
-public class Horse implements Comparable<Object>{
+import java.util.Random;
+
+public class Horse {
+	public static void main(String[] args) {
+		
+	}
+}
+
+class HorseRacer extends Thread implements Comparable<HorseRacer>{
 	//필드
-	private String name;
-	private int grade;
-	
+	public static int currentRank = 0;
+	private String horseName;
+	private int ranking;
+	private int location;
+		
 	//생성자
-	public Horse(String name) {
-		this.name = name;
+	public HorseRacer(String horseName) {
+		this.horseName = horseName;
+	}
+		
+	//메소드
+	public String getHorseName() {
+		return horseName;
 	}
 	
-	//메소드
-	public String getName() {
-		return name;
+	public int getRanking() {
+		return ranking;
+	}
+	
+	public void setHorseName(String horseName) {
+		this.horseName = horseName;
+	}
+	
+	public void setRanking(int ranking) {
+		this.ranking = ranking;
+	}
+	
+	public int getLocation() {
+		return location;
 	}
 
-	public int getGrade() {
-		return grade;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setGrade(int grade) {
-		this.grade = grade;
+	public void setLocation(int location) {
+		this.location = location;
 	}
 
 	@Override
-	public int compareTo(Object o) {
+	public String toString() {
+		return "경주마" + horseName + "는 " + ranking + "등 입니다.";
+	}
+
+	@Override
+	public void run() {
+		Random random = new Random();
+		int ranNum = random.nextInt(200)+1;
+		for(int i = 0; i<=50; i++) {
+			location = i;
+			try {
+				Thread.sleep(ranNum);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Override
+	public int compareTo(HorseRacer o) {
 		return 0;
 	}
 	
 	
 	
+
 }

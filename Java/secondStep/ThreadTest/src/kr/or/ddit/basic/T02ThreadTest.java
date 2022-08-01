@@ -5,7 +5,7 @@ public class T02ThreadTest {
 		// 멀티 스레드 프로그램 방식
 		
 		// 방법1 : Thread클래스를 상속한 class 의 인스턴스를 생성한 후 이 인스턴스의 start() 메소드를 실행한다.
-		MyThread1 th1 = new MyThread1();
+		MyThread1 th1 = new MyThread1(); // 다형성 MyThread1(o), Thread(x)
 		th1.start();
 		
 		// 방법2 : Runnable 인터페이스를 구현한 클래스의 인터페이스를 생성한 후 이 인스턴스를 Thread객체의 
