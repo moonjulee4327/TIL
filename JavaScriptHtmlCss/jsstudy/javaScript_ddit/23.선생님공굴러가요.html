@@ -49,7 +49,8 @@ v_stop.addEventListener("click",function(){
 });
 
 v_stop.addEventListener("click",function(){
-    alert("멈추는 버튼!");
+    // alert("멈추는 버튼!");
+    clearTimeout(v_timerId);
 });
 
 
@@ -57,7 +58,7 @@ var isStart = false; // 이런 변수를 flag 변수, switch변수라고 부름
 function f_proxy(){ // Proxy(대리인) 패턴이라고 불리는데 중요하다.
     if(!isStart){   // 직접 제어하는 것을 대리인이 한다고 생각
         f_move();
-        isStart = true;
+        isStart = false;
     }
 }
  //javascript에서 브라우져의 탭 하나 하나를 window라는 키워드로 부름
@@ -116,10 +117,9 @@ function f_proxy(){ // Proxy(대리인) 패턴이라고 불리는데 중요하�
         v_mvHeight = -v_mvHeight;   // 부호 반전
     }
    
-    setTimeout(f_move,50);
-    
+    v_timerId = setTimeout(f_move,50); // 단짝 clearTimeout(타이머 id)
  }
-
+ var v_timerId; // 전역변수로 선언
  window.onkeydown = function(){
     if(event.keyCode == 37){  // 왼쪽 화살표 
         v_bar.style.left = parseInt(v_bar.style.left) - 10 + "px";
