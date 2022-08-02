@@ -66,7 +66,7 @@ public class HorseRace {
 }
 
 class Horse extends Thread implements Comparable<Horse> {
-	public static int currentRank = 0;
+	public static int currentRank = 1;
 	private String horseName;
 	private int rank;
 	private int location;
@@ -106,7 +106,7 @@ class Horse extends Thread implements Comparable<Horse> {
 
 	@Override
 	public int compareTo(Horse h) {
-		return Integer.compare(rank, h.getRank());
+		return Integer.compare(this.rank, h.getRank());
 	}
 
 	@Override
@@ -121,7 +121,7 @@ class Horse extends Thread implements Comparable<Horse> {
 				e.printStackTrace();
 			}
 		}
-		rank = ++Horse.currentRank;
+		rank = Horse.currentRank++;
 	}
 }
 

@@ -55,7 +55,7 @@ class HorseRacer extends Thread implements Comparable<HorseRacer>{
 	public void run() {
 		Random random = new Random();
 		int ranNum = random.nextInt(200)+1;
-		for(int i = 0; i<=50; i++) {
+		for(int i = 1; i <= 50; i++) {
 			location = i;
 			try {
 				Thread.sleep(ranNum);
@@ -66,8 +66,8 @@ class HorseRacer extends Thread implements Comparable<HorseRacer>{
 	}
 	
 	@Override
-	public int compareTo(HorseRacer o) {
-		return 0;
+	public int compareTo(HorseRacer h) {
+		return Integer.compare(this.ranking, h.getRanking());
 	}
 	
 	
