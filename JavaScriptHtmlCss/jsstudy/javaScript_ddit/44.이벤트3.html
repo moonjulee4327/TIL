@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" width="300px">
+        <tr>
+            <th>제목</th><th>지은이</th><th>짧은 글</th>
+        </tr>
+        <tr>
+            <td>제목1</td><td>토르</td><td>안녕</td>
+        </tr>
+        <tr>
+            <td>제목2</td><td>아이언맨</td><td>안녕</td>
+        </tr>
+        <tr>
+            <td>제목3</td><td>캡틴아메리카</td><td>안녕</td>
+        </tr>
+        <tr>
+            <td>제목4</td><td>그루트</td><td>안녕</td>
+        </tr>
+    </table>
+<script>
+    var v_trs = document.querySelectorAll("tr");
+    // let하고 var는 변수범위(scope)가 차이나는데
+    // ES6이상 버전에세 새로나온 것들 설명할 때 설명
+    for(let i = 0; i < v_trs.length; i++) {
+        v_trs[i].onmouseover = function(){ // 마우스오버
+            // v_trs[i].style.backgroundColor = pink; // 이렇게 쓰면 pink라는 변수로 받아드림
+            v_trs[i].style.backgroundColor = "pink";
+        }
+        v_trs[i].onmouseout = function(){ // 마우스아웃
+            v_trs[i].style.backgroundColor = "white";
+        }
+    }
+</script>
+</body>
+</html>

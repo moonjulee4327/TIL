@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .aaa {
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+    <div class="wrapper">    
+        <div class="aaa">토르</div>
+        <div class="aaa">로키</div>
+        <div class="aaa">그루트</div>
+        <div class="aaa">캡마</div>
+    </div>
+<script>
+    // class=aaa인 것 모두에게 이벤트 등록하기
+    var v_aaas = document.querySelectorAll(".aaa");
+    for(var i=0; i<v_aaas.length; i++) {
+        v_aaas[i].addEventListener("click", function(){
+            alert("누르셨습니까?");
+        });
+    }
+
+    //document.querySelector("#wrapper").innerHTML += "<div class='aaa'>스파이더맨</div>";
+
+
+</script>
+</body>
+</html>

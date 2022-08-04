@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_parent {
+        position: relative;
+        left: 250px;
+        top: 200px;
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+        border: 50px groove blue;
+        /*overflow: hidden; /* 넘치는 걸 잘라라*/
+    }
+    .child {
+        position: absolute;
+        width: 820px;
+        height: 200px;
+        border: 5px solid blue;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+</head>
+<body>
+    <h1>전자 앨범!</h1>
+    <div id="id_parent">
+        <div id="id_child1" class="child">
+            <img src="../images/개1.jpg">
+            <img src="../images/개2.jpg">
+            <img src="../images/개3.jpg">
+            <img src="../images/개4.jpg">
+        </div>
+        <div id="id_child2" class="child">
+            <img src="../images/나이키 어댑트.jpg">
+            <img src="../images/디올조던.jpg">
+            <img src="../images/마스야드.jpg">
+            <img src="../images/조던 시카고.jpg">
+        </div>
+    </div>
+<script>
+    var v_child1 = document.querySelector("#id_child1");
+    var v_child2 = document.querySelector("#id_child2");
+
+    var v_mvWidth = 10;
+
+    function f_move() {
+        v_child1.style.left = parseInt(v_child1.style.left) - v_mvWidth + "px";
+        v_child2.style.left = parseInt(v_child2.style.left) - v_mvWidth + "px";
+
+        if(v_child2.style.left == "0px") v_child1.style.left = "820px";
+        if(v_child1.style.left == "0px") v_child2.style.left = "820px";
+
+        setTimeout(f_move, 50);
+    }
+    
+    
+
+    // 페이지 로딩이 끝나면 자동으로 발생하는 이벤트
+    window.onload = function() {
+        if(!v_child1.style.left) { // 스크립트로 css초기화하는 것
+            v_child1.style.left = "1px";
+            v_child2.style.left = "820px";
+        }
+        f_move();
+    }
+</script>
+</body>
+</html>

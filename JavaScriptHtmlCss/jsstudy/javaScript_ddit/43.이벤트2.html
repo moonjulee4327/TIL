@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div style="border: 1px solid black" onmouseover="f_over(this)" onmouseout="f_out(this)">
+        <div>어디가니</div>
+        <div style="display: none;border: 1px solid pink">
+            <a href="https://naver.com">네이버</a><br>
+            <a href="https://daum.net">다음</a><br>
+            <a href="https://eomisae.co.kr">어미새</a><br>
+            <a href="https://youtube.com">유투브</a><br>
+        </div>
+    </div>
+    <!-- <div style="border: 1px solid black" onmouseover="f_over(this)" onmouseout="f_out(this)">
+        <div>어디가니</div>
+        <div style="visibility: hidden; border: 1px solid pink">
+            <a href="https://naver.com">네이버</a><br>
+            <a href="https://daum.net">다음</a><br>
+            <a href="https://eomisae.co.kr">어미새</a><br>
+            <a href="https://youtube.com">유투브</a><br>
+        </div>
+    </div> -->
+<script>
+    function f_over(p_this){
+        p_this.children[1].style.display = "block"; //보이기
+        //p_this.children[1].style.visibility = "visible";
+    }
+    function f_out(p_this){
+        p_this.children[1].style.display = "none"; //감추기(자리도 안차지)
+    }
+</script>
+</body>
+</html>

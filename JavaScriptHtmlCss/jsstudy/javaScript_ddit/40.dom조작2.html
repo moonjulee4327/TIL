@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .child { 
+        border: 1px solid green;
+        font-size: 2em; /*기본(디폴트 사이즈)사이즈의 2배*/
+    }
+    .merong {
+        font-size: 3em;
+        color: brown;
+    }
+</style>
+</head>
+<body>
+    <div id="id_par">
+        <div class="child">헐크</div>
+        <div class="child">토르</div>
+        <div class="child">아이언맨</div>
+        <div class="child">
+            <h1 id="id_sonja">로키의 형의 토르인가?</h1>
+        </div>
+        <div class="child">그루트</div>
+    </div>
+<script>
+
+    /*
+    document.createElement
+    removeChild
+    setAttribute("속성명", "값")  속성명이 키워드일 경우 꼭 필요
+    childre
+    parentElement
+    cloneNode() => 얕은 복사
+    cloneNode(true) => 깊은 복사
+    */
+
+
+    //var v_childs = document.querySelectorAll(".child");
+    var v_sonja = document.querySelector("#id_sonja");
+    var v_pat = document.querySelector("#id_par");
+    console.log("원본:", v_pat);
+    //var v_copy = v_pat.cloneNode(); // 해당 Element 복사(얕은 복사)
+    var v_copy = v_pat.cloneNode(true); // 해당 Element 복사(깊은 복사)
+    
+    console.log("복사본:", v_copy);
+    
+    //v_pat.children[3].style.fontSize="4em";
+    var v_childs = v_pat.children;
+    //v_childs[1].class = "merong"; // class 키워드가 예약어임 , 이렇게 접근하는 것은 안됨
+    v_childs[1].setAttribute("class", "merong"); // 속성명이 예약어일 경우 사용
+
+    //삭제 remove
+    //v_pat.removeChild(v_childs[1]);
+
+    //부모에서 자식 선택
+    //var v_pjh = v_pat.children[0];
+    
+    //자식에서 부모 선택
+    //v_pjh.parentElement.style.border="10px dashed red"
+    //v_sonja.parentElement.parentElement.style.border="30px solid green";
+
+    //console.log(v_pat.children[3]);
+</script>
+</body>
+</html>
