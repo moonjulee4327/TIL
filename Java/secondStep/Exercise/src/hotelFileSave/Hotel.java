@@ -35,7 +35,7 @@ public class Hotel {
 		new Hotel().hotelStart();
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	public void hotelStart() throws IOException {
 		
 		try(FileInputStream fis = new FileInputStream("e:/D_Other/HotelSheet.bin");
@@ -47,7 +47,7 @@ public class Hotel {
 				map = (Map<Integer, String>) obj;
 			}
 		} catch (IOException e) {
-			
+		
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -106,15 +106,15 @@ public class Hotel {
 		System.out.print("방번호 입력 => ");
 		int roomNum = scanner.nextInt();
 		
-		System.out.println("누구를 체크인 하시겠습니까?");
-		System.out.print("이름 입력 => ");
-		String name = scanner.next();
 		
 		
 		if(map.get(roomNum) != null) {
 			System.out.println(roomNum + "방에는 이미 사람이 있습니다.");
 			System.out.println();
 		} else {
+			System.out.println("누구를 체크인 하시겠습니까?");
+			System.out.print("이름 입력 => ");
+			String name = scanner.next();
 			map.put(roomNum, name);
 			System.out.println("체크인 되었습니다.");
 			System.out.println();
