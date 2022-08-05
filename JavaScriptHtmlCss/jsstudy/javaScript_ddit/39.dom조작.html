@@ -25,6 +25,7 @@
     var v_index = 1;
     var v_test = document.querySelector("#id_test");
     var v_merong = document.querySelector("#id_merong");
+
     v_test.onclick = function() {
         // v_merong.innerHTML += '<a href="http://naver.com">네이버</a><br>'
         var v_a = document.createElement("a");
@@ -33,10 +34,7 @@
         v_a.style.display = "block";
         v_merong.appendChild(v_a);
        }
-
     
-
-
     v_imgadd.onclick = function() {
         var v_img = document.createElement("img");
         //v_img.src = "../images/개" + v_index + ".jpg";
@@ -44,7 +42,7 @@
         //v_img.width = 100;
         v_img.setAttribute("width", "100");
         //v_img.height = 100;
-        v_img.setAttribute("height", "100")
+        v_img.setAttribute("height", "100");
         v_index++;
         if(v_index>=6) v_index = 1;
         //document.body.appendChild(v_img);
@@ -69,7 +67,8 @@
         return "rgba(" + f_ranNum(0,255) + "," + 
                         f_ranNum(0,255) + "," +
                         f_ranNum(0,255) + ","+ f_ranNum(0,1)+")";
-    }
+    }.
+    
 
 
     v_add.addEventListener("click", function() {

@@ -10,13 +10,18 @@
 </style>
 </head>
 <body>
-    <div class="wrapper">    
+    <div id="wrapper" onclick="f_what()">    
         <div class="aaa">토르</div>
         <div class="aaa">로키</div>
         <div class="aaa">그루트</div>
         <div class="aaa">캡마</div>
     </div>
 <script>
+    function f_what() {
+        alert("아이언맨은 살아있다.");
+        
+    }
+
     // class=aaa인 것 모두에게 이벤트 등록하기
     var v_aaas = document.querySelectorAll(".aaa");
     for(var i=0; i<v_aaas.length; i++) {
@@ -24,7 +29,12 @@
             alert("누르셨습니까?");
         });
     }
+    // 기존 것을 지우지 않고, 필요한 것만 추가해 주어야 이벤트가 살아있음
+    var v_div = document.createElement("div");
+    v_div.innerHTML = "<div class='aaa'>스파이더맨</div>";
+    document.querySelector("#wrapper").appendChild(v_div);
 
+    // 아래처럼 하면 기존 것을 지우고 다시 쓰기 때문에 이벤트 안먹음
     //document.querySelector("#wrapper").innerHTML += "<div class='aaa'>스파이더맨</div>";
 
 

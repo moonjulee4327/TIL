@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <a href="../images/개5.jpg" onclick="f_aa()">네버다이</a>
+    <a href="../images/개6.jpg" download="뭉치.jpg">네버</a>
+<script>
+    function f_aa() {
+        event.preventDefault(); // 기본 장착 이벤트 기능 막기
+        event.stopPropagation(); // 윗줄과 함께 기억하기
+        alert("클릭");
+    }
+</script>
+</body>
+</html>

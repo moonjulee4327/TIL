@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div {
+        position: relative;
+        border: 2px solid black;
+    }
+    #two {
+        left: 30px; top: 10px;
+    }
+    #me {
+        left: 10px; top: 10px;
+    }
+</style>
+</head>
+<body>
+    <div onclick="f_one()" id="one" style="width: 300px; height: 300px">
+        one
+        <div onclick="f_two()" id="two" style="width: 200px; height: 200px">
+            two
+            <div onclick="f_me()" id="me" style="width: 100px; height: 100px">
+                me
+            </div>
+        </div>
+    </div>
+<script>
+    // 이벤트 버블링
+    function f_one() {
+        alert("조모");
+    }
+    function f_two() {
+        event.stopPropagation(); 
+        alert("모");
+    }
+    function f_me() {
+        event.stopPropagation(); // 이벤트 capturing
+        //event.preventDefault(); // 이벤트 capturing
+        alert("나");
+    }
+</script>
+</body>
+</html>
