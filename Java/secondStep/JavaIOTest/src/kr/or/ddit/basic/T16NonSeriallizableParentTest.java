@@ -90,5 +90,4 @@ class Child extends Parent implements Serializable {
 		in.defaultReadObject();
 	}
 	
-	
 }
