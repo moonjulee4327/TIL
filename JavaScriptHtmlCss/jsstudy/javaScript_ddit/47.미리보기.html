@@ -1,59 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-<style>
-    #id_disp{
-        border: 1px solid pink;
-    }
-</style>
-</head>
-<body>
-<div id="id_disp"></div>
-<input type="file" id="id_file" value="" multiple accept=".jpg, .png, .jpeg, .gif"> <!--파일 선택 창-->
-<!-- 파일 선택 창 -->
-<script>
-    /*
-    플리커(사진 전문)사이트
-    flickr public api
-    https://www.flickr.com/services/feeds/photos_public.gne?tags=cat&format=json
-    */
-
-    // function jsonFlickrFeed(p_arg){
-    //     console.log("p_arg");
-    // }
-
-    // jsonFlickrFeed({
-    //     name:"헐크"
-    // });
-
-
-
-    // 문제 이미지가 1개로 유지되도록 
-    // 여러 파일 선택한 것을 다 나오게 만들기(비동기)
-    var v_fileBtn = document.querySelector('#id_file');
-    var v_disp = document.querySelector('#id_disp');
-    v_fileBtn.onchange = function() {
-        console.log(v_fileBtn.files[0].name); // 낯선 속성 files
-        var v_file = v_fileBtn.files[0]; // 현재는 file 1개만 선택
-
-        // alert("신중하게 선택하세요!");
-        var v_fileReader = new FileReader(); // 파일을 읽어주는 것
-        //v_fileReader.readAsText(); // 텍스트 읽기
-        v_fileReader.onload = function() { // 다 읽었을 때 할일 지정
-            console.log(v_fileReader.result);
-            // 읽은 내용을 result라는 속성을 가지고 있음
-            var v_img = document.createElement("img"); // img 태그 생성
-            v_img.src = v_fileReader.result;
-            v_img.width = 200;
-            v_img.setAttribute("height", "200");
-            v_disp.innerHTML = ""; // 추가 전에 비운다.
-            v_disp.appendChild(v_img); // 이것을 안하면 눈에 보이지 않음
-
+    <style>
+        #id_disp {
+            border: 1px solid pink;
         }
-        v_fileReader.readAsDataURL(v_file);
-    }
-</script>
+    </style>
+</head>
+
+<body>
+    <div id="id_disp"></div>
+    <input type="file" id="id_file" value="" multiple accept=".jpg, .png, .jpeg, .gif">
+    <!--파일 선택 창-->
+    <!-- 파일 선택 창 -->
+    <script>
+        /*
+        플리커(사진 전문)사이트
+        flickr public api
+        https://www.flickr.com/services/feeds/photos_public.gne?tags=cat&format=json
+        */
+
+        // function jsonFlickrFeed(p_arg){
+        //     console.log("p_arg");
+        // }
+
+        // jsonFlickrFeed({
+        //     name:"헐크"
+        // });
+
+
+
+        // 문제 이미지가 1개로 유지되도록 
+        // 여러 파일 선택한 것을 다 나오게 만들기(비동기)
+        var v_fileBtn = document.querySelector('#id_file');
+        var v_disp = document.querySelector('#id_disp');
+        v_fileBtn.onchange = function () {
+            console.log(v_fileBtn.files[0].name); // 낯선 속성 files
+            var v_file = v_fileBtn.files[0]; // 현재는 file 1개만 선택
+
+            // alert("신중하게 선택하세요!");
+            var v_fileReader = new FileReader(); // 파일을 읽어주는 것
+            //v_fileReader.readAsText(); // 텍스트 읽기
+            v_fileReader.onload = function () { // 다 읽었을 때 할일 지정
+                console.log(v_fileReader.result);
+                // 읽은 내용을 result라는 속성을 가지고 있음
+                var v_img = document.createElement("img"); // img 태그 생성
+                v_img.src = v_fileReader.result;
+                v_img.width = 200;
+                v_img.setAttribute("height", "200");
+                v_disp.innerHTML = ""; // 추가 전에 비운다.
+                v_disp.appendChild(v_img); // 이것을 안하면 눈에 보이지 않음
+
+            }
+            v_fileReader.readAsDataURL(v_file);
+        }
+    </script>
 </body>
+
 </html>
