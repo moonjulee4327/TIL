@@ -1,4 +1,4 @@
-package kr.or.ddit.basic;
+package kr.or.ddit.member;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,7 +37,7 @@ create table mymember(
     CONSTRAINT MYMEMBER_PK PRIMARY KEY (mem_id)
 );
 */
-public class T01MemberInfoTest {
+public class MemberMain {
 	
 	private Connection conn;
 	private Statement stmt;
@@ -340,7 +340,7 @@ public class T01MemberInfoTest {
 	}
 
 	public static void main(String[] args) {
-		T01MemberInfoTest memObj = new T01MemberInfoTest();
+		MemberMain memObj = new MemberMain();
 		memObj.start();
 	}
 
