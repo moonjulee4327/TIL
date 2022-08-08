@@ -27,28 +27,42 @@
         var v_tblStr = "<table border=1>";
         v_tblStr += "<tr><th>" + v_dan + "단</th></tr>";
         for(var i=1; i<=9; i++){
-            v_tblStr += "<tr>"
+            v_tblStr += "<tr>";
             v_tblStr += "<td>" + v_dan + "*" + i + "=" + (v_dan*i) + "</td>";
-            v_tblStr += "</tr>"
-               
+            v_tblStr += "</tr>";
+            
         }
         v_tblStr += "</table>";
         v_disp.innerHTML = v_tblStr; // 화면에 출력
     }
 
     function f_guguAll() {
-        var v_dan = v_gugu.value; // 선택된 값 가져옴
-        var v_tblStr = "<table border=1>";
-        v_tblStr += "<tr><th>" + v_dan + "단</th></tr>";
+        /* 되도록이면 innerHTML을 이용한 태그 생성 문자열 더하기는 하지 않는다.
+        v_disp.innerHTML = ""; // 일단 기존 거 지워 줌 
+        v_disp.innerHTML = "<table border=3>";
+        v_disp.innerHTML = "<tr><td>흥</td></tr>";
+        v_disp.innerHTML = "</table>";     
+        */
+        // 이렇게 변수에 넣어 사용하는 이유는 innerHTML로 <table> 를 쓰면 자동으로 
+        // 브라우저가 자동으로 </table>을 넣어준다.
+        var v_tblStr = "<table width=400 border=1>"; 
+        v_tblStr += "<tr>";
+        for(var i=2; i<=9; i++){
+            v_tblStr += "<th>" + i + "단</th>";
+        }
+        v_tblStr += "</tr>";
+        
         for(var i=1; i<=9; i++){
-            v_tblStr += "<tr>"
-            v_tblStr += "<td>" + v_dan + "*" + i + "=" + (v_dan*i) + "</td>";
-            v_tblStr += "</tr>"
-            v_tblStr += "</table>";
-            v_disp.innerHTML = v_tblStr;
+            v_tblStr += "<tr>";
+            for(var j=2; j<=9; j++){
+                v_tblStr += "<td>" + j + "*" + i + "=" + (j*i) + "</td>";
+            }
+            v_tblStr += "</tr>";
         }
         v_tblStr += "</table>";
-        v_disp.innerHTML = v_tblStr; // 화면에 출력
+        // 태그 생성 문자열 더하기는 변수를 이용해서
+        // 원하는 문자열을 완성한 후 한번에 innerHTML 속성에 넣어준다.
+        v_disp.innerHTML = v_tblStr; // 확인용
     }
     
 
