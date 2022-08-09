@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_files {
+        position: relative;
+        left: 100px;
+        top: 100px;
+        width: 500px;
+        height: 100px;
+        border: 3px solid aquamarine;
+    }
+</style>
+</head>
+<body>
+    <ol id="id_flist"></ol>
+    <div id="id_files" ondragover="f_dover()" ondrop="f_drop()">
+        파일부탁드립니다.
+    </div>
+<script>
+    var v_fileList = document.querySelector("#id_flist");
+    var v_drop = document.querySelector("#id_files");
+    // dragover , drop 두 이벤트를 막아야만 브라우저가 자동으로 파일 여는 걸 막을 수 있다.
+    function f_dover() {
+        event.preventDefault(); // 기본이벤트 막기(1)
+    }
+
+    //파일 1개만 읽는 함수
+    function f_readFile(p_file){
+        console.log("파일객체:", p_file.name);
+        var v_fileReader = new FileReader();
+        v_fileReader.onload = function(){ // 다 읽으면 자동 이벤트발생
+            var v_img = document.createElement("img");
+            v_img.src = v_fileReader.result;
+            v_img.setAttribute("width",100);
+            v_img.height = 100;
+            v_drop.appendChild(v_img); // 이걸 안하면 안 보여용
+
+            var v_li = document.createElement("li");
+            v_li.innerHTML = p_file.name;
+            v_fileList.appendChild(v_li);
+
+        }
+        v_fileReader.readAsDataURL(p_file);
+    }
+    // 파일 5개까지만 허락하고, 6개이상 가져오면
+    // 5개까지만 허락됩니다. 메세지를 띄우기
+    function f_drop(){
+        v_drop.innerHTML = ""; //내용 클리엉
+        event.preventDefault();
+        //요기서만 필요한 작업을 해주면 끄읕
+        console.log(event.dataTransfer.files);
+        var v_files = event.dataTransfer.files;
+        if(v_files.length >= 6){
+            alert("5개까지만 올릴 수 있습니다.");
+            return;
+        }
+        v_drop.innerHTML = ""; // 내용 클리어
+        v_fileList.innerHTML = ""; // 파일 리스트 클리어
+        for(var i=0; i<v_files.length; i++){
+            f_readFile(v_files[i]);
+        }
+    }
+
+    // 1개씩
+    // function f_drop() {
+    //     v_drop.innerHTML = "";
+    //     event.preventDefault(); // 기본이벤트 막기(2 1,2번 다 막아야 됨)
+    //     console.log(event.dataTransfer.files);
+    //     var v_file = event.dataTransfer.files[0]; // 파일 1개만
+    //     var v_fileReader = new FileReader();
+    //     v_fileReader.onload = function() { // 다 읽으면 자동 이벤트 발생
+    //         var v_img = document.createElement("img");
+    //         v_img.src = v_fileReader.result;
+    //         v_img.setAttribute("width", 100);
+    //         v_img.height = 100;
+    //         // v_fileReader.result; // 읽은 내용을 result라는 속성에 가진다.
+    //         v_drop.appendChild(v_img); // 이걸 안하면 안 보인다.
+    //     }
+    //     v_fileReader.readAsDataURL(v_file);
+    // }
+
+    // 어쩔 수 없이 주변도 막아야 함 
+window.addEventListener("dragover",function(){
+    event.preventDefault();
+});
+window.addEventListener("drop",function(){
+    event.preventDefault();
+});
+</script>
+</body>
+</html>

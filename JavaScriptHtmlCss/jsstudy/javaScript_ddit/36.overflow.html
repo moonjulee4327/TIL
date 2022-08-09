@@ -12,7 +12,7 @@
         height: 200px;
         background-color: aqua;
         border: 50px groove blue;
-        /*overflow: hidden; /* 넘치는 걸 잘라라*/
+        overflow: hidden; /* 넘치는 걸 잘라라*/
     }
     .child {
         position: absolute;
@@ -52,10 +52,10 @@
         v_child1.style.left = parseInt(v_child1.style.left) - v_mvWidth + "px";
         v_child2.style.left = parseInt(v_child2.style.left) - v_mvWidth + "px";
 
-        if(v_child2.style.left == "0px") v_child1.style.left = "820px";
-        if(v_child1.style.left == "0px") v_child2.style.left = "820px";
+        if(parseInt(v_child2.style.left) == -820) v_child2.style.left = "820px";
+        if(parseInt(v_child1.style.left) == -820) v_child1.style.left = "820px";
 
-        setTimeout(f_move, 50);
+        setTimeout(f_move, 150);
     }
     
     
@@ -63,7 +63,7 @@
     // 페이지 로딩이 끝나면 자동으로 발생하는 이벤트
     window.onload = function() {
         if(!v_child1.style.left) { // 스크립트로 css초기화하는 것
-            v_child1.style.left = "1px";
+            v_child1.style.left = "0px";
             v_child2.style.left = "820px";
         }
         f_move();

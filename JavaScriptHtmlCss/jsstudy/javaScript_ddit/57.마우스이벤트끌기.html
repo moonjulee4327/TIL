@@ -25,9 +25,14 @@
 </style>
 </head>
 <body>
-<div id="kgs" onmousedown="" onmouseup="f_move()">김강산</div>
+<div id="kgs" on>김강산</div>
 <script>
     var v_kgs = document.querySelector("#kgs");
+    
+    v_kgs.onmousedown = function(event) {
+
+    }
+    
     // window.addEventListener("mousemove",function() {
     //     if(event.button ==0){
     //         v_kgs.style.left = event.clientX + "px";
@@ -44,15 +49,14 @@
     // })
 
 
-    function f_move() {
-        if(event.button == 0){
-            window.addEventListener("mousemove", function(){
-                v_kgs.style.left = event.clientX + "px";
-                v_kgs.style.top = event.clientY + "px";})
-            return;
-        }
-     
-    }
+    // function f_move() {
+    //     if(event.button == 0){
+    //         window.addEventListener("mousemove", function(){
+    //             v_kgs.style.left = event.clientX + "px";
+    //             v_kgs.style.top = event.clientY + "px";})
+    //         return;
+    //     }
+    // }
 </script>
 </body>
 </html>

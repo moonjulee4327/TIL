@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- window.location 객체는 브라우저의 주소 표시줄이라고 생각하면 편함
+    보통 window는 생략하고 사용, 실제로는 document객체에도 속성으로
+    location객체가 존재하나, window.location를 사용하는 경우가 많다. 
+-->
+    <a href="http://daum.net" onclick="f_ano()">다음</a>
+    <input type="button" value="다음카카오로 이동" onclick="f_daum()">
+    <input type="button" value="page reload" onclick="f_reload()">
+<script>
+    alert("전 페이지가 새로 로딩 될때(reload) 마다 뜬다.");
+    function f_reload() {
+        // alert(location.href); // 현재 주소 표시줄에 있는 값이 읽힘
+        // location.reload(); // 새로 고침 버튼을 누른 것과 같은 효과
+        // reload는 특별한 상황이 아니면 권장되지 않는 메소드
+        // location.replace(location.href); // reload처럼 동작
+        location.replace("http://naver.com"); 
+
+        /*
+            href vs replace
+            href는 브라우저 캐쉬한 파일을 보여 줄 수도, 서버에 새로 요청 할 수도
+            replace는 항상 서버에 새로 요청
+            
+        */
+    }
+    function f_ano(){
+        event.preventDefault();
+        location.href = "http://naver.com";
+    }
+    function f_daum() {
+        location.href = "http://daum.net"; // window는 최상위 객체라 생략가능
+        // window.location.href = "http://duam.net";
+    }
+</script>
+</body>
+</html>
