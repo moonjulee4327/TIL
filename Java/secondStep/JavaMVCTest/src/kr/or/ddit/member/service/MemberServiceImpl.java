@@ -2,38 +2,69 @@ package kr.or.ddit.member.service;
 
 import java.util.List;
 
+import kr.or.ddit.member.dao.IMemberDAO;
+import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.member.vo.MemberVO;
 
 public class MemberServiceImpl implements IMemberService{
 
+	private IMemberDAO memDao;
+	
+	public MemberServiceImpl() {
+		memDao = new MemberDAOImpl();
+	}
+	
 	@Override
 	public int regisetMember(MemberVO mv) {
-		// TODO Auto-generated method stub
-		return 0;
+		int cnt = memDao.insertMember(mv);
+		
+		return cnt;
 	}
 
 	@Override
 	public boolean checkMember(String memId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean chk = memDao.checkMember(memId);
+		return chk;
 	}
 
 	@Override
 	public int modifyMember(MemberVO mv) {
-		// TODO Auto-generated method stub
-		return 0;
+		int cnt = memDao.updateMember(mv);
+		return cnt;
 	}
 
 	@Override
 	public int removeMember(String memId) {
-		// TODO Auto-generated method stub
-		return 0;
+		int cnt = memDao.deleteMember(memId); 
+		return cnt;
 	}
 
 	@Override
 	public List<MemberVO> getAllMemberList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<MemberVO> memList = memDao.getAllMemberList();
+		return memList;
 	}
+	
+	public void accountTransfer() {
+		try {
+		// 트랜잭션 시작
+		// 계좌DAO.update(); 유저 1계정에 백만원 인출
+		// 계좌DAO.update(); 유저 2계정에 백만원 입금
+		// 트랜잭션 종료(commit)
+		} catch (Exception e) {
+			// 롤백 처리
+		}
+		
+	}
+
+	@Override
+	public List<MemberVO> searchMemberList(MemberVO mv) {
+		
+		List<MemberVO> memList = memDao.searchMemberList(mv);
+		
+		return memList;
+	}
+	
+	
 
 }
