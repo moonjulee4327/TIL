@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .aaa{
+        color: pink;
+        background-color: black;
+    }
+</style>
+<link rel="stylesheet" href="./css/test.css">
+<style>
+    .ccc{ /*document.styleSheets[2].cssRules[0]*/
+        color: ivory;
+        background-color: blueviolet;
+    }
+    .ddd{ /*document.styleSheets[2].cssRules[1]*/
+        font-size: 2em;
+    }
+</style>
+</head>
+<body>
+    <div class="ddd">안녕하세요!</div>
+    <input type="button" value="누르시오" onclick="f_styleCheck()">
+<script>
+    // 이 정도는 front 전문 회사가 아니면 거의 사용되지 않는다.
+    // 선택자로 검색하는 함수를 만들어서 사용하는 것이 일반적
+
+    function f_schsel(p_selector) {
+        var v_styleSheets = document.styleSheets;
+        for (var i = 0; i < v_styleSheets.length; i++) {
+            var v_cssRules = v_styleSheets[i].cssRules;
+            for(var j = 0; j < v_cssRules.length; j++) {
+                if(v_cssRules[j].selectorText == p_selector){
+                    return v_cssRules[j].style;
+                }
+            }
+        }
+    }
+
+    function f_styleCheck() {
+        alert(f_schsel(".ddd").fontSize);
+        alert(f_schsel(".ccc").backgroundColor);
+        // console.log(f_schsel(".css").color);
+        // var v_ss = document.styleSheets[2].cssRules[1];
+        // alert(v_ss.cssText);
+        // alert(v_ss.selectorText);
+        // alert(v_ss.style.color);
+        // v_ss.style.fontSize = parseInt(v_ss.style.fontSize)*2 + "em";
+    }
+</script>
+</body>
+</html>

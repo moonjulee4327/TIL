@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>엄청 중요!</h1>
+    <div id="id_disp"></div>
+<script>
+
+    var grades = {
+        "ys001" : "사장",
+        "ys002" : "전무",
+        "ys003" : "중급개발자",
+        "ys007" : "천재개발자",
+        "ys000" : "미확인"
+    }
+
+    var sawons = [
+        {
+            name:"아이언맨",
+            grade:"ys001"
+        },
+        {
+            name:"헐크",
+            grade:"ys007"
+        },
+        {
+            name:"캡틴아메리카",
+            grade:"ys000"
+        },
+        {
+            name:"자비스",
+            grade:"ys000"
+        },
+        {
+            name:"토르",
+            grade:"ys002"
+        },
+        {
+            name:"블랙팬서",
+            grade:"ys001"
+        },
+        {
+            name:"닥터스트레인지",
+            grade:"ys003"
+        }
+    ];
+    // 위 2개의 데이터를 가지고 id_disp에 테이블을 출력해 봅시다.
+
+    var v_table = "<table border=1>";
+    v_table += "<tr><th>순번</th><th>이름</th><th>직책</th></tr>";
+    for(var i = 0; i < sawons.length; i++){
+        console.log(i, sawons[i]);
+        console.log(typeof(sawons[i].grade));
+        v_table += "<tr>";
+        v_table += "<td>" + (i+1) + "</td>";
+        v_table += "<td>" + sawons[i].name + "</td>";
+        v_table += "<td>" + grades[sawons[i].grade] + "</td>";
+        v_table += "</tr>";
+    }
+    v_table += "</table>";
+    document.querySelector("#id_disp").innerHTML = v_table;
+
+    alert(grades["ys001"]);
+</script>
+</body>
+</html>
