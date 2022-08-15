@@ -1,6 +1,5 @@
 package JDBCBoardService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import JDBCBoardDao.BoardDAOImpl;
