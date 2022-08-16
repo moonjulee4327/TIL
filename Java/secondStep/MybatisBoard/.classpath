@@ -7,7 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry kind="lib" path="C:/Users/mjlee/Desktop/TIL/Java/secondStep/MyBatisTest/mybatis-3.4.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mjlee/Desktop/TIL/Java/secondStep/MyBatisTest/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-17/Desktop/mybatis-3.4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-17/Desktop/ojdbc6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

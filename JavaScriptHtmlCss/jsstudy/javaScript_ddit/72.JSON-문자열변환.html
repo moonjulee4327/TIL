@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // JSON 유틸 (객체 <-> 문자열)
+    // JSON이 우선순위에 밀려 현재까지 버전업을 안 해주고 있다.
+    // 현 상태의 해결책은 바깥쪽을 ''로 안쪽을 ""로 해준다. 
+
+var v_arrStr = '["이문주","문주",100]';
+var v_arrObj = JSON.parse(v_arrStr);
+
+alert(v_arrObj[2]);
+alert(v_arrObj[0]);
+
+/*
+var v_mjStr = '{"name":"이문주","bestFriend":"이문주","bestEnemy":"이문주"}'
+// console.log(v_mjStr);
+var v_mjObj = JSON.parse(v_mjStr);
+alert(v_mjObj.bestEnemy);
+*/
+var v_mj = {
+    name : "이문주",
+    age : "28"
+}
+// alert(typeof(v_mj));
+console.log("체크:",v_mj);
+// 객체(배열도 포함, json만 객체라는 생각은 편견)를 문자열로 변환
+
+var v_str = JSON.stringify(v_mj); // 자바에서는 Serialize(직렬화)
+console.log("체크:",v_str);
+// alert("타입확인: " + typeof(v_str));
+
+var v_againObj = JSON.parse(v_str); // 문자열을 객체로
+// 단 문자열의 표현이 정확히 객체 표현 문법에 어긋남이 없어야 함
+console.log("다시 객체로:",v_againObj);
+
+</script>

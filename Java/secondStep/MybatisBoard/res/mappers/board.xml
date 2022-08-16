@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="board">
 
-	<insert id="insertBoard" parameterType="bVO">
+	<insert id="insertBoard" parameterType="JDBCBoardVO.BoardVO">
 		
 		insert into jdbc_board
 		(board_no , board_title , board_writer , board_date , board_content ) 
@@ -26,7 +26,7 @@
 	
 	</delete>
 	
-	<resultMap type="JDBCBoard.BoardVO" id="bMap">
+	<resultMap type="JDBCBoardVO.BoardVO" id="bMap">
 		<result property="boardNo" column="board_no"/>
 		<result property="boardTitle" column="board_title"/>
 		<result property="boardWriter" column="board_writer"/>
@@ -39,7 +39,7 @@
 	
 	</select>
 	
-	<select id="searchBoardList" parameterType="bVO" resultType="bVO">
+	<select id="searchBoardList" parameterType="JDBCBoardVO.BoardVO" resultMap="bMap">
 	
 		select * from jdbc_board
 		where 1=1

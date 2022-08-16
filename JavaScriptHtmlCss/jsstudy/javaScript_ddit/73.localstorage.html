@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+// html5 발표 당시 html4와 크게 달라진 점으로 부각되었던 것이
+// 멀티비디오(video/audio), 로컬저장소(offline 상황대응)
+// 브라우저밖의 카메라, 마이크, 스피커등등 주변기기에 접속(WebRTC라 부름)
+// RTC -> RealTime communication, 필수 조건이 보안상 https 프로토콜 이어야 함
+// (openSSL을 쓰면 셀프인증서를 만들 수 있음) -> 하지만 localhost에서만 사용가능
+// sessionStorage 와 localStorage 는 정확히 사용법이 일치한다.
+// 단지 데이터가 자동으로 사라짐(브라우저에서 나가거나, 페이지를 벗어나면)
+
+var v_mj = [1,2,3,4,5];
+alert(v_mj.toString());
+
+localStorage.setItem("키값1","김무건"); // 쓰기(문자열만 저장가능하다!!중요!!)
+//setItem 메소드는 다른 언어 사용자의 편의를 위해 만들어 주었음
+localStorage.mj = "이문주";
+localStorage.setItem("키값2","최승훈");
+localStorage.setItem("키값3","이준혁");
+localStorage.setItem("키값4","이승연"); // 키값이 같으면 데이터가 덮어씌워진다.(update)
+localStorage.setItem("테스트",JSON.stringify(["1","2","3"])); // 객체를 저장하려고 시도
+localStorage.setItem("moonju",JSON.stringify({name:"문주",nickName:"아이언맨"})); // 객체가 아니라 문자열이다.
+
+// 헷갈리면 명확히 Object <=> String, localStorage는 문자열만 저장가능
+var v_moonju = JSON.parse(localStorage.getItem("moonju"));
+// v_moonju = JSON.parse(v_moonju);
+alert(v_moonju.nickName); // 문자열의 nickName은 없어서 undefined가 뜬다. parse를 이용해 객체로 만들면 접근가능
+
+// alert({name:"문주",nickName:"아이언맨"}); // toString이 없어서 object Object 라고 뜬다.
+
+// 사용 포인트
+var v_question = localStorage.getItem("테스트");
+// v_question = JSON.parse(v_question);
+alert(typeof(v_question)); // String
+// ["1","2","3"]
+alert(v_question[1]); // ", v_question[4] = , 이다. 문자열이라 이런 결과가 나옴, 위의 parse로 객체변환을 해주면 배열식 접근가능
+
+// localStorage.getItem("키값2"); // 읽기
+// alert(localStorage.length); // 6개
+// alert(localStorage.key(3)); // key(인덱스)값 읽어오기
+/*
+    for(var v_key in localStorage) { // 객체 속성(key) 읽을 때 사용
+        alert(v_key); 
+    }
+*/
+// localStorage.removeItem("키값4"); // 지우기
+// localStorage.clear(); // 싹 지우기, 사용자는 브라우저에서 마우스 오른쪽 버튼으로 지울 수 있음
+</script>

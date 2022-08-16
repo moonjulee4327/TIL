@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
+
 import kr.or.ddit.util.JDBCUtil3;
 
 /*
@@ -45,6 +48,10 @@ public class T01MemberInfoTest {
 	private ResultSet rs;
 	
 	private Scanner scan = new Scanner(System.in); 
+	
+	private static final Logger SQL_LOGGER = Logger.getLogger("log4jexam.sql.Query");
+	private static final Logger PARAM_LOGGER = Logger.getLogger("log4jexam.sql.Parameter");
+	private static final Logger RESULT_LOGGER = Logger.getLogger(T01MemberInfoTest.class);
 	
 	/**
 	 * 메뉴를 출력하는 메서드
@@ -273,13 +280,21 @@ public class T01MemberInfoTest {
 			//conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "pc17","java");
 			String sql = "INSERT INTO mymember ( mem_id, mem_name, mem_tel, mem_addr, reg_dt)"
 					+ " VALUES (?, ?, ?, ?, sysdate)";
+			
+			SQL_LOGGER.debug("쿼리 : " + sql);
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memId);
 			pstmt.setString(2, memName);
 			pstmt.setString(3, memTel);
 			pstmt.setString(4, memAddr);
 			
+			
+			PARAM_LOGGER.debug("memId : " + memId + ", memName" + memName + ", memTel" + memTel + ", memAddr" + memAddr);
+			
 			int cnt = pstmt.executeUpdate();
+			
+			RESULT_LOGGER.info("실행 결과 : " + cnt);
 			
 			if(cnt > 0 ) {
 				System.out.println(memId + "회원 추가 작업 성공!");

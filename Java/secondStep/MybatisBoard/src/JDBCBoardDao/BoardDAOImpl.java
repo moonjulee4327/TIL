@@ -51,7 +51,7 @@ public class BoardDAOImpl implements IBoardDAO{
 	@Override
 	public int deleteWrite(int boardNo) {
 		
-		int cnt = sqlSession.delete("board.deleteboard", boardDao);
+		int cnt = sqlSession.delete("board.deleteboard", boardNo);
 		
 		return cnt;
 	}

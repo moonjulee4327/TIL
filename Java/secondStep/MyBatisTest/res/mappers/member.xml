@@ -2,7 +2,6 @@
 <!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
-
 	<insert id="insertMember" parameterType="kr.or.ddit.member.vo.MemberVO">
 		
 		INSERT INTO mymember 
@@ -66,16 +65,16 @@
 		select * from mymember 
 		where 1=1 
 		<if test="memId != null and memId != ''">
-			and mem_id = ?			
+			and mem_id = #{memId}			
 		</if>
 		<if test="memName != null and memName != ''">
-			and mem_name = ? 		
+			and mem_name = #{memName} 		
 		</if>
 		<if test="memTel != null and memTel != ''">
-			and mem_tel = ? 
+			and mem_tel = #{memTel} 
 		</if>
 		<if test="memAddr != null and memAddr != ''">
-			and mem_addr like '%' || ? || '%' 
+			and mem_addr like '%' || #{memAddr} || '%' 
 		</if>
 			
 	</select>

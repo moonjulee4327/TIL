@@ -1,6 +1,5 @@
 package JDBCBoard;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -148,9 +147,9 @@ public class BoardMain {
 		int cnt = boardService.updateWrite(bv);
 		
 		if(cnt > 0) {
-			System.out.println(boardTitle + "게시판 글 수정 성공!");
+			System.out.println("게시판 글 수정 성공!");
 		}else {
-			System.out.println(boardTitle + "게시판 글 수정 실패!!!");
+			System.out.println("게시판 글 수정 실패!!!");
 		}
 		
 	}
