@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 서버프로그램 맛보기 -->
+    <form action="../javaScript_ddit/76.hanbun.php" id="id_form1" method="get">
+        <input type="text" name="aaa" value="화룡점정">
+        <div name="kgb" value="fbi">메롱</div>
+        <input type="text" name="zzz" value="마스코트">
+        <input type="submit" value="전송">
+    </form>
+    <hr>
+    <form action="../javaScript_ddit/76.hanbun.php" method="post">
+        <input type="text" name="bbb" value="아이언맨">
+        <input type="text" name="yyy" value="그루트">
+        <input type="submit" value="전송">
+        <input type="reset" value =" ??" >
+    </form>
+<script>
+    // 접근법 2
+    // alert(document.querySelector("#id_form1").action);
+    // alert(document.querySelector("#id_form1").method);
+
+    // 접근법 3 (elements는 사용자 입력태그만 해당)
+    // alert(document.forms[0].elements[1].value); // 마스코트
+    // alert(document.forms[1].elements[1].value);
+
+    // 접근법 1
+    // document.forms[0].aaa.value = "마징가Z";
+    // alert(document.forms[0].aaa.value);
+    // alert(document.forms[1].bbb.value);
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="../javaScript_ddit/75.확인.html" method="get" onsubmit="return f_submit()">
+        아이디 <input type="text" name="n_id" value="" required><br>
+        <!-- password는 text랑 똑같지만 안 보인다.-->
+        암호 <input type="password" name="n_pw" value="" required><br>
+        <input type="submit" value="전송">
+    </form>
+    <!-- 
+        form과 submit 실수 submit에 onclick 이벤트를 기술함
+        전송할지 안할지 제어할 땐 form 태그의 onsubmit 이벤트를 활용
+        전송직전에 발생하는 이벤트가 onsubmit
+     -->
+<script>
+    function f_submit(){
+        if(document.forms[0].n_id.value == "아이언맨"){
+            return true; // 전송
+        }
+        return false; // 전송하지 않음
+    }
+</script>
+</body>
+</html>

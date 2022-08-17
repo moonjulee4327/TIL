@@ -21,15 +21,17 @@
     post: 주소표시줄에 넘어가는 값이 표시가 안됨, 서버사이드 프로그램 쪽에서 
           값을 찍어 봐야 하기 때문에 디버깅에 시간이 필요
           적어도 상대적으로 get 보다는 보안상 유리(넘어가는 값이 안보이니까)
-    action의 default값은 페이지 자기자신이다.
+    action의 default값은 페이지 자기자신이다. action은 넘어가는 페이지?
     실제 action의 값은 서버사이드 프로그래밍 페이지
+    path : 절대/상대경로 xampp에서는 / -> c:\xampp\htdocs
+    required : 값을 입력하지 않으면 다시 요구
 -->
     <form action="" method="post">
         이름 <input type="text" name="n_name" value="" required><br>
         별명 <input type="text" name="n_alias" value="" required><br>
         form 너 할 수 있는게 뭐니?<br>
         <!-- 단순 화면꾸미는 태그는 있어도 되고 없어도 된다. -->
-        <img src="/images/개6.jpg" width="100" height="100"><br>
+        <img src="/jsstudy/images/개6.jpg" width="100" height="100"><br>
         JS<input type="checkbox" name="n_skills" id="js">
         HTML<input type="checkbox" name="n_skills" id="html">
         CSS<input type="checkbox" name="n_skills" id="css"><br>
