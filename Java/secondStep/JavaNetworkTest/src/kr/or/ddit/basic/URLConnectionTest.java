@@ -24,17 +24,17 @@ public class URLConnectionTest {
 		
 		System.out.println("Content-Type: " + urlConn.getContentType());
 		System.out.println("Encoding: " + urlConn.getContentEncoding());
-		System.out.println("Conent: " + urlConn.getContent());
+		System.out.println("Content: " + urlConn.getContent());
 		System.out.println();
 		
 		// 전체 Header 정보 출력하기
-		Map<String, List<String>> headerrMap = urlConn.getHeaderFields();
+		Map<String, List<String>> headerMap = urlConn.getHeaderFields();
 		
 		// Header의 key값 구하기
-		Iterator<String> iterator = headerrMap.keySet().iterator();
+		Iterator<String> iterator = headerMap.keySet().iterator();
 		while(iterator.hasNext()) {
 			String key = iterator.next();
-			System.out.println(key + " : " + headerrMap.get(key));
+			System.out.println(key + " : " + headerMap.get(key));
 		}
 		System.out.println("-------------------------------------------------------------------------------------------------");
 		

@@ -31,14 +31,12 @@ public class TcpSocketServerTest {
 		OutputStream out = socket.getOutputStream();
 		
 		ObjectOutputStream oos = new ObjectOutputStream(out);
-		oos.writeUTF("어서오세요");
+		oos.writeUTF("어서오세요!!!");
 		
 		System.out.println("메세지를 보냈습니다.");
 		
 		oos.close();
 		server.close();
-
-		
 		
 	}
 }
