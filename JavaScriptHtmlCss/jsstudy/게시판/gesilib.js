@@ -1,3 +1,6 @@
+// 게시판 테이블명 전역으로
+var v_tblName = "gesiTB";
+
 var request = {}; // name-space용 빈객체
 // 사용자 요청(request)을 담은 객체
 // var v_url = location.href; // 문자열이기 때문에 복사(참조x)
@@ -13,7 +16,7 @@ request.getParameter = function (p_name) { // name을 넘기면 value를 리턴
     for (var i = 0; i < v_nvSSang.length; i++) {
         var nv = v_nvSSang[i].split("=");
         if (nv[0] == p_name) {
-            return decodeURIComponent(nv[1]);
+            return decodeURIComponent(nv[1]).replace("+"," ");
         }
     }
     return null; // 못 찾았다면 null, 꼭 null일 필요는 없음

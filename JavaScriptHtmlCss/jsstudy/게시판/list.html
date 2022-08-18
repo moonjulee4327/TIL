@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="../게시판/gesilib.js"></script>
+</head>
+<body>
+<h1>게시판 리스트</h1>
+<div id="id_disp"></div> <!-- 리스트 출력할 영역 지정 -->
+<script>
+    var v_disp = document.querySelector('#id_disp');
+    var v_dataArr = JSON.parse(localStorage.getItem(v_tblName));
+    var v_tblStr = "<table border=2>";
+    v_tblStr += "<tr><th>순번</th><th>제목</th><th>글쓴이</th>";
+    v_tblStr += "<th>카테고리</th><th>레벨</th></tr>";
+    for (var i = 0; i < v_dataArr.length; i++) {
+        var v_ggul = v_dataArr[i];
+        v_tblStr += "<tr onmouseover='f_over(this)'' onmouseout='f_out(this)''>" 
+        v_tblStr += "<td>" + (i+1) + "</td>";
+        v_tblStr += "<td><a href=../게시판/read.html?gnum=" + v_ggul.pid + " >" + v_ggul.title + "</td>";
+        v_tblStr += "<td>" + v_ggul.writer + "</td>";
+        v_tblStr += "<td>" + v_ggul.cats + "</td>";
+        v_tblStr += "<td>" + v_ggul.level + "</td>";
+        v_tblStr += "</tr>"
+    }
+    v_tblStr += "</table>";
+    v_tblStr += "<a href=../게시판/write.html>새글 쓰기</a>";
+    v_disp.innerHTML = v_tblStr;
+
+    function f_over(p_this) {
+        p_this.style.backgroundColor = "black";
+        p_this.style.color = "pink";
+    }
+
+    function f_out(p_this) {
+        p_this.style.backgroundColor = "white";
+        p_this.style.color = "black";
+    }
+
+
+
+    // 마우스 올라간 TR만 배경색이 핑크로 바꾸기
+    // mouseover, mouseout
+
+    var v_trs = document.querySelectorAll("tr");
+
+    // tr 1개 이벤트 함수 등록
+    function f_overOut(p_tr){
+        p_tr.addEventListener("mouseover",function(){
+            p_tr.style.backgroundColor = "black";
+            p_tr.style.color = "pink";
+        });
+        p_tr.addEventListener("mouseout",function(){
+            p_tr.style.backgroundColor = "white";
+            p_tr.style.color = "black";
+        });
+    }
+
+    // 마스터 디테일 패턴 보기
+    for(var k = 0; k < v_trs.length; k++) { // var는 function에 의해서만 지역변수로 바뀜, let는 지역변수
+        // f_overOut(v_trs[k]);
+        
+        // v_trs[k].addEventListener("mouseover",function(){
+        //     v_trs[k].style.backgroundColor = "black";
+        //     v_trs[k].style.color = "pink";
+        // });
+        
+        // v_trs[k].addEventListener("mouseout",function(){
+        //     v_trs[k].style.backgroundColor = "white";
+        //     v_trs[k].style.color = "black";
+        // });
+    }
+
+    // alert("확인 : " + k);
+</script>
+</body>
+</html>
