@@ -70,21 +70,29 @@
     var v_writerText = v_form.nm_writer;
     var v_contentText = v_form.nm_content;
     var v_levelSelect = v_form.nm_level;
-    
-    // ------------------------------------------------------------------
-    // var v_catsSelect = v_form.nm_cat;
-    
-    // ------------------------------------------------------------------
-    
-    
-    
+
+    var v_chkbox = document.querySelectorAll("input[type=checkbox]");
+
+    // 풀이1(체크박스 문제) ------------------------------------------------------------------
+    // var v_chkbox = document.querySelectorAll("input[type=checkbox]");
+    // var v_ckVals = v_schGul.cats;
+    // for(var i=0; i<v_ckVals.length; i++) {
+    //     for(var j=0; j<v_chkbox.length; j++) {
+    //         if(v_chkbox[j].value == v_ckVals[i]){
+    //             v_chkbox[j].checked = true;
+    //             break; // 값을 다 다르게 줬기때문에
+    //         }
+    //     }
+    // }
+
     // ------------------------------------------------------------------
 
-    var v_chkbox = document.querySelectorAll("input[name=nm_cat]");
-
-
+    // 풀이2(체크박스 문제) ------------------------------------------------------------------
+    // var v_ckVals = v_schGul.cats;
+    // for(var i =0; i < v_schGul.cats.length; i++) {
+    //     document.querySelector("input[value='" + v_chkbox[i] + "").checked = true;
+    // }
     // ------------------------------------------------------------------
-
 
 
     // 주소표시줄에서 글 번호 잡아오기
@@ -102,7 +110,7 @@
     
 
     // ------------------------------------------------------------------
-
+    
     for(let i = 0; i < v_chkbox.length; i++){
         for(let j = 0; j < v_schGul.cats.length; j++){
             if(v_chkbox[i].value == v_schGul.cats[j]){
