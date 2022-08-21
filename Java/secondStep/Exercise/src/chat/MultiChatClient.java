@@ -1,4 +1,4 @@
-package chat;
+package kr.or.ddit.tcp;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -13,7 +13,7 @@ public class MultiChatClient {
 		Socket socket = null;
 		
 		try {
-			socket = new Socket("192.168.142.9",7777);
+			socket = new Socket("192.168.0.8",7777);
 			
 			System.out.println("서버에 연결되었습니다.");
 			

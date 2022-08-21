@@ -1,11 +1,10 @@
-package chat;
+package kr.or.ddit.tcp;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -109,6 +108,8 @@ public class MultiChatServer {
 				// 서버에서는 클라이언트가 보내준 최초의 메시지 즉, 대화명을 수신한다.
 				name = dis.readUTF();
 				
+				String chatName = name;
+				
 				// 대화명을 받아서 다른 모든 클라이언트에게 대화방 참여 메시지를 보낸다.
 				sendMessage("#" + name + "님이 입장했습니다.");
 				
@@ -120,23 +121,19 @@ public class MultiChatServer {
 				// 이 후의 메시지 처리는 반복문으로 처리한다.
 				// 한 클라이언트가 보낸 메시지를 다른 모든 클라이언트에게 보내준다.
 				while(dis != null) {
+					sendMessage(dis.readUTF(), name);
 					
-					String str = dis.readUTF();
+					String rename = dis.readUTF();
 					
-					if(str.substring(0, 2).equals("/w")) {
-						String[] str1 = str.split(" ");
-							
-						System.out.println(str1[1]);
-						System.out.println(str1[2]);
-						// 대화명에 해당하는 소켓객체 가져와 DataOutputStream 객체 생성하기
-						DataOutputStream dos = new DataOutputStream(clients.get(str1[1]).getOutputStream());
-							
-						dos.writeUTF(str1[2]); // 메세지 보내기
+					String[] str = rename.split(" ");
+					
+					if(str[0].equals("/w")) {
+						DataOutputStream dos = new DataOutputStream(clients.get(str[1]).getOutputStream());
 						
-					}else {
-						sendMessage(str,name);						
+						dos.writeUTF("[귓속말][" + chatName + "] " +str[2]);
+						
 					}
-					
+						
 					
 				}
 				
