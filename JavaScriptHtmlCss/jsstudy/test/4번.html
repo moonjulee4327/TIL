@@ -8,18 +8,24 @@
     #id_dispOne {
         position: relative;
         border: 10px groove violet;
-        width: 400px;
+        width: 500px;
         text-align: center;
+        margin: auto;
     }
     #id_dispTwo {
+        font-size: 80px;
         display: none;
+        background-color: black;
+        color: aliceblue;
+        height: 510px;
     }
 </style>
 </head>
 <body>
 <div id="id_dispOne">
-    <div id="id_dispTwo">
+    <div id="id_dispTwo" style="align-content: center;" >
         공지사항
+        <div>자바스크립트 시험!</div>
     </div>
 </div>
 <script>
@@ -30,10 +36,10 @@
             v_disp.style.height = "5px";
         }
         v_disp.style.height = parseInt(v_disp.style.height) + 10 + "px";
-        if(parseInt(v_disp.style.height) >= 300){
+        if(parseInt(v_disp.style.height) >= 500){
             return v_dispTwo.style.display = "block";
         } 
-        setTimeout(f_show,150);
+        setTimeout(f_show,50);
     }
     window.onload = f_show;
 
