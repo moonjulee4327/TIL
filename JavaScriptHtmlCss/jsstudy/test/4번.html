@@ -1,0 +1,42 @@
+<!-- 공지사항 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_dispOne {
+        position: relative;
+        border: 10px groove violet;
+        width: 400px;
+        text-align: center;
+    }
+    #id_dispTwo {
+        display: none;
+    }
+</style>
+</head>
+<body>
+<div id="id_dispOne">
+    <div id="id_dispTwo">
+        공지사항
+    </div>
+</div>
+<script>
+    var v_disp = document.querySelector("#id_dispOne");
+    var v_dispTwo = document.querySelector("#id_dispTwo");
+    function f_show() {
+        if(!v_disp.style.height){
+            v_disp.style.height = "5px";
+        }
+        v_disp.style.height = parseInt(v_disp.style.height) + 10 + "px";
+        if(parseInt(v_disp.style.height) >= 300){
+            return v_dispTwo.style.display = "block";
+        } 
+        setTimeout(f_show,150);
+    }
+    window.onload = f_show;
+
+</script>
+</body>
+</html>

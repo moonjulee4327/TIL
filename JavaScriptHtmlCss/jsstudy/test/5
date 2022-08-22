@@ -1,0 +1,129 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #heart {
+        position: absolute;
+        left: 100px; top: 100px;
+        width: 300px;
+        height: 300px;
+        border: 1px solid black; 
+        /* overflow: hidden; */
+        transform: rotate(225deg);
+        
+        background-color: red;
+    }
+    .common {
+        position: absolute;
+        border-radius: 50%; /* 모서리 둥글게 동tothe그tothe라미 */
+        background-color: red;
+        width: 100%; /* 부모기준으로 따라감 */
+        height: 100%; /* 부모기준 */
+    }
+    #circle1 {
+        left: 150px;
+    }
+    #circle2 {
+        top: 150px;
+    }
+    #point {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        left: 300px;
+        top: 300px;
+        background-color: black;
+    }
+    #bar {
+        position: absolute;
+        width: 50px;
+        height: 400px;
+        background-color: blue;
+        left: 230px;
+    }
+    #wrapper {
+        width: 500px;
+        height: 800px;
+        position: relative;
+        left: 300px;
+        top: 300px;
+        /* border: 1px solid magenta; */
+        transform-origin: center top; /* 회전 중심 설정 */
+    }
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="bar"></div>
+        <div id="heart">
+            <div id="circle1" class="common"></div>
+            <div id="circle2" class="common"></div>
+        </div>
+    </div>
+<script>
+    function f_copy() {
+        document.body.appendChild(v_wrapper.cloneNode(true));
+    }
+    var v_wrapper = document.querySelector("#wrapper");
+    var v_gak = 0;
+    var chk = true;
+    function f_rotate() {
+        if(v_gak == 45) {
+            chk = false;
+        }
+        if(!chk) {
+            v_gak = (v_gak - 5) % 360;
+            if(v_gak == -45) {
+                chk = true;
+            }
+        } else {
+            v_gak = (v_gak + 5) % 360; // 360도 나눈 나머지, 숫자 크기가 안전함
+        }
+        v_wrapper.style.transform = "rotate(" + v_gak + "deg)";
+        setTimeout(f_rotate, 50);
+    }
+    f_rotate(); //함수 콜
+</script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_map {
+        position:relative;
+        width:300px;
+        height: 300px;
+        background-image: url("./images/지도.jpg");
+        background-size: 300px 300px;
+        border-radius: 50%;
+        border:1px solid black;
+        overflow: hidden;
+    }
+    #id_radar {
+        position: absolute;
+        left:150px;
+        top:150px;
+        width:150px;
+        height:150px;
+        background-color:rgba(208, 222, 107, 0.429);
+    }
+</style>
+</head>
+<body>
+    <div id="id_map">
+        <div id="id_radar"></div>
+    </div>    
+</body>
+</html> -->

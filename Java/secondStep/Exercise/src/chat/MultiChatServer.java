@@ -1,4 +1,4 @@
-package kr.or.ddit.tcp;
+package chat;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
