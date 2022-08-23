@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    function f_sum(p_num){
+        var sum =0;
+        for(var i=1; i<=p_num; i++){
+            sum += i;  // +3, -2를 해야 하는 경우로 나누어야 함
+        }
+
+        alert("1 에서 " + p_num + "까지 합은 " + sum + "입니다");
+    }
+   // f_sum(10);
+
+    //시간        1   2  3   4  5   6   7   8   9
+    //움직임      3, -2, 3, -2 ,3 ,-2 , 3 , -2 , 3
+    //결과거리    3   1  4   2  5   3   6 ,  4 , 7
+    //      거리 -> 시간
+    //       1 -> 2
+    //       2 -> 4
+    //       3 -> 1 
+    //       4 -> 3
+    //       5 -> 5
+    //       6 -> 7
+    //       7 -> 9
+    //시간을 매개변수로 받아서 올라간 거리를 리턴하는 함수
+    function f_retDistance(p_sec){
+        var v_distance = 0;  // 총 간 거리, 초기값 0
+        for(i=1; i<=p_sec; i++){
+            v_distance += (i%2)? 3: -2;
+            /*
+            if(i % 2){
+                v_distance += 3;
+            }else {
+                v_distance += -2;
+            }
+            */
+        }
+        return v_distance;
+    }
+
+
+//    f_retDistance(3); // 검증 완료
+
+    //거리를 매개변수로 받아서 , 그 만큼 올라가는 데 걸리는 시간을 리턴하는 함수
+    function f_retSeconds(p_dist){
+        //힌토: 만약 위와 같은 상태라면, 수열을 사용하는 것이 효과적이지만
+        // 위 함수를 그대로 사용하는 것도 하나의 방법(가독성은 더 좋아짐)
+        
+        // 개발자는 맞다/틀리다, 고객의 요청에 trade-off (타협)
+        var p_sec=1;
+        for(;"언제 같아질지 몰라성";){
+            if(p_dist == f_retDistance(p_sec)){
+                return p_sec; 
+            }  
+            // 이거시 return하는 게 거리, 매개변수로 받은 것도 거리, OK?
+            p_sec++;
+        }
+        
+    }
+
+    /* 힌토
+       문3: 우리 곧 jQuery배울 건데, css 선택자를 잘 모르면 어려워짐
+       문4: div태그이용 height속성 늘려가면서 ,display 사용
+       문5: 하트만들기 확인, overflow 사용, 동그라미는 border-radius 사용
+       문6: createElement("div") 이용, height속성 및 backgroud-color 이용 
+    */
+
+    alert(f_retDistance(3)); // 3초 동안 올라간 거리
+    alert(f_retSeconds(10)); //10cm 올라 가는데 걸리는 초
+
+</script>

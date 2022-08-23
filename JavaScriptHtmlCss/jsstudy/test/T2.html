@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+//배열 다루깅
+var v_ranDatas = [];  // 빈 배열 생성
+
+for(var i=1; i<=20; i++){
+    v_ranDatas.push(Math.ceil(Math.random()*45));
+    //v_ranDatas[v_ranDatas.length] = Math.ceil(Math.random()*45);
+    // 8라인과 9라인은 정확히 동작이 같음
+}
+alert("맹글어진 배열은:"+v_ranDatas);
+
+var v_minValue = v_ranDatas[0];  // 첫번째 index의 값이 최소라고 가정
+for(var i=1; i<v_ranDatas.length; i++){ // i값이 1부터 시작함에 유의
+    if(v_ranDatas[i] < v_minValue){
+        v_minValue = v_ranDatas[i];
+    }
+}
+//alert("최소값은: " + v_minValue + "일껄용");
+//최소, 최대값 구하는 방식이 중요한 이유는 sort(정렬을) 이해의 기본 스텝이기
+
+function f_minVal(p_arr){
+    var v_minValue = p_arr[0];  // 첫번째 index의 값이 최소라고 가정
+    for(var i=1; i<p_arr.length; i++){ // i값이 1부터 시작함에 유의
+        if(p_arr[i] < v_minValue){
+            v_minValue = p_arr[i];
+        }
+    }
+    return v_minValue;  // 찾은 최솟값 리턴
+}
+alert("맹글어진 배열은:"+v_ranDatas); // 생성된 배열 누느로 화긴
+alert(f_minVal(v_ranDatas));   // 배열 속 최솟값 누느로 화긴
+
+</script>

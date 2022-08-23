@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="../js/keyword.js"></script>
+<style>
+    * {
+        margin: 0; /*마진과 패딩을 0으로 주면 조금 남아있는 공백이 사라진다.*/
+        padding: 0;
+    }
+    #wrapper {
+        margin: 0 auto; 
+        /* div를 화면 가운데 위치하도록 top/bottom은 0, left/right는 자동 */
+        width: 400px;
+        height: 600px;
+        border: 1px solid black; /* 레이아웃 구성할 땐 항상 보이게 */
+    }
+    #aaa {
+        position: relative;
+        width: 100%; /* 자식은 부모기준으로, 부모의 width와 똑같이 */
+        height: 85%;
+        border: 1px solid blue;
+    }
+    #bbb {
+        width: 99%;
+        height: 14%;
+        border: 3px solid pink;
+    }
+    input {
+        font-size: 2.55em;
+    }
+    .ccc {
+        position: absolute;
+        display: inline-block;
+        border: 1px solid red;
+    }
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="aaa">
+
+        </div>
+        <div id="bbb">
+            <input type="text" id="" value="" size="10">
+            <input type="button" id="start" value="시작">
+        </div>
+    </div>
+<script>
+    var v_aaa = document.querySelector("#aaa");
+    var v_start = document.querySelector("#start");
+    
+    var v_ran;
+    var v_ranDiv;
+    function f_start() {
+        if(!v_ran){
+            v_ran = Math.floor(Math.random()*v_jsStudy.length);
+            v_ranDiv = document.querySelector("#ddd"+v_ran);
+        }
+        v_ranDiv.style.top = parseInt(v_ranDiv.style.top) + 10 + "px";
+        setTimeout(f_start,100);
+    }
+    
+    v_start.onclick = f_start;
+
+    function f_init(){
+        for(var i=0; i<v_jsStudy.length; i++){
+            var v_div = document.createElement("div");
+            v_div.innerHTML = v_jsStudy[i];
+            v_div.setAttribute("id","ddd"+i);
+            v_div.setAttribute("class","ccc");
+            v_div.style.width = "50px";
+            v_div.style.height = "5px";
+            v_div.style.top = "-80px";
+            v_aaa.appendChild(v_div);
+        }
+    }
+
+    window.onload = f_init; // 페이지 로딩 후 자동 실행
+</script>
+</body>
+</html>
