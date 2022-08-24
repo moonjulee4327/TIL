@@ -21,19 +21,25 @@
         width: 100%; /* 자식은 부모기준으로, 부모의 width와 똑같이 */
         height: 85%;
         border: 1px solid blue;
+        background-image: url("../images/위대한개츠비.jpg");
     }
     #bbb {
+        position: relative;
+        z-index: 999999999999999999999; /* 장난으로 아주 큰 값 */
         width: 99%;
         height: 14%;
         border: 3px solid pink;
     }
     input {
-        font-size: 2.55em;
+        font-size: 2em;
     }
     .ccc {
+        z-index: 1;
+        color: yellow;
+        background-color: black;
         position: absolute;
         display: inline-block;
-        border: 1px solid red;
+        border: 2px solid red;
     }
 </style>
 </head>
@@ -43,23 +49,74 @@
 
         </div>
         <div id="bbb">
-            <input type="text" id="" value="" size="10">
+            <input type="text" id="mj" value="" size="10">
             <input type="button" id="start" value="시작">
+            <input type="button" id="stop" value="멈춤">
         </div>
     </div>
 <script>
+    // 시작 버튼 눌러도 안 빨라지게, 멈춤 버튼 누르면 멈추게
+
+
+
+    var v_mj = document.querySelector("#mj");
+    function f_enter(){
+        if(event.keyCode==13){
+            // 엔터키 쳤을 때 처리
+            for(var i=0; i< v_mjArr.length; i++){
+                if(v_mjArr[i].innerHTML ==v_mj.value){
+                    v_mjArr[i].style.top = "-30px"; // 화면 밖으로
+                    v_mjArr.splice(i, 1);
+                    break;
+                }
+            }
+            v_mj.value=""; // 텍스트박스 값 클리어
+        }
+    }
+    v_mj.onkeydown = f_enter;
+
     var v_aaa = document.querySelector("#aaa");
     var v_start = document.querySelector("#start");
     
     var v_ran;
     var v_ranDiv;
-    function f_start() {
-        if(!v_ran){
-            v_ran = Math.floor(Math.random()*v_jsStudy.length);
-            v_ranDiv = document.querySelector("#ddd"+v_ran);
+    
+    // 선택된 글자만 담는 배열 -> 전역변수를 선언하면 두 함수를 이어 줄 수 있음
+    var v_mjArr = [];
+
+    // 선택된 글자 떨어뜨리는 기능만 하는 함수
+    function f_ranSel() {
+        v_ran = Math.floor(Math.random()*v_jsStudy.length);
+        v_ranDiv = document.querySelector("#ddd"+v_ran);
+        v_ranDiv.style.left = Math.ceil(Math.random()*300) + "px";
+        v_mjArr.push(v_ranDiv);
+        setTimeout(f_ranSel,1000);
+    }
+    
+    function f_ranColor() {
+        return "rgb(" + Math.floor(Math.random()*256) + ","
+                + Math.floor(Math.random()*256) + ","
+                + Math.floor(Math.random()*256) + ")";
+    }
+    // 위에 숨어있는 글자들 중에서 랜덤하게 글자를 선택하는 함수
+    function f_falling() {
+        for(var i=0; i<v_mjArr.length; i++){
+            var v_ranSpeed = Math.ceil(Math.random()*10)
+            v_mjArr[i].style.color = f_ranColor();
+            v_mjArr[i].style.backgroundColor = f_ranColor();
+            v_mjArr[i].style.transform = "rotate(" + Math.floor(Math.random()*360)  + "deg)";
+            v_mjArr[i].style.top = parseInt(v_mjArr[i].style.top) + v_ranSpeed + "px";
+            if(parseInt(v_mjArr[i].style.top)>=490){
+                v_mjArr[i].style.top = "-30px";
+                v_mjArr.splice(i,1);
+            }
         }
-        v_ranDiv.style.top = parseInt(v_ranDiv.style.top) + 10 + "px";
-        setTimeout(f_start,100);
+        setTimeout(f_falling,100);
+    }
+
+    function f_start() {
+       f_ranSel();
+       f_falling();
     }
     
     v_start.onclick = f_start;
@@ -70,8 +127,8 @@
             v_div.innerHTML = v_jsStudy[i];
             v_div.setAttribute("id","ddd"+i);
             v_div.setAttribute("class","ccc");
-            v_div.style.width = "50px";
-            v_div.style.height = "5px";
+            v_div.style.width = v_jsStudy[i].length*10 + 5 + "px";
+            v_div.style.height = "20px";
             v_div.style.top = "-80px";
             v_aaa.appendChild(v_div);
         }
