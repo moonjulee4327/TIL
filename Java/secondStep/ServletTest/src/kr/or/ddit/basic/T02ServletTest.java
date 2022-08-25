@@ -14,7 +14,7 @@ public class T02ServletTest extends HttpServlet {
  * 서블릿 동작 방식에 대하여...
  * 
  * 1. 사용자(클라이언트)가 URL을 클릭하면 HTTP Request를 서블릿 컨테이너로 전송(요청)한다.
- * 2. 컨테이너는 web.xml에 정의된 url패턴을 확인하여 어느 서블릿을 토앻 처리해야 할지를 
+ * 2. 컨테이너는 web.xml에 정의된 url패턴을 확인하여 어느 서블릿을 통해 처리해야 할지를 
  *  검색한다.(로딩이 안된 경우에는 로딩을 수행한다. 로딩시 init()메소드 호출됨.)
  * 3. 서블릿 컨테이너는 요청을 처리할 개별 스레드 객체를 생성하여 해당 서블릿 객체의 service()메소드를 호출한다.
  *  (HttpServletRequest 및 HttpServletResponse객체를 생성하여 파라미터로 넘겨준다.)

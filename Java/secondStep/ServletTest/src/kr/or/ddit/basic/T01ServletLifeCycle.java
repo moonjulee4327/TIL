@@ -29,7 +29,7 @@ public class T01ServletLifeCycle extends HttpServlet{
 		// 실제적인 작업수행이 시작되는 지점...(자바의 main()메소드 역활)
 		System.out.println("service() 호출됨...");
 		
-		super.service(req, resp);
+
 	}
 	
 	@Override

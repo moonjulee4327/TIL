@@ -28,6 +28,7 @@ public class T06ServletSessionTest extends HttpServlet{
 	 * 2. setMaxInactiveInterval(int interval) 호출
 	 * 	=> 일정시간(초)동안 요청이 없으면 세션객체 삭제됨.
 	 * 3. web.xml에 <session-config> 설정하기(분단위)
+	 * 
 	 * */
 	
 	@Override
