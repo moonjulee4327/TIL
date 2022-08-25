@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    #id_months {
+        display: inline-block;
+        width: 1430px;
+
+    }
+    th {
+        display: inline-block;
+        width: 200px;
+        height: 20px;
+    }
+    td {
+        display: inline-block;
+        width: 200px;
+        height: 150px;
+        vertical-align: top;
+        text-align: center;
+    }
+    
+</style>
+<body>
+<h1 id="id_months"></h1>
+<div id="id_monthDisp"></div>
+<div id="id_"></div>
+</body>
+<script>
+    // 캘린더 테이블 찍기
+    var v_month = document.querySelector("#id_months");
+    var v_monthDisp = document.querySelector("#id_monthDisp");
+    var v_disp = document.querySelector("#id_disp");
+
+    // 월, 일 배열
+    var arrDayStr = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+    var arrLastDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var date = new Date();
+    // let date1 = new Date();
+    var arrMonthStr = [];
+    
+    // 달 계산
+    // var month = date.getMonth()+1;
+    // for(var i =0; i < 12; i++){
+    //     arrMonthStr[i] = i+1;
+    //     if(month == arrMonthStr[i]){
+    //         var v_oneMonth = "2022년";
+    //         //var v_oneMonth = "2022년 "+ month +"월";
+    //     }
+    // }
+    
+
+    // for(let i =0; i < 12){}
+    // if(date.getMonth()+1 === arrMonthStr){
+    //     var v_oneMonth = "2022년 "+ date.getMonth() +"월";
+    // }
+
+    v_month.style.textAlign = "center";
+    v_month.style.border = "1px solid black";
+    var v_tblMonth = "<table border=1>";
+    v_tblMonth += "<tr><th style='color:red'>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th style='color:blue'>SAT</th></tr>";
+    v_tblMonth += "</table>"
+
+    // v_tblStr = "<table border=1>";
+    // for(let i=0; i<arrLastDay.length; i++){
+    //     for(let j=1; j<=arrLastDay[i]; j++){
+    //         v_tblStr += "<td style='font-weight:bold'>" + j + "<hr></td>";
+    //         if(j%7 == 0){
+    //             v_tblStr +="</tr>";
+    //         }
+    //         if(arrLastDay[i] == j){
+    //             v_tblStr +="</tr>";
+    //         }
+           
+    //     }
+    //     v_tblStr +="</tr>";
+    // }
+    // v_tblStr += "</table>";
+
+
+    v_tblStr = "<table border=1>";
+    for(let i=0; i<arrLastDay.length; i++){
+        for(let j=1; j<=arrLastDay[i]; j++){
+            v_tblStr += "<td style='font-weight:bold'>" + j + "<hr></td>";
+            if(j%7 == 0){
+                v_tblStr +="</tr>";
+            }
+            if(arrLastDay[i] == j){
+                v_tblStr +="</tr>";
+            }
+           
+        }
+        v_tblStr +="</tr>";
+    }
+    v_tblStr += "</table>";
+
+    /*
+
+    for(lastday.length()){
+        for(일별) lastday[i]{
+            연산
+        }
+
+        다음달로 넘어가는 시점
+
+    }
+            
+
+    1월~12월
+    let lastDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    1년 12개월
+    8월 4개월
+
+    12 - 시작달 = 4 
+
+    */
+
+
+
+
+
+    /*
+    var cnt=0;
+    for(let i = 1; i <= 5; i++) {
+        for(let j=1; j <= 7; j++){
+            cnt++;
+            v_tblStr += "<td style='font-weight:bold'>" + cnt + "<hr></td>";
+            
+        }
+        v_tblStr +="<tr>";
+    }
+    v_tblStr += "</table>";
+    */
+
+   v_month.innerHTML = v_oneMonth;
+   v_monthDisp.innerHTML = v_tblMonth;
+   v_disp.innerHTML = v_tblStr;
+    // getDay ?? localStorage아님
+</script>

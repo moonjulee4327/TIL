@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .dayStr{
+        position: relative;
+        width: 200px;
+    }
+    .day {
+        position: relative;
+        text-align: center;
+        vertical-align: top;
+        width: 1000px;
+        height: 150px;
+    }
+    .month {
+        text-align: center;
+    }
+
+</style>
+<body>
+<h1 id="id_months"></h1>
+<div id="id_dayStr"></div>
+<div id="id_dayTable"></div>
+</body>
+<script>
+    // 캘린더 테이블 찍기
+    var v_months = document.querySelector("#id_months");
+    var v_dayStr = document.querySelector("#id_dayStr");
+    var v_dayTableDisp = document.querySelector("#id_dayTable");
+
+    // 월, 일 배열
+    var arrDayStr = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+    var arrLastDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var date = new Date();
+    // let date1 = new Date();
+    // var arrMonthStr = [];
+
+    var v_dayTable = "";
+    var v_monthTitle = "";
+    var v_dayStrTable = "";
+    for(let i=1; i<=arrLastDay.length; i++) {
+        v_dayTable  += "<h1 class=month>2022년" + i + "월</h1>";
+        // if = 1 요일 출력
+        // if(i == 1){
+        //     v_dayStrTable += "<th class=dayStr style= 'color : red'; text-align: center; border: 1px solid black>" + arrDayStr[0] + "</th>";
+        //     v_dayStrTable += "<th class=dayStr>" + arrDayStr[1] +arrDayStr[2] +arrDayStr[3] +arrDayStr[4] +arrDayStr[5] + "</th>";
+        //     v_dayStrTable += "<th class=dayStr style= 'color : blue'>" + arrDayStr[6] + "</th>";
+        // }
+        v_dayTable += "<table border=1 width='100%'>";
+            for(let j=1; j<=arrLastDay[i-1]; j++) {  
+                v_dayTable += "<td class=day style='font-weight:bold'>" + j + "<hr></td>";
+                if(j%7 == 0){
+                    v_dayTable +="</tr>";
+                    
+                }
+                if(arrLastDay[i-1] == j){
+                    v_dayTable +="<br><br><br><br><br>";
+
+                    v_dayStrTable += "<table border=1 width=100%>";
+                    v_dayStrTable += "<tr>";
+                    for(let k = 0; k < arrDayStr.length; k++) {
+                        if(k == 0){
+                            v_dayStrTable += "<th class=dayStr style= 'color : red'; text-align: center; border: 1px solid black>" + arrDayStr[k] + "</th>";
+                        }else if(k == 6){
+                            v_dayStrTable += "<th class=dayStr style= 'color : blue'>" + arrDayStr[k] + "</th>";
+                        }else{
+                            v_dayStrTable += "<th class=dayStr>" + arrDayStr[k] + "</th>";
+                        }  
+                    }
+                    v_dayStrTable += "</tr>";
+                    v_dayStrTable += "</table>"
+                }
+        }
+        v_dayTable += "</table>";
+    }
+    
+    v_months.style.textAlign = "center";
+    v_months.innerHTML = v_monthTitle;
+    v_dayTableDisp.innerHTML = v_dayTable;
+
+    // v_dayStr.style.textAlign = "center";
+    // v_dayStr.style.border = "1px solid black";
+    // var v_dayStrTable = "<table border=1 width=100%>";
+    // v_dayStrTable += "<tr>";
+    // for(let i = 0; i < arrDayStr.length; i++) {
+    //     if(i == 0){
+    //         v_dayStrTable += "<th class=dayStr style= 'color : red'; text-align: center; border: 1px solid black>" + arrDayStr[i] + "</th>";
+    //     }else if(i == 6){
+    //         v_dayStrTable += "<th class=dayStr style= 'color : blue'>" + arrDayStr[i] + "</th>";
+    //     }else{
+    //         v_dayStrTable += "<th class=dayStr>" + arrDayStr[i] + "</th>";
+    //     }  
+    // }
+    // v_dayStrTable += "</tr>";
+    // v_dayStrTable += "</table>"
+
+    v_dayStr.innerHTML = v_dayStrTable;
+
+</script>
