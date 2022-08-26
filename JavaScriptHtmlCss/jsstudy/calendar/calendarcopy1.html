@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .tbl {
+        display: inline-block;
+    }
+
+</style>
+</head>
+<body>
+    <div id="mainDisp"></div>
+<script>
+    var v_mainDisp = document.querySelector('#mainDisp');
+
+    var v_map = "";
+    function f_test() {
+        for(let j=0; j < 12; j++) {
+            v_map += "<th>1</th>";
+        }
+    }
+
+    var v_main = "";
+    for(let i=0; i < 12; i++) {
+        v_main += "<div>";
+        v_main += "<table class=tbl border=1><td>" + f_test() + "</td></table>";
+        v_main += "</div>";
+    }
+    v_mainDisp.innerHTML = v_main;
+</script>
+</body>
+</html>

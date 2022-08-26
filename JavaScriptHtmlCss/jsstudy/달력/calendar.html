@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+
+</style>
+</head>
+<body>
+    <div id="id_year">
+        <div id="id_dayStr">
+            <div id="id_day"></div>
+        </div>
+    </div>
+<script>
+var v_year = document.querySelector('#id_year');
+var v_dayStr = document.querySelector('#id_dayStr');
+var v_day = document.querySelector('#id_day');
+
+var v_yearTbl = "";
+var v_dayStrTbl = "";
+var v_dayTbl = "";
+
+for (let i = 1; i <= 12; i++) {
+    v_yearTbl += "<h1 class=month>2022년" + i + "월</h1>";
+    v_dayStrTbl += "<h1 class=dayStr></h1>";
+}
+
+v_year.innerHTML = v_yearTbl;
+v_dayStr.innerHTML = v_dayStrTbl;
+
+</script>
+</body>
+</html>

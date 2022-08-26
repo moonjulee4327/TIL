@@ -19,7 +19,7 @@ public class T07ServletContextTest extends HttpServlet{
  * 
  * 2. 웹애플리케이션 당 1개씩 생성된다.
  * 
- * 3. 서블릿 컨텍스트 객체는 서블릿이 초기화 될때 ServletConfin 객체를 통해서 가져올 수 있다.
+ * 3. 서블릿 컨텍스트 객체는 서블릿이 초기화 될때 ServletConfig 객체를 통해서 가져올 수 있다.
  * 
  * */
 	

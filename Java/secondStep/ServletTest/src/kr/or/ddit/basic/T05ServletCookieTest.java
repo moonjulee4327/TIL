@@ -36,13 +36,15 @@ public class T05ServletCookieTest extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//setCookieExam(req, resp); // 쿠키 설정 예제
-	
+		
 		//readCookieExam(req, resp); // 쿠키정보 읽기 예제
 		
 		deleteCookieExam(req, resp); // 쿠키정보 삭제 예제
+		
 	}
 	
 	private void deleteCookieExam(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
 	/*
 	 * 사용중인 쿠키정보를 삭제하는 방법...
 	 * 
