@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일정관리 캘린더 프로그램</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    
+    <div id="container">
+      <div id="header">
+        <div id="monthDisplay"></div>
+        <div>
+          <button id="backButton">이전 달</button>
+          <button id="nextButton">다음 달</button>
+        </div>
+      </div>
+
+      <div id="weekdays">
+        <div>일</div>
+        <div>월</div>
+        <div>화</div>
+        <div>수</div>
+        <div>목</div>
+        <div>금</div>
+        <div>토</div>
+      </div>
+
+      <div id="calendar"></div>
+    </div>
+
+    <div id="newEventModal">
+      <h2>새로운 일정등록</h2>
+
+      <input id="eventTitleInput" placeholder="여기에 입력하세요!" />
+
+      <button id="saveButton">일정 등록</button>
+      <button id="cancelButton">취소</button>
+    </div>
+
+    <div id="deleteEventModal">
+      <h2>일정</h2>
+
+      <p id="eventText"></p>
+
+      <button id="deleteButton">삭제</button>
+      <button id="closeButton">닫기</button>
+    </div>
+
+    <div id="modalBackDrop"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

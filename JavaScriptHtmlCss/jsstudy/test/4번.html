@@ -13,26 +13,19 @@
         margin: auto;
     }
     #id_dispTwo {
-        height: 810px;
-        font-size: 40px;
+        font-size: 80px;
         display: none;
         background-color: black;
         color: aliceblue;
+        height: 510px;
     }
 </style>
 </head>
 <body>
 <div id="id_dispOne">
-    <div id="id_dispTwo">
-        <br>
-        공지사항<br><br>
-        <hr>
-        <br>
-        최고의 프로그래머라면<br><br>
-        에러메세지에 웃음이 난다.<br><br>
-        시행착오가 즐겁다. <br><br>
-        로그 출력은 습관이다. <br><br>
-        컴터 null 사랑해
+    <div id="id_dispTwo" style="align-content: center;" >
+        공지사항
+        <div>자바스크립트 시험!</div>
     </div>
 </div>
 <script>
@@ -43,10 +36,10 @@
             v_disp.style.height = "5px";
         }
         v_disp.style.height = parseInt(v_disp.style.height) + 10 + "px";
-        if(parseInt(v_disp.style.height) >= 800){
+        if(parseInt(v_disp.style.height) >= 500){
             return v_dispTwo.style.display = "block";
         } 
-        setTimeout(f_show,100);
+        setTimeout(f_show,50);
     }
     window.onload = f_show;
 
