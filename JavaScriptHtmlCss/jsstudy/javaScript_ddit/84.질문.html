@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        // sequence(순서 중요) 한 줄씩 해석됨!
+        alert(document.querySelector("#btn2").innerHTML); //? 아직 만들어지지 않아서 null
+    </script> -->
+    <script>
+        // sequence(순서 중요) 한 줄씩 해석됨!
+        window.onload = function() {
+            alert(document.querySelector("#btn2").innerHTML); 
+            //? 만들어지기 전에 위에 쓰려면 window.onload를 사용한다. 이미지까지 다 출력되고 실행된다.
+        }
+    </script>
+    <button id="btn1">눌러1</button>
+    <button id="btn2">눌러2</button>
+    <!-- <script>
+        // sequence(순서 중요) 한 줄씩 해석됨!
+        alert(document.querySelector("#btn2").innerHTML); //? 만들어서 실행이 된다.
+    </script> -->
+<script>
+    // btn1.onclick = function() {
+    //     alert("안녕하세요");
+    // }
+    // btn1.onclick = function() { // 뒤에 나온 이벤트로 덮어써진다.
+    //     alert("처음 뵙겠습니다.");
+    // }
+    var v_check = 1;
+    btn1.onclick = function() {
+        // 보통 자주 불리는 (1번) 함수 안에 addEventListener를 
+        // 사용하면 원하지 않게 여러번 실행되는 것을 확인할 수 있음
+        // 구분해서 쓸 것
+        btn2.addEventListener("click",function() {
+            alert("이건 어떻게 될까요?" + v_check);
+        });
+        v_check++;
+    }
+</script>
+</body>
+</html>
