@@ -32,7 +32,8 @@ public class MemberDAOImpl implements IMemberDAO{
 		
 		return cnt;
 	}
-
+	
+	
 	@Override
 	public boolean checkMember(String memId) {
 		boolean chk = false;
@@ -76,6 +77,14 @@ public class MemberDAOImpl implements IMemberDAO{
 		List<MemberVO> memList = sqlSession.selectList("member.searchMemberList", mv);
 		
 		return memList;
+	}
+
+	@Override
+	public MemberVO getMember(String memId) {
+		
+		MemberVO memVO = sqlSession.selectOne("member.getMember", memId);
+		
+		return memVO;
 	}
 	
 }

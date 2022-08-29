@@ -4,6 +4,10 @@
     pageEncoding="UTF-8"%>
 <%
 	List<MemberVO> memList = (List<MemberVO>)request.getAttribute("memList");
+
+	String msg = (String) session.getAttribute("msg") == null ? 
+			"" : (String) session.getAttribute("msg");
+	session.removeAttribute("msg"); // 꺼내온 메세지 속성값 삭제하기
 %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +33,7 @@ if(memSize > 0){
 	
 	<tr> 
 		<td><%= memList.get(i).getMemId() %></td>	
-		<td><%= memList.get(i).getMemName() %></td>	
+		<td><a href="detail.do?memId=<%= memList.get(i).getMemId() %>"><%= memList.get(i).getMemName() %></td>	
 		<td><%= memList.get(i).getMemTel() %></td>	
 		<td><%= memList.get(i).getMemAddr() %></td>	
 	</tr>
@@ -37,14 +41,25 @@ if(memSize > 0){
 <%
 	}
 }else{
-%>wq
-	<tr> 
+%>
+	<tr>
 		<td colspan="4">회원정보가 없습니다.</td>	
 	</tr>
 <%
 }
 %>
+	<tr>
+		<td colspan="4"><a href="insert.do">[회원정보 등록]</a></td>
+	</tr>
 </table>
-
+<%
+	if(msg.equals("성공")){
+%>
+	<script>
+		alert("정상적으로 처리되었습니다.");
+	</script>
+<%
+	}
+%>
 </body>
 </html>

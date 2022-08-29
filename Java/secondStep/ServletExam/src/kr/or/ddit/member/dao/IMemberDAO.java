@@ -18,6 +18,13 @@ public interface IMemberDAO {
 	 * */
 	public int insertMember(MemberVO mv);
 	
+	/**
+	 * 주어진 회원 ID에 해당하는 회원정보를 가져오기
+	 * @param memId 회원아이디
+	 * @return 회원 정보를 담은 MemberVO객체
+	 */
+	public MemberVO getMember(String memId);
+	
 	/*
 	 * 주어진 회원ID가 존재하는지 여부를 알아내기 위한 메소드
 	 * @param memId 검색할 회원ID

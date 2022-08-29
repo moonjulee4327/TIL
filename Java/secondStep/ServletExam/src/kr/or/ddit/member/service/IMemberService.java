@@ -19,6 +19,13 @@ public interface IMemberService {
 	 * */
 	public int regisetMember(MemberVO mv);
 	
+	/**
+	 * 
+	 * @param memId
+	 * @return
+	 */
+	public MemberVO getMember(String memId);
+	
 	/*
 	 * 주어진 회원ID가 존재하는지 여부를 알아내기 위한 메소드
 	 * @param memId 검색할 회원ID
