@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<friends>
+    <friend>
+        <name>캡틴아메리카</name>
+        <age>100</age>
+        <alias>힘쌘인간</alias>
+    </friend>
+    <friend>
+        <name>헐크</name>
+        <age>45</age>
+        <alias>방사능인간</alias>
+    </friend>
+    <friend>
+        <name>스파이더맨</name>
+        <age>19</age>
+        <alias>거미인간</alias>
+    </friend>
+    <friend>
+        <name>닥터스트레인지</name>
+        <age>38</age>
+        <alias>마법사</alias>
+    </friend>
+</friends>

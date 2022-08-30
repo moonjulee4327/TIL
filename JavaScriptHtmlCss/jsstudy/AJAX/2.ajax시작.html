@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // AJAX 기본 틀
+    // 아래처럼 전역변수로 ajax객체를 만들면 충돌의 가능성이 높아 만들지 않는다.
+    // 필요할 때 마다 function안에서 지역변수 생성
+    let v_ajax = new XMLHttpRequest(); // 대신 통신 해줄 객체를 하나 만든다.
+
+    // v_ajax.open("get","URL","비동기여부"); 
+    // v_ajax.open("post","URL","비동기여부"); 
+    // v_ajax.open("메소드","URL","비동기여부"); // get, post, put, delete...
+    // v_ajax.open("get","http://localhost/jsstudy/AJAX/dummy.txt","비동기여부"); 
+    // 시킬 일 지정
+    v_ajax.open("get","3.dummy.txt", true); // true면 비동기 false면 동기
+
+    
+    // 통신 결과를 받으려면 통신이 끝나야 받을 수 있음
+    // 이벤트로 알려줌, 통신 준비중, 데이터 전송중, 끝 등...
+    
+    v_ajax.onreadystatechange=function() {
+        // 통신의 중간은 관심없고, 종료 유무만 관심이 있다.
+        /*
+        if(v_ajax.readyState == 4){
+            // 통신만 끝났다고 하는건 신뢰가 조금 부족 
+            // 서버의 응답코드도 잘 응답했다는 코드가 필요
+            if(v_ajax.status == 200){ // 서버 응답코드
+                alert(`${"진짜 통신이 끝났습니다."}`);
+            }
+        }
+        */
+       // 한줄로 줄이기
+       if(v_ajax.readyState == 4 && v_ajax.status == 200){
+           alert(`${v_ajax.responseText}`);
+        }
+    }
+    
+    // 시킨대로 하기
+    // 보통 이벤트 등록을 먼저함
+    v_ajax.send();
+    
+</script>
