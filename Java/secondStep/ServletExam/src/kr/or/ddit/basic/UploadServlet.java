@@ -46,6 +46,7 @@ public class UploadServlet extends HttpServlet{
 		System.out.println("===========================================");
 		*/
 		
+		// 아파치 commons 업로드 방식
 		// multipart 파싱 전 파라미터 정보 조회해보기
 		System.out.println("Multipart 파싱 전 =>" + req.getParameter("sender"));
 		
@@ -57,6 +58,7 @@ public class UploadServlet extends HttpServlet{
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(MEMORY_THRESHOLD);
 			factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+			System.out.println("임시저장위치: " + System.getProperty("java.io.tmpdir"));
 			
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			upload.setFileSizeMax(MAX_FILE_SIZE);
@@ -76,7 +78,7 @@ public class UploadServlet extends HttpServlet{
 				
 				if(formItems != null && formItems.size() > 0) {
 					for(FileItem item : formItems) {
-						if(!item.isFormField()) { // 파일인 경우...
+						if(!item.isFormField()) { // 파일인 경우...(폼필드가 아닌 경우 즉, 파일인 경우)
 							String fileName = item.getName();
 							String filePath = uploadPath + File.separator + fileName;
 							File storeFile = new File(filePath);
