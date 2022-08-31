@@ -34,5 +34,5 @@ public interface IAtchFileDAO {
 	 * @param atchFileVO
 	 * @return 첨부파일 세부정보를 담은 atchFileVO객체
 	 */
-	public AtchFileVO getAtchFileDetail(SqlSession session, AtchFileVO atchFileVO);
+	public AtchFileVO getAtchFileDetail(SqlSession session,AtchFileVO atchFileVO);
 }

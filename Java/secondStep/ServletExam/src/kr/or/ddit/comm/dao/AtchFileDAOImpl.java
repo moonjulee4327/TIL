@@ -11,8 +11,6 @@ public class AtchFileDAOImpl implements IAtchFileDAO{
 	
 	private static IAtchFileDAO fileDAO;
 	
-	private SqlSession sqlSession;
-	
 	private AtchFileDAOImpl() {
 		
 	}
@@ -28,7 +26,7 @@ public class AtchFileDAOImpl implements IAtchFileDAO{
 	@Override
 	public int insertAtchFile(SqlSession session, AtchFileVO atchFileVO) {
 		
-		int cnt = sqlSession.insert("atchFile,insertAtchFile", atchFileVO);
+		int cnt = session.insert("atchFile.insertAtchFile", atchFileVO);
 		
 		return cnt;
 	}

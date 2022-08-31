@@ -4,8 +4,8 @@
 	
 	<insert id="insertAtchFile">
 		
-		<selectKey keyProperty="atchFileId" resultType="long">
-			select ATCH_FILE_SEQ.nextVal from dual
+		<selectKey order="BEFORE" keyProperty="atchFileId" resultType="long">
+			select ATCH_FILE_SEQ.nextval from dual
 		</selectKey>
 		
 		insert into atch_file

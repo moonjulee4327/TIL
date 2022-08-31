@@ -6,9 +6,9 @@
 		parameterType="kr.or.ddit.member.vo.MemberVO">
 
 		INSERT INTO mymember
-		( mem_id, mem_name, mem_tel, mem_addr, reg_dt)
+		( mem_id, mem_name, mem_tel, mem_addr, reg_dt, atch_file_id)
 		VALUES (#{memId},
-		#{memName}, #{memTel}, #{memAddr}, sysdate)
+		#{memName}, #{memTel}, #{memAddr}, sysdate, #{atchFileId})
 
 
 	</insert>
@@ -20,6 +20,7 @@
 		set mem_name = #{memName}
 		, mem_tel = #{memTel}
 		, mem_addr = #{memAddr}
+		, atch_file_id = #{atchFileId}
 		where mem_id = #{memId}
 
 	</update>
@@ -38,6 +39,7 @@
 		<result property="memName" column="mem_name" />
 		<result property="memTel" column="mem_tel" />
 		<result property="memAddr" column="mem_addr" />
+		<result property="atchFileId" column="atch_file_id"/>
 	</resultMap>
 
 

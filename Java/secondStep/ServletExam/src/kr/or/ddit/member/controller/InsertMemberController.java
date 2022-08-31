@@ -3,16 +3,21 @@ package kr.or.ddit.member.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.comm.service.AtchFileServiceImpl;
+import kr.or.ddit.comm.service.IAtchFileService;
+import kr.or.ddit.comm.vo.AtchFileVO;
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.member.vo.MemberVO;
 
+@MultipartConfig
 @WebServlet("/member/insert.do")
 public class InsertMemberController extends HttpServlet{
 	@Override
@@ -35,6 +40,11 @@ public class InsertMemberController extends HttpServlet{
 		
 		// 2. 서비스 객체 생성하기
 		IMemberService memService = MemberServiceImpl.getInstance();
+		IAtchFileService fileService = AtchFileServiceImpl.getInstance();
+		
+		// 첨부파일 저장하기
+		AtchFileVO atchFileVO = fileService.saveAtchfileList(req);
+		
 		
 		// 3. 회원정보 등록하기
 		MemberVO mv = new MemberVO();
@@ -42,6 +52,7 @@ public class InsertMemberController extends HttpServlet{
 		mv.setMemName(memName);
 		mv.setMemTel(memTel);
 		mv.setMemAddr(memAddr);
+		mv.setAtchFileId(atchFileVO.getAtchFileId());
 		
 		int cnt = memService.regisetMember(mv);
 		
