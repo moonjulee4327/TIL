@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td>첨부파일1 :</td>
-			<td><input type="file" name="atchFile"></td>
+			<td><input type="file" name="atchFile" multiple="multiple"></td>
 		</tr>
 		
 		
