@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" value="뉴스 가져오기" onclick="f_check()">
+<script>
+    //Cross-origin resource sharing 중요
+    function f_check() {
+        let l_ajax = new XMLHttpRequest();
+        l_ajax.open( "get", "https://news.google.com/rss/search?q=%EC%A6%9D%EC%8B%9C&hl=ko&gl=KR&ceid=KR:ko", true);
+        l_ajax.onreadystatechange = function() {
+            if(l_ajax.readyState == 4 && l_ajax.status == 200){
+                console.log(l_ajax.responseText);
+            }
+        }
+        l_ajax.send();
+    }
+</script>
+</body>
+</html>

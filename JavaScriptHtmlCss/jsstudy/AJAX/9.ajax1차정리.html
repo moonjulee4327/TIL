@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <script>
-    let $={}; // 네임스페이스용 빈 객체 생성
+    /* 네임스페이스 그저 규모가 커지면 자꾸 나눠지게 됨(나눠져야 잘 알 수 있음)
+    let kor = {};
+    kor.seoul = {};
+    kor.daejeon = {};
+    kor.seoul.mj = "서울 mj";
+    kor.daejeon.mj = "대전 mj";
+    */
+    // 아작스 호출 방식을 일반화 시킴
+    let $={}; // 네임스페이스용 빈 객체 생성(이 역활을 자바에서는 패키지가 한다.)
     $.ajax = function ajax(p_set) {
         let l_ajax = new XMLHttpRequest();
         l_ajax.open(p_set.method, p_set.url, true);
