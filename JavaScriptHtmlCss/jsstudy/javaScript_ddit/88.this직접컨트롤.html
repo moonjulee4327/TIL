@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // 다른 소스에 this를 썼는지 안 썼는지, 일일이 확인해가면 
+    // 프로그래밍을 하는 것은 힘들다.
+    // call, apply, bind 
+    function f_check(p_arg1, p_arg2){
+        console.log(this, p_arg1, p_arg2);
+    }
+    let l_mj = {"name":"문주"};
+    let l_jh = {"name":"종환"};
+
+    // 함수호출
+    f_check.call(l_mj, "매개변수값1","매개변수값2"); // this를 강제로 l_mj를 가리키게 함
+    f_check.call(l_jh, "매개변수값1","매개변수값2"); // this를 강제로 l_jh를 가리키게 함
+
+    // apply는 call과 같지만 단지 매개변수들을 배열에 담아서 넘겨야 함
+    // 기본기능은 비슷하다.
+    f_check.apply(l_mj, ["매개변수값1","매개변수값2"]);
+    f_check.apply(l_jh, ["매개변수값1","매개변수값2"]);
+
+    /*
+        call과 apply의 첫번째 매개변수값이 this에 세팅된다는 것을 기억
+    */
+</script>

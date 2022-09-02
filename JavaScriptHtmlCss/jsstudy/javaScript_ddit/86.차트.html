@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <!-- canvas태그의 부모 영역의 크기가 차트 크기를 정함 -->
+    <div style="width: 400px;height: 400px;border: 2px solid pink">
+        <canvas id="myChart"></canvas>
+    </div>
+    <input type="button" value="차트업데이트" onclick="f_update()">
+    <input type="button" value="아작스로데이터" onclick="f_update2()">
+<script>
+    function f_update2() {
+        // testData.json을 아작스로 가져와서 차트에 그리기
+        let l_ajax = new XMLHttpRequest();
+        l_ajax.open("get", "../data/1.testData.json", true);
+        l_ajax.onreadystatechange = function() {
+            if(l_ajax.readyState == 4 && l_ajax.status == 200){
+                console.log(l_ajax.responseText);
+                // console.log(myChart.data.datasets[0].label);
+                // myChart.data.datasets[0].label = l_ajax.responseText
+                f_updateChart(JSON.parse(l_ajax.responseText));
+            }
+        }
+        l_ajax.send();
+    }
+
+    function f_updateChart(p_arg){
+        let l_label = p_arg.label;
+        let l_title = p_arg.name;
+        let l_data = p_arg.score;
+
+        myChart.data.labels = l_label;
+        myChart.data.datasets.splice(1,1); // 강제 비우기, 1개만 남기려고
+
+        myChart.data.datasets[0].data = l_data;
+        myChart.data.datasets[0].label = l_title;
+        myChart.update(); // 렌더링
+    }
+
+
+    function f_ran255() {
+        return Math.floor(Math.random() * 256);
+    }
+    function f_ranAlpha() {
+        // 0.1 ~ 0.9 발생 -> 숫자로 변환(소숫점)
+        return parseFloat("0." + Math.ceil(Math.random() *9));
+    }
+    // 컬러는 차트생성 코드에 넣으면 라인만 길어지는 것 같다.
+    function f_color(p_cnt) {
+        let l_colors = [];
+        for(let i = 1; i <= p_cnt; i++){
+            let l_colorStr = "rgba(" + f_ran255() + 
+                                "," + f_ran255() + 
+                                "," + f_ran255() + 
+                                "," + f_ranAlpha() + ")";
+            l_colors.push(l_colorStr);
+        }
+        return l_colors; // 배열 리턴
+    }
+
+    let l_types = ["bar", "line", "pie", "radar", "doughnut"];
+    function f_update() {
+        let l_datas1 = [];
+        let l_datas2 = [];
+        for(let i = 0; i<=6; i++) {
+            let l_ranVal = Math.ceil(Math.random()*100);
+            l_datas1.push(l_ranVal);
+            l_ranVal = Math.ceil(Math.random()*100);
+            l_datas2.push(l_ranVal);
+        }
+        // 만든 데이터를 차트에 주기
+        // 데이터(다른 것도)를 다시 넣으면 차트를 다시 그려야 함(point)
+        // myChart.type = "line"; // 이렇게 접근이 안된다.
+        let l_ranSu = Math.floor(Math.random() * l_types.length);
+        // myChart.data.datasets[0].type = l_types[l_ranSu];
+        myChart.data.datasets[0].data = l_datas1;
+        myChart.data.datasets[1].data = l_datas2;
+        myChart.update(); // Chart.js에서 제일 중요한 메소드
+                          // rendering 이라고 부름
+        setTimeout(f_update, 500);
+    }
+    // canvas 태그는 그래픽용, 브라우저 기반 게임개발 회사나 
+    // 예쁜 브라우저용 웹 컴포넌트를 만드는 회사에서 주로 사용
+    // 일반적인 웹프로그램 개발자와는 조금 거리가 있음
+    // 그래픽 엔진으로 유명한 건 마이크로 소프트의 Direct-x가 있고
+    // canvas는 오픈소스인 webGL(web Graphic Library)를 사용함
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar', // bar, line, pie, radar, doughnut... 등등
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            type: 'bar',
+            label: '# a',
+            data: [1, 3, 5, 7, 9, 11],
+            backgroundColor: f_color(6),
+            // backgroundColor: [
+            //     'rgba(255, 99, 132, 0.2)',
+            //     'rgba(54, 162, 235, 0.2)',
+            //     'rgba(255, 206, 86, 0.2)',
+            //     'rgba(75, 192, 192, 0.2)',
+            //     'rgba(153, 102, 255, 0.2)',
+            //     'rgba(255, 159, 64, 0.2)'
+            // ],
+            // borderColor: [
+            //     'rgba(255, 99, 132, 1)',
+            //     'rgba(54, 162, 235, 1)',
+            //     'rgba(255, 206, 86, 1)',
+            //     'rgba(75, 192, 192, 1)',
+            //     'rgba(153, 102, 255, 1)',
+            //     'rgba(255, 159, 64, 1)'
+            // ],
+            borderWidth: 1
+        }
+        ,{
+            type: "line", // 오직 bar와 line만 같이 한 차트에 나올 수 있다.
+            label: '# b',
+            data: [11, 6, 3, 1, 8, 4],
+            backgroundColor: f_color(6),
+            borderWidth: 1
+        }
+    ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+// chart.js는 구조(json형식)만 파악하면 핵심 사용법 끝
+// alert(myChart.data.datasets[0].data);
+// alert(myChart.data.labels[2]);
+</script>
+</body>
+</html>

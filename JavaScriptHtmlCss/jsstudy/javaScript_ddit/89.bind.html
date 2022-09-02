@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="문주" onclick="f_click('문주')">
+    <input type="button" value="종환" id="jh">
+<script>
+    /* 일반 방법
+    function myLog(p_arg){
+        document.write(p_arg+"<br>");
+    }
+    */
+    /*
+    // 호출될 때 myLog("<h1>자</h1>");의 this 는 window이다. 그래서 정상작동 x
+    // this의 영향
+    myLog = document.write; 
+    */
+    
+    // this만 바꾼 새로운 메소드 포인터 리턴
+    myLog = document.write.bind(document);
+    
+    myLog("<h1>자</h1>");
+    myLog("<h1>바</h1>");
+    myLog("<h1>스</h1>");
+    myLog("<h1>크</h1>");
+    myLog("<h1>립</h1>");
+    myLog("<h1>트</h1>");
+
+    function f_click(p_arg) {
+        console.log("?", this);
+        alert("넘어온 값은?" + p_arg);
+    }
+    let l_jhBtn = document.querySelector("#jh");
+    // l_jhBtn.onclick = f_click; 
+    // f_click()이라고 하면 그냥 실행되어 버림, 이벤트와 상관없이
+    // ()를 못 붙이니 매개변수를 넘길 수 없음
+    // l_jhBtn.onclick = f_click.call({"name": "종환"}, "흐흠"); // 이것도 그냥 불려버린다.
+    // 이럴때 쓰는 것이 bind이다.
+    // bind는 내부적으로 매개변수값을 가진 함수를 만들고 그 함수의 포인터값(보통 함수이라 함)만 리턴해줌
+    l_jhBtn.onclick = f_click.bind({"name": "종환"}, "흐흠");
+</script>
+</body>
+</html>
