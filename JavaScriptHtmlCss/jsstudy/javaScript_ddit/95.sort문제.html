@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    let l_datas = [
+        {
+            "name":"아이언맨",
+            "birth":"2021-01-01",
+            "skill":"javascript"
+        },
+        {
+            "name":"토르",
+            "birth":"2020-08-08",
+            "skill":"angular"
+        },
+        {
+            "name":"헐크",
+            "birth":"1960-11-11",
+            "skill":"oracle"
+        },
+        {
+            "name":"타노스",
+            "birth":"2010-06-06",
+            "skill":"viewjs"
+        },
+        {
+            "name":"닥터스트레인지",
+            "birth":"1970-12-12",
+            "skill":"all"
+        }
+    ]
+
+// console.log(l_datas[0].birth);
+
+// name으로 정렬해서 출력하시요
+// l_datas.sort(function(a,b){
+//     console.log(a.name,b.name);
+//     if(a.name >= b.name){
+//         return 100;
+//     }
+//     return -100;
+// });
+
+// console.log("name", l_datas);
+
+// birth으로 정렬해서 출력하시오
+/*
+l_datas.sort(function(a,b){
+    console.log(a,b);
+    console.log(a.birth,b.birth);
+    if(a.birth >= b.birth){
+        return 100; 
+    }
+    return -100;
+});
+*/
+
+l_datas.sort(function(a,b){
+    console.log(a,b);
+    console.log(a.birth,b.birth);
+    if(a.birth.replace("-","") >= b.birth.replace("-","")){
+        return 100; 
+    }
+    return -100;
+});
+
+console.log("birth", l_datas);
+
+// skill으로 정렬해서 출력하시오
+// l_datas.sort(function(a,b){
+//     console.log(a.skill,b.skill);
+//     if(a.skill >= b.skill){
+//         return 100;
+//     }
+//     return -100;
+// });
+
+// console.log("skill", l_datas);
+
+</script>

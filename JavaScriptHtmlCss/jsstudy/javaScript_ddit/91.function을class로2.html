@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // 직접 배열 클래스 만들어 보기
+
+    function MyArray(){
+        // length가 핵심 속성
+        this.length = 0;
+        return this; // 생략 되어 있다는 걸 생각하며 쓰기(생략가능)
+    }
+    // 메소드 추가 prototype방식으로 this.this.length 이렇게는 안됨
+    // MyArray.prototype.push = function(p_arg){
+    //     this.this.length = p_arg;
+    // }
+
+    MyArray.prototype.push = function(p_arg){
+        // this["0"] = p_arg; 밑과 동일 , 변수 규칙 상 숫자는 안됨 하지만 대괄호는 가능
+        this[this.length] = p_arg;
+        this.length++; // 직접 length를 컨트롤 해야함
+    }
+
+    MyArray.prototype.min = function(){
+        let l_min = this[0];
+        for(let i = 1; i < this.length; i++){
+            if(l_min > this[i]){ // 한글 정렬 and 숫자 정렬
+                l_min = this[i];
+            }
+        }
+        return l_min;
+    }
+
+    MyArray.prototype.max = function(){
+        let l_max = this[0];
+        for(let i = 1; i < this.length; i++){
+            if(l_max < this[i]){ // 한글 정렬 and 숫자 정렬
+                l_max = this[i];
+            }
+        }
+        return l_max;
+    }
+
+    MyArray.prototype.forEach = function(p_cb){
+        for(let i = 0; i < this.length; i++){
+            // 함수.call(this세팅값, 매개변수값1, 매개변수값2)
+            // p_cb(this[i],i);
+            p_cb.call(this, this[i], i);
+        }
+    }
+    
+    MyArray.prototype.sort = function(p_cb){
+
+    }
+
+    // 사용하는 부분
+    // CallBack 함수 다시 한번 정리
+
+    let l_arr = new MyArray();
+    // l_arr.push("캡틴 아메리카");
+    // l_arr.push("아이언맨");
+    // l_arr.push("헐크");
+    l_arr.push(200);
+    l_arr.push(100);
+    l_arr.push(150);
+    l_arr.forEach(function(p_arg, p_index){
+        // console.log(`넘어온 값: ${p_arg} ${p_index} ${this}`);
+        console.log("넘어온 값: ", p_arg, p_index, this);
+        if(p_arg == 100){ // 조건문을 통해 원하는 값을 찾아온다.
+            // alert("100이 넘어 왔다.");
+            // l_arr[p_index] = 3 * p_arg; 
+            this[p_index] = 3 * p_arg; // 여기서 this는 -> l_arr를 가리킴(중요)
+        }
+    })
+
+    // alert(l_arr[0]);
+    /*
+    alert(l_arr.min());
+    alert(l_arr.max());
+    */
+    console.log(l_arr);
+
+</script>

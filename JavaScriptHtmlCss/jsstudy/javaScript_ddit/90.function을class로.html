@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // js에선 function키워드가 함수키워드로 사용되지만 
+    // java class키워드처럼 객체 정의 생성자로도 사용될 수 있음
+    // 실제 class 키워드도 존재하지만 내부적으로 function키워드로 바뀌게
+    // 되기 때문에 js하는 사람들은 그냥 function키워드를 사용함
+    // class 키워드를 사용하는 경우는 마이크로스프트의 typescript를 
+    // 사용하여 js를 작성하는 경우
+    // typescript, babel.js등은 transfiler()라고 불리는데
+    // typescript로 짜면 그것이 javascript파일로 바뀜
+    // class란? (기술적 답변)사용자 정의 데이터 타입(사용자 정의 변수 타입) 
+
+    // function keyWord를 class의 의미로 사용할 땐 항상
+    // function 블락 끝에 return this;가 생략되었다고 생각하면 편함
+    // 선언(보통 생성자라고 부름)
+    function Marvel(p_name, p_song){
+        this.name = p_name; // 속성추가
+        this.song = p_song; // 속성추가
+
+        /* 이렇게 메소드를 선언하는 것이 아니라 prototype에 선언하는 것을 추천, 메모리 절약
+        this.mj = function(){ // 메소드 추가(객체가 생성될 때마다 만들어져서 비효율)
+            alert("자바스크립트는" + this.name + " 가(이) 잘해~");
+        }
+        */
+
+        return this;    // 마지막에 이게 붙어있다는 걸 알아야 이해가 잘됨(생략해도 이게 있는것)
+    }
+
+    // 이렇게 선언해 쓰는 것을 추천
+    Marvel.prototype.mj = function() {
+        // alert("자바스크립트는" + this.name + " 가(이) 잘해~");
+        alert(`자바스크립트는 ${this.name} 가(이) 잘해~`);
+    }
+
+    // 생성 
+    let l_person1 = new Marvel("아이언맨", "good lack");
+    console.log(l_person1);
+    let l_person2 = new Marvel("캡틴아메리카", "노래 x");
+    console.log(l_person2);
+    l_person2.mj(); // ?
+
+    if(l_person1 === l_person2){
+        alert("결과!"); // 당연히 안뜸
+    }
+
+</script>
