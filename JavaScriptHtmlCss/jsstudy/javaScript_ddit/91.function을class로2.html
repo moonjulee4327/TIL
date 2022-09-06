@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <script>
+
+    function f_argCheck(p_arg){
+        alert(p_arg);
+    }
+    f_argCheck(); // 매개변수가 없는 함수가 없으면 undefined가 뜬다.
+
     // 직접 배열 클래스 만들어 보기
 
     function MyArray(){
@@ -12,6 +18,7 @@
     // MyArray.prototype.push = function(p_arg){
     //     this.this.length = p_arg;
     // }
+    
 
     MyArray.prototype.push = function(p_arg){
         // this["0"] = p_arg; 밑과 동일 , 변수 규칙 상 숫자는 안됨 하지만 대괄호는 가능
@@ -46,8 +53,50 @@
             p_cb.call(this, this[i], i);
         }
     }
-    
+
+    // MyArray.prototype.sort = function(p_cb){
+    //     alert(typeof(p_cb));
+    //     if(!p_cb){ // 매개변수가 넘어오지 않았다면
+    //         alert("매개변수로 넘어온 값이 없습니다.");
+    //         return;
+    //     }
+
+    //     alert(typeof(p_cb));
+    //     if(typeof(p_cb) == "function"){ // 매개변수의 타입확인
+    //         alert("매개변수로 함수가 넘어왔습니다.");
+    //         return;
+    //     }
+
+    // }
+
     MyArray.prototype.sort = function(p_cb){
+        if(!p_cb){ // 매개변수가 넘어오지 않았다면
+            // 가장 쉬운 정렬 버블 정렬, max와 min을 구하는 알고리즘 이해시 가능
+            for(let i=0; i<this.length; i++){
+                for(let j=i+1; j<this.length; j++){
+                    if(this[i] < this[j]){
+                        let l_temp = this[i];
+                        this[i] = this[j];
+                        this[j] = l_temp;
+                    }
+                }
+            }
+            return this; // 메소드 체인닝을 위한 코드
+        }
+
+        alert(typeof(p_cb));
+        if(typeof(p_cb) == "function"){ // 매개변수의 타입확인
+            for(let i=0; i<this.length; i++){
+                for(let j=i+1; j<this.length; j++){
+                    if(p_cb(this[i], this[j])>0){ // 이 라인이 sort(callback)
+                        let l_temp = this[i];
+                        this[i] = this[j];
+                        this[j] = l_temp;
+                    }
+                }
+            }
+            return this;
+        }
 
     }
 
@@ -58,24 +107,34 @@
     // l_arr.push("캡틴 아메리카");
     // l_arr.push("아이언맨");
     // l_arr.push("헐크");
+    
+    l_arr.sort();
+    // l_arr.sort(function(){});
+    
     l_arr.push(200);
     l_arr.push(100);
     l_arr.push(150);
-    l_arr.forEach(function(p_arg, p_index){
-        // console.log(`넘어온 값: ${p_arg} ${p_index} ${this}`);
-        console.log("넘어온 값: ", p_arg, p_index, this);
-        if(p_arg == 100){ // 조건문을 통해 원하는 값을 찾아온다.
-            // alert("100이 넘어 왔다.");
-            // l_arr[p_index] = 3 * p_arg; 
-            this[p_index] = 3 * p_arg; // 여기서 this는 -> l_arr를 가리킴(중요)
-        }
-    })
+    l_arr.push(120);
+    console.log(l_arr.sort());
+    console.log(l_arr.sort(function(a,b){
+        return a-b; // 여길 바꾸면 정렬 방식이 달라짐
+    }));
+
+    // l_arr.forEach(function(p_arg, p_index){
+    //     // console.log(`넘어온 값: ${p_arg} ${p_index} ${this}`);
+    //     console.log("넘어온 값: ", p_arg, p_index, this);
+    //     if(p_arg == 100){ // 조건문을 통해 원하는 값을 찾아온다.
+    //         // alert("100이 넘어 왔다.");
+    //         // l_arr[p_index] = 3 * p_arg; 
+    //         this[p_index] = 3 * p_arg; // 여기서 this는 -> l_arr를 가리킴(중요)
+    //     }
+    // })
 
     // alert(l_arr[0]);
     /*
     alert(l_arr.min());
     alert(l_arr.max());
     */
-    console.log(l_arr);
+    // console.log(l_arr);
 
 </script>
