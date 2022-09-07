@@ -73,7 +73,8 @@
         if(typeof(p_arg) == "function"){
             for(let i = 0; i<this.length; i++) {
                 // p_arg(i, this[i].innerHTML);
-                this[i].innerHTML = p_arg(i, this[i].innerHTML);
+                // 콜백함수 속의 this를 강제세팅 하기 위해 call이나 apply사용
+                this[i].innerHTML = p_arg.call(this[i], i, this[i].innerHTML);
             }
         }
     }
@@ -105,9 +106,12 @@
     // l_dom2.html("어벤져스");
     l_dom2.html(function(p_inx, p_html){
         // alert(p_inx + " : " + p_html);
+        console.log(this); // this가 가르키는 값 눈으로 확인(window), html함수 call로 고치기 전에
+        console.dir(this); // this가 가르키는 값 눈으로 확인(window)
         if(p_inx == 1){
             return "자바스크립트를 잘하고 싶다~";
         }
-        return p_html; // 원래 값을 그대로 리턴
+        // return p_html; // 원래 값을 그대로 리턴
+        return this.innerHTML + "good"; // 원래 값을 그대로 리턴
     });
 </script>
