@@ -11,10 +11,40 @@
     <input type="text" id="txt2" value="가"><br>
     <input type="text" id="txt3" value="메"><br>
     <input type="text" id="txt4" value="쉬"><br>
-    <div id="lee" class="mj" style="border: 1px solid pink;">lee</div>
+    <div id="lee" class="mj" style="border: 1px solid pink; color: black;">lee</div>
     <div id="moon" class="mj" style="border: 1px solid pink;">moon</div>
     <div id="ju" class="mj" style="border: 1px solid pink;">ju</div>
 <script>
+    console.log($(".mj").eq(1));
+    console.log($(".mj").eq(1).end());
+    // console.log($(".mj").eq(1));
+    // $(".mj").eq(1).html("힘내자!").css("color", "blue").css("font-size", "2em").attr("id","good");
+
+
+    // alert($(".mj").css("border"));
+    // alert($(".mj").css("color"));
+
+    // jquery는 밑에 소스 둘 다 동작함
+    // $(".mj").css("fontSize", "4em");
+    // $(".mj").css("font-size", "4em");
+
+    // 원래 스크립트는 밑에 처럼 써야한다.
+    // let l_mjs = document.querySelectorAll(".mj");
+    // for(let i=0; i<l_mjs.length; i++){
+    //     l_mjs[i].style.fontSize = "4em";
+    // }
+    
+    // $(".mj").css("background-color", "pink");
+    // $(".mj").css("color", function(p_index, p_value){
+    //     if(p_index == 2){
+    //         return "rgba(255,0,255,0.5)";
+    //     }
+    //     return p_value;
+    // });
+
+
+
+
     // $(".mj").click(function(){ // js의 onclick 함수에 해당
     //     alert("클릭되었습니다.");
     // });
@@ -32,7 +62,7 @@
     //     return p_html;
     // });
 
-    $(".mj").empty(); // div태그 내의 innerHTML이 없어짐
+    // $(".mj").empty(); // div태그 내의 innerHTML이 없어짐
     
     // $(".mj").eq(0).empty();
 

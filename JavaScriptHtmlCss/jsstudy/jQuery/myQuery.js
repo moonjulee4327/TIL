@@ -5,6 +5,9 @@
 
     let myDom = function(p_sel) {
         let l_elems = document.querySelectorAll(p_sel);
+        // 최초 넘어온 선택자 값을 저장만 해둠
+        // jquery방식과 지금방식은 사용 상황에 따라 득과실이 다름
+        this.prev = p_sel; // 실제 jquery는 이렇게 하지 않음
         this.length = l_elems.length;
         for(let i=0; i<l_elems.length; i++) { 
             this[i] = l_elems[i];
@@ -23,11 +26,17 @@
 
 // 메소드들
 $.fn.eq = function(p_index){ 
-    // 실제 jquery eq(index) 처럼 만들어 보기
+    // 실제 jquery eq(index) 처럼 만들어 보기(메소드 체인닝 가능하게)
     // console.log(this[p_index]); 
     // console.log(this); 
-    return this[p_index];
-    // return this;
+    // return this[p_index];
+    // 선택된 객체 1개만 남기고 this(여기선 myDom)을 리턴해야 함
+    this[0] = this[p_index]; // 선택된 객체를 맨앞으로 옮기고
+    for(let i = 0; i< this.length; i++){
+        delete this[i];
+    }
+    this.length = 1; // eq는 무조건 1개
+    return this; // 선택된 객체 1개만 가진 myDom타입 객체 리턴
 }
 
 // innerHTML속성을 컨트롤 하는 메소드, 필수 메소드
@@ -128,3 +137,31 @@ $.fn.empty = function(){
     }
     return this; // 메소드 체인닝
 }
+
+// style객체를 다루는 메소드
+$.fn.css = function(p_arg1, p_arg2){
+    if(typeof(p_arg1) == "string" && !p_arg2){ // 읽기
+        return this[0].style[p_arg1];
+    }
+
+    if(typeof(p_arg1) == "string" && typeof(p_arg2) == "string"){ // 쓰기
+        for(let i = 0; i< this.length; i++){
+            this[i].style[p_arg1] = p_arg2;
+        }
+        return this; // 메소드 체인닝
+    }
+    
+    if(typeof(p_arg1) == "string" && typeof(p_arg2) == "function"){ // 쓰기
+        for(let i = 0; i< this.length; i++){
+            this[i].style[p_arg1] = p_arg2.call(this[i], i, this[i].style[p_arg1]);
+        }
+        return this; // 메소드 체인닝
+    }
+}
+
+$.fn.end = function(){
+    // console.log($(this.prev)); // 이미 저장해둔 선택자 값으로 다시 생성
+    return $(this.prev);
+}
+
+// jquery 메소드의 일관된 패턴(읽기, 전부 쓰기, 골라서 쓰기)
