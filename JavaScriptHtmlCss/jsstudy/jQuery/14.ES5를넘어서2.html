@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // Arrow function (화살표 함수)
+    // 화살표 함수는 this 사용에 몇가지 제약사항이 있는데
+    // 제약사항 외우지 말고, this가 원하는대로 동작하지 않으면
+    // 그냥 function 키워드를 사용할 것
+
+    // 함수 선언법
+
+    myfunc(); // hoisting(올리기), 현재는 선언만 가능
+    // 정석 함수 선언법
+    // function myfunc(){
+    //     alert("호이스팅"); // 뜬다.
+    // }
+
+    // 표현식을 이용한 함수 선언, 표현식이라 호이스팅이 되지 않는다.
+    let myfunc = function(){
+        alert("이건 뜰까?"); // 안 뜬다. 이게 뜨려면 함수를 사용하는 것보다 위에 있어야 됨
+    }
+
+
+    // spread operator : ...
+    function myFunc(...p_args) {
+        for(let i = 0; i < p_args.length; i++) {
+            alert(p_args[i]);
+        }
+    }
+
+    // myFunc("a","b","c","d","e","f","g");
+    myFunc("m","o","o","n","j","u");
+
+</script>

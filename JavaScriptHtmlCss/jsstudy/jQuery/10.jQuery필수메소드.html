@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div id="disp">
+        <img src="../images/개1.jpg" class="myDog" width="100" height="100">
+        <img src="../images/개2.jpg" class="yourDog" width="100" height="100">
+        <img src="../images/개3.jpg" class="myDog" width="100" height="100">
+        <img src="../images/개4.jpg" class="yourDog" width="100" height="100">
+    </div>
+    <input type="button" value="돌리기" id="btn1">
+    <input type="button" value="방아쇠" id="trigger">
+<script>
+    $("#trigger").on("click", function(){
+        $("#btn1").trigger("click"); // btn1버튼 클릭
+    });
+
+
+    // 5번 선택된 것 안에서 또 골라보기, filter
+    $("#btn1").click(function(){
+        $("#disp").children().filter(".yourDog").attr("width","400").attr("height","300");
+        // $(".yourDog") 이렇게 선택해도 된다면 이걸 써도 된다.
+    });
+   
+   
+    // 4번 (변수 처리해야 되는 부분 잘 확인할 것)
+    // let $disp = $("#disp");
+    // $("#btn1").on("click", function(){
+    //     let $childs = $disp.children(); // 여기가 약간 애매(바뀐걸 읽어와야 함)
+    //     console.log($childs.length-1);
+    //     console.log($childs.eq(3));
+    //     $disp.append($childs.eq(0));
+    // })
+
+
+    // 1번
+    // document.createElement("div");
+    // 위와 동일
+    // $("<div></div>")
+    // $("<div>")
+
+    // 2번 (부모.append(자식))
+    // document.createElement("img");
+    // for (let i = 1; i <= 6; i++) {
+    //       $("#disp").append($("<img>")
+    //                 .attr("src", "../images/개"+ i +".jpg")
+    //                 .css("width", "100px")
+    //                 .css("height", "100px"));
+    // }
+    
+    // 3번 (2번과 동일) (자식.appendTo(부모))
+    // for (let i = 1; i <= 6; i++) {
+    //       $("<img>").attr("src", "../images/개"+ i +".jpg")
+    //                 .css("width", "100px")
+    //                 .css("height", "100px").appendTo($("#disp"));
+    // }
+
+    // 필수 메소드
+    // <div></div>, append()와 appendTo() 방향만 다르니, 선택해서 1개만 꼭 잘 써야 함
+    // filter, trigger, closest, clone
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!-- input type = file은 브라우저 마다 모양이 다름 -->
+    
+    <button id="mj">파일찾기</button>
+    <input type="file" id="surinam" value="" style="display:none">
+    <div id="disp">
+
+    </div>
+
+    <!-- table#mytbl>tbody>tr*4>td*3 -->
+    <table id="mytbl" border="1">
+        <tbody class="upper">
+            <tr>
+                <td>1</td>
+                <td>아이언맨</td>
+                <td>슈트</td>
+            </tr>
+            <tr id="tree">
+                <td>2</td>
+                <td>캡틴아메리카</td>
+                <td>방패</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>스파이더맨</td>
+                <td>거미줄</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="start">그루트</td>
+                <td>나무</td>
+            </tr>
+        </tbody>
+    </table>
+
+<script>
+    // 2번
+    // closest은 자기 부모의 부모로 찾아간다. 
+    // tr의 부모 tbody의 부모 이런식으로 찾아감, 부모의 형제는 찾지 않음 
+    // 찾기 시작하는 위치에 자기 자신도 포함된다.
+    // console.log($("#start").closest("tr").html());
+    // console.log($("#start").closest("#tree").html());
+    // console.log($("#start").closest(".upper").html());
+    // console.log($("#start").closest("td").html());
+    console.log($("#start").closest("tbody").children().eq(0).children().eq(1).html("블랙팬서"));
+
+    // 1번
+    /*
+    $("#mj").on("click", function(){
+        $("#surinam").trigger("click");
+    });
+    */
+
+    // 3번
+    $("#disp").append($("table").clone(true)); // 깊은 복사, 원래 cloneNode
+</script>
+</body>
+</html>
