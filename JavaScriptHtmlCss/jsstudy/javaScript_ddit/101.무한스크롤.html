@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 상대경로 -->
+    <img src="../images/개1.jpg" width="100" height="100">
+    <!-- 절대 경로 -->
+    <img src="/images/개1.jpg" width="100" height="100">
+
+
+    <!-- 특히 모바일쪽에서 많이 사용한다. -->
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+    <h1>실력 향상을 위해 노력하자!</h1>
+
+<script>
+    // 스크롤 이벤트
+    // window.addEventListener("scroll");
+
+    // 크롬에서 스크롤바 움직이는데 문제가 있다.(0,0)은 x축, y축
+    // 스크롤바 맨위로 올리기
+    // 시간을 약간 줘야 함(setTimeout)
+    // window.scrollTo(0,0);
+
+    setTimeout(()=>{
+        window.scrollTo(0,0); // 스크롤바 맨위로 올리기
+    }, 50);
+
+    window.onscroll = function() {
+        // 스크롤 이 끝에 올때쯤 ajax로 다음 데이터를 넘겨준다.
+
+        // 문서(document)의 실시간 바뀌는 정보를 가진 document.documentElement
+        let docElem = document.documentElement; // 줄여쓰기 용도
+
+        // 스크롤이 끝까지 간다면
+        // 보통 끝에 닿기 전에 이벤트를 건다
+        let tunning = 50;
+        if((docElem.scrollTop + docElem.clientHeight) >= docElem.scrollHeight - tunning){
+            // alert("스크롤바 올려주세요!");
+            // 보통 여기서 AJAX를 이용해 서버에서 데이터를 가져와서 추가해줌
+            for(let i=1; i<=10; i++){
+                let h1 = document.createElement("h1");
+                let ranNum = Math.ceil(Math.random()*100);
+                h1.innerHTML = "힘든만큼 실력이" + ranNum + "배 늘 것이다.";
+                document.body.appendChild(h1);
+            }
+        }
+
+
+        console.log("스크롤 높이:"+ document.documentElement.scrollTop);
+        console.log("보이는 화면 높이:"+ document.documentElement.clientHeight);
+        console.log("실제문서 높이:"+ document.documentElement.scrollHeight);
+        console.log("-------------------------------------------------------------");
+    }
+</script>
+</body>
+</html>
