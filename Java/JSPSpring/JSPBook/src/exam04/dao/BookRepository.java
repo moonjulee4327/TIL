@@ -7,9 +7,10 @@ import exam04.vo.BookVO;
 
 public class BookRepository {
 	
+	private static BookRepository brp;
 	private List<BookVO> listOfBooks = new ArrayList<BookVO>();
 	
-	public BookRepository() {
+	private BookRepository() {
 		BookVO js = new BookVO("P101", "HTML5+CSS3", 15000);
 		js.setDescription("워드나 PPT문서를 만들 수 있나요??");
 		js.setAuthor("황재호");
@@ -35,7 +36,30 @@ public class BookRepository {
 		listOfBooks.add(spring);
 	}
 	
+	public static BookRepository getInstance() {
+		if(brp == null) {
+			brp = new BookRepository();
+		}
+		return brp;
+	}
+	
+	
 	public List<BookVO> getAllBooks() {
 		return listOfBooks;
+	}
+	
+	public BookVO getBookById(String bookId) {
+		
+		BookVO bookById = null;
+		
+		for(int i=0; i < listOfBooks.size(); i++) {
+			BookVO vo =listOfBooks.get(i);
+			if(vo != null && bookId != null && bookId.equals(vo.getBookId())) {
+				bookById = vo;
+			}
+			
+		}
+		
+		return bookById;
 	}
 }

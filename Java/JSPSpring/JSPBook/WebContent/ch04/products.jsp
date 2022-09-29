@@ -38,6 +38,7 @@
 					<p>${productVO.productId}</p>
 					<p>${productVO.unitPrice}</p>
 					<!-- 상품 아이디에 대한 상세 정보 페이지가 연결되도록 상세 정보 버튼 작성 -->
+					<p><a href="../ch05/product.jsp?id=${productVO.productId}" class="btn btn-secondary" role="button">상세 정보&raquo;</a></p>
 				</div>
 			</c:forEach>
 		</div>

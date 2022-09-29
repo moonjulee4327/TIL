@@ -8,13 +8,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MySwing03 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tf01;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tf02;
+	private JTextField tf03;
 
 	/**
 	 * Launch the application.
@@ -49,22 +51,44 @@ public class MySwing03 extends JFrame {
 		contentPane.add(tf01);
 		tf01.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(124, 22, 58, 21);
-		contentPane.add(textField);
+		tf02 = new JTextField();
+		tf02.setColumns(10);
+		tf02.setBounds(124, 22, 58, 21);
+		contentPane.add(tf02);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(236, 22, 58, 21);
-		contentPane.add(textField_1);
+		tf03 = new JTextField();
+		tf03.setColumns(10);
+		tf03.setBounds(236, 22, 58, 21);
+		contentPane.add(tf03);
 		
 		JLabel lblNewLabel = new JLabel("+");
 		lblNewLabel.setBounds(96, 25, 13, 15);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("=");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				myClick();
+				
+			}
+		});
 		btnNewButton.setBounds(187, 21, 42, 23);
 		contentPane.add(btnNewButton);
 	}
+	
+	public void myClick() {
+		
+		int a = Integer.parseInt(tf01.getText());
+		int b = Integer.parseInt(tf02.getText());
+		
+		int sum = a + b;
+		
+		tf03.setText(Integer.toString(sum));
+		
+		
+		
+	}
+	
 }

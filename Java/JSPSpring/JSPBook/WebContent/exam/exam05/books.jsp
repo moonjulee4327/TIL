@@ -18,26 +18,29 @@
 </head>
 <body>
 <!-- 머리글에 해당하는 menu.jsp파일의 내용을 포함하도록 include 액션태그 작성 -->
-	<jsp:include page="menu.jsp"/>
+	<jsp:include page="../exam04/menu.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">도서 목록</h1>
 		</div>
 	</div>
 	<div class="container"> 
-		<div class="col" align="left">
+		<div class="row" align="left">
 			<c:forEach var="bookVO" items="${listOfBooks}">
-				<div class="row-md-4">
+				<div class="col-11">
 					<h3>[${bookVO.category}] ${bookVO.name}</h3>
 					<br>
 					<p>${bookVO.description}</p>
 					<p>${bookVO.author} | ${bookVO.publisher} | ${bookVO.unitPrice}원</p>
-					<br>
+					<hr>
+				</div>
+				<div class="col-1">
+					<p><a href="product.jsp?id=${bookVO.bookId}" class="btn btn-secondary" role="button">상세 정보&raquo;</a></p>
 				</div>
 				<br>
 			</c:forEach>
 		</div>
 	</div>
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="../exam04/footer.jsp"/>
 </body>
 </html>
