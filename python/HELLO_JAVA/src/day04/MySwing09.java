@@ -66,7 +66,10 @@ public class MySwing09 extends JFrame {
 		btn1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+//				JButton b = (JButton) e.getSource();
+//				System.out.println(b.getText());
 				myClick("1");
+//				myClick(e);
 			}
 		});
 		btn1.setBounds(29, 67, 49, 23);
