@@ -62,4 +62,8 @@ public class BookRepository {
 		
 		return bookById;
 	}
+	
+	public void insertBook(BookVO bv) {
+		listOfBooks.add(bv);
+	}
 }
