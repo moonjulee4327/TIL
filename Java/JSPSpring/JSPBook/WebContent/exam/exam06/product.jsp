@@ -37,6 +37,7 @@
 				<p><b>총 페이지 수</b> : ${bookVO.totalPages}</p>
 				<p><b>출판일</b> : ${bookVO.releaseDate}</p>
 				<p><b>저자</b> : ${bookVO.author}</p>
+				<p><b>도서 상태</b> : ${bookVO.condition}</p>
 				<h4>${bookVO.unitPrice}원</h4>
 				<p>
 					<a href="#" class="btn btn-info">상품주문&raquo;</a>
