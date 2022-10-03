@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // java의 ArrayList는 js의 배열에 해당
+    // 생성자
+    let java = {};
+    java.util = {};
+    // 자바처럼 만들기
+    java.util.ArrayList = function(){
+        this.length = 0; // 생성될 때 갯수 0
+        return this; 
+        // function키워드가 class로 사용되고 있다는 의미(100%는 아님, 거의 대부분)
+    }
+
+    // 메소드 추가, prototype은 그저 메모리절약을 위한 것임
+    java.util.ArrayList.prototype.add = function(p_arg){
+        this[this.length] = p_arg;
+        this.length++;
+        return this; // 메소드 chaining 
+        // return; // 메소드는 일반 함수라서 기본적으로 return이 생략되어 있음
+    }
+
+    java.util.ArrayList.prototype.get = function(p_inx){
+        return this[p_inx];
+    }
+
+    java.util.ArrayList.prototype.remove = function(p_inx){
+        // 제거시 인덱스도 줄어 들도록 해보기
+        // this[p_inx] = p_inx--;
+        for(let i=p_inx; i<this.length; i++){
+            this[i] = this[i+1]; // 왼쪽 한개씩 땡기고
+        }
+        // 객체 속성 지울 때 사용했던 키워드?(delete)
+        delete this[this.length-1]; // 마지막꺼 지우기
+        this.length--; // length값도 변경
+        return this; // 메소드 체인닝을 위함
+    }
+
+    /*
+    let l_obj = {};
+    l_obj.aaa = "aaa"; // 속성/메소드 추가할 땐 원하는 이름 맘대로(키워드만 아니면)
+    l_obj.bbb = "bbb";
+
+    delete l_obj.aaa; // 속성/메소드 지우기
+    console.log(l_obj); // 항상 눈으로 확인
+    */
+    
+    let l_arrList = new java.util.ArrayList();
+    l_arrList.add("아이언맨").add("스파이더맨").add("닉 퓨리").add("블랙팬서").add("타노스").remove(1);
+    /*
+    l_arrList.add("캡틴아메리카");
+    l_arrList.add("헐크").remove(1);
+    l_arrList.add("토르");
+    l_arrList.add("가모라");
+    l_arrList.add("그루트");
+    */
+
+    console.log("check1: ", l_arrList.get(1));
+    /*
+    l_arrList.remove(1); 
+    l_arrList.remove(4); 
+    */
+    console.log("check2: ", l_arrList); // 눈으로 확인
+
+</script>

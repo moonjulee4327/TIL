@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // function f_check(p_cb){
+    //     console.log(`확인 : ${p_cb}`);
+    // }
+    
+    // function f_check(p_cb){
+    //     // alert("난 콜백!");은 뜨고, 확인 : undefined이 콘솔에 찍힌다.(함수의 끝에는 return이 생략)
+    //     console.log(`확인 : ${p_cb()}`); 
+    // }
+    
+    function f_check(p_cb){
+        // alert("난 콜백!");은 뜨고, 확인 : undefined이 콘솔에 찍힌다.(함수의 끝에는 return이 생략)
+        console.log(`확인 : ${p_cb("콜","백")}`); 
+    }
+
+    // f_check(function(){
+    //     alert("난 콜백!");
+    // });
+ 
+    // f_check(function(){
+    //     alert("난 콜백!");
+    //     return "이젠 undefined가 안뜬다.";
+    // });
+
+    // 밑에 두개는 같다..
+    // f_check(function(p_arg1, p_arg2){
+    //     alert(`난 콜백! ${p_arg1}이랑 ${p_arg2}`);
+    //     return "이젠 undefined가 안뜬다.";
+    // });
+
+    let l_func = function(p_arg1, p_arg2){
+        alert(`난 콜백! ${p_arg1}이랑 ${p_arg2}`);
+        return "이젠 undefined가 안뜬다.";
+    }
+
+    f_check(l_func);
+
+    // p_cb = function(){alert("난 콜백");}
+
+    // 복사와 참조
+    let l_num = 100000000; // 원시타입(속성과 메소드가 없음)
+    alert(typeof(l_num)); // number
+    // 원시타입은 . 찍고 메소드를 쓸 수가 없다. 하지만 자동으로 Wrapper class로 바뀜(Number), 
+    alert(l_num.toLocaleString()); 
+
+    
+</script>

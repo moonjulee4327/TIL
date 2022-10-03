@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>on이벤트명=함수, addEventListener(이벤트명, 함수) 둘 다 필요하다!</h1>
+<input type="button" id="btn1" value="누를까?"><br>
+<input type="button" id="btn2" value="누르지말까?"><br>
+<script>
+    let l_btn1 = document.querySelector("#btn1");
+    let l_btn2 = document.querySelector("#btn2");
+    
+    /*
+    // onclick은 덮어 써진다.
+    l_btn1.onclick = function(){
+        alert("누르셨네요?");
+    }
+
+    l_btn1.onclick = function(){
+        alert("이걸 누르셨나요?");
+    }
+    */
+    
+    /*
+    // addEventListener는 두 개의 클릭 이벤트가 다 뜬다.
+    l_btn1.addEventListener("click",function(){
+        alert("누르셨네요?");
+    });
+
+    l_btn1.addEventListener("click",function(){
+        alert("이걸 누르셨나요?");
+    });
+    */
+
+    
+    // l_btn1.addEventListener("click",function(){
+    //     alert("누르셨네요?");
+    // });
+
+    /*
+    // 밑에 있는건 느려지는 소스
+    // l_btn2.addEventListener("click",function(){
+    //     l_btn1.addEventListener("click",function(){
+    //         alert("누르셨네요?");
+    //     })
+    // });
+    
+    // 이렇게 바꿔야 한다.
+    l_btn2.addEventListener("click",function(){
+        l_btn1.onclick=function(){
+            alert("누르셨네요?");
+        }
+    });
+    */
+
+    // 2가지의 차이를 명확히 이해하고 상황에 맞게 사용하는 것이 중요
+
+</script>
+</body>
+</html>

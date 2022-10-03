@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <div id="disp"></div>
+</body>
+<script>
+// Premise로도 비동기처리가 많아지면 어쩔 수 없이 
+// 코드가 복잡해지고 가독성이 떨어지는 문제는 여전히 남아있어
+// async, await가 나와서 보완이 되었다.
+// 인간의 뇌는 비동기에 익숙하지 않다. 동기방식에 익숙함
+
+const axios = {}; // 네임스페이스용
+axios.get = function(p_url){
+    return new Promise((resolve, reject)=>{
+        let ajax = new XMLHttpRequest();
+        ajax.open("GET",p_url,true);
+        ajax.onreadystatechange = ()=>{
+            if(ajax.readyState==4 && ajax.status==200){
+                resolve(ajax.responseText);
+            }
+        }
+        ajax.send();
+    });
+}
+
+// 1번
+// axios.get("../etc/mystyle.css").then((p_rslt)=>{ console.log("성공:",p_rslt) })
+//                .catch((p_error)=>{ console.log("실패:",p_error) })
+//                .finally(()=>{ console.log("난 무조건 성공!"); })
+
+// console.log("누가 먼저 뜨는지"); // 이것이 먼저 찍힘
+
+// 2번
+// async와 await는 세트로
+async function f_good(){
+    // async는 함수 전체가 비동기로 동작 
+    // await(동기로 만들어줌)가 없다면 비동기 이기때문에 작업을 하는 동안 밑으로
+    // 내려가 div에 innerHTML이 잘 안된다.
+    // 하지만 await가 붙은거만 동기로 만듦 원래 비동기를 동기로 만들면 ]
+    // 성능적 손해가 있지만 함수 전체에 async를 붙혀 전체 비동기로 만들어줌
+    // async함수가 많이 있으면 충돌이 생김  
+    let response = await axios.get("../etc/mystyle.css");
+    document.querySelector("#disp").innerHTML = response; 
+}
+
+f_good();
+
+</script>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <tbody id="t_body">
+            <tr>
+                <th onclick="f_sortTitle()">제목</th>
+                <th onclick="f_sortWriter()">지은이</th>
+                <th onclick="f_sortContent()">내용</th>
+                <th onclick="f_sortDate()">날짜</th>
+            </tr>
+            <tr>
+                <td>목민심서</td>
+                <td>정약용</td>
+                <td>올바른 마음가짐 및 몸가짐에 대해 기록</td>
+                <td>1818-01-01</td>
+            </tr>
+            <tr>
+                <td>훈민정음</td>
+                <td>세종대왕</td>
+                <td>한글</td>
+                <td>2021-12-31</td>
+            </tr>
+            <tr>
+                <td>삼국사기</td>
+                <td>김부식</td>
+                <td>역사 기록</td>
+                <td>1950-06-01</td>
+            </tr>
+            <tr>
+                <td>안네의 일기</td>
+                <td>안네</td>
+                <td>일기</td>
+                <td>1900-03-01</td>
+            </tr>
+        </tbody>
+    </table>
+<script>
+    let l_tbody = document.querySelector("#t_body");
+    let l_trs = document.querySelectorAll("tr");
+    // l_trs는 실제로는 배열이 아님, 배열로 변환이 필요
+    let l_arrTr = [];
+    for(let i=1; i<l_trs.length; i++){ // 0번의 헤더이다.
+        l_arrTr.push(l_trs[i]);
+    }
+    function f_sortTitle(){
+        l_arrTr.sort(function(a,b){ // a 와 b는 tr태그 객체
+            if(a.children[0].innerHTML > b.children[0].innerHTML){
+                return 1;
+            }else{
+                return -1;
+            }
+        });
+
+        for(let i=0; i<l_arrTr.length; i++){
+            console.log(l_arrTr[i]);
+            l_tbody.appendChild(l_arrTr[i]);
+            // tbody에 다시 순서대로 붙이기
+        }
+
+        
+        // 힌트 : append나 appendchild는 이미 객체가 존재하고 있을 땐 해당 객체를 옮겨버림
+        /*
+        for(let i=0; i<l_arrTr.length; i++){
+            for(let j=0; j<l_arrTr[i].children.length; j++){
+                console.log(l_arrTr[i].children[j].innerHTML);
+            }
+        }
+        */
+    }
+
+    function f_sortWriter(){
+        l_arrTr.sort(function(a,b){ // a 와 b는 tr태그 객체
+            if(a.children[1].innerHTML > b.children[1].innerHTML){
+                return 1;
+            }else{
+                return -1;
+            }
+        });
+
+        for(let i=0; i<l_arrTr.length; i++){
+            console.log(l_arrTr[i]);
+            l_tbody.appendChild(l_arrTr[i]);
+            // tbody에 다시 순서대로 붙이기
+        }
+    }
+
+    function f_sortContent(){
+        l_arrTr.sort(function(a,b){ // a 와 b는 tr태그 객체
+            if(a.children[3].innerHTML > b.children[3].innerHTML){
+                return 1;
+            }else{
+                return -1;
+            }
+        });
+
+        for(let i=0; i<l_arrTr.length; i++){
+            console.log(l_arrTr[i]);
+            l_tbody.appendChild(l_arrTr[i]);
+            // tbody에 다시 순서대로 붙이기
+        }
+    }
+
+    function f_sortDate(){
+        l_arrTr.sort(function(a,b){ // a 와 b는 tr태그 객체
+            // console.log(a.children[4]);
+            if(a.children[4].innerHTML > b.children[4].innerHTML){
+                return 1;
+            }else{
+                return -1;
+            }
+        });
+
+        for(let i=0; i<l_arrTr.length; i++){
+            console.log(l_arrTr[i]);
+            l_tbody.appendChild(l_arrTr[i]);
+            // tbody에 다시 순서대로 붙이기
+        }
+    }
+
+
+</script>
+</body>
+</html>

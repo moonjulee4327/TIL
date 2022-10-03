@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="./myQuery.js"></script>
+</head>
+<body>
+    <input type="text" name="이문주" id="아이디" value="최현우">
+    <input type="text" name="이문주1" id="아이디1" value="조영훈">
+    <input type="text" name="이문주2" id="아이디2" value="박준형">
+    <div id="dv1" class="marvel">안녕하세요 블랙팬서</div>
+    <div id="dv2" class="marvel">안녕하세요 캡틴마블</div>
+    <div id="dv3" class="marvel">안녕하세요 아이언맨</div>
+    <div id="dv4" class="marvel">안녕하세요 길가메쉬</div>
+<script>
+    // 문자열이 넘어오면 attr은 쓸 수 없음 myDom이 넘어와야 가능(객체) string은 subString같은 메소드 사용가능
+    // 넘어오는 값이 뭔지 알아야 한다.
+    // console.log(typeof($(".marvel").html())); // string(this[0].innerHTML)
+    console.log(typeof($(".marvel").html("mj").attr("ㅎㅇ"))); // string(this[0].innerHTML)
+
+
+    // $(".marvel").attr("class", "DC")
+    //             .html(function(p_inx, p_str) {
+    //                 if(p_inx == 1){
+    //                     return "슈퍼맨과 캡틴마블";
+    //                 }
+    //                 return p_str; // 원래 문자열
+    //             })
+    //             .html(function(p_inx, p_str) {
+    //                 if(p_inx == 0){
+    //                     return p_str + "만만세";
+    //                 }
+    //                 return p_str;
+    //             })
+    //             .attr("id", function(p_inx, p_attr) {
+    //                 if(p_inx == 3){
+    //                     return "치즈버거";
+    //                 }
+    //                 return p_attr;
+    //             });
+
+    // alert($("input[name=이문주1]").attr("id")); // 읽기
+
+    // alert($("input").attr("type", "checkbox")); // 쓰기
+
+    // $("input").attr("type", function(p_index, p_attr) {
+
+    //     console.log("인덱스 : 속성값", p_index, p_attr);
+    //     if(p_index == 1){
+    //         return "checkbox";
+    //     }
+    //     return p_attr; // this[p_attr]; ?
+    // });
+
+    // 특별한 for문 => for in
+    
+    // let l_mjObj = {
+    //     "mem1":"lee",
+    //     "mem2":"moon",
+    //     "mem3":"ju",
+    //     "mem4":"없음"
+    // }
+
+    // for(let l_attr in l_mjObj){
+    //     // alert(l_attr); // mem1, mem2, mem3, mem4 가 뜬다. 
+    //     alert(l_attr + " : " + l_mjObj[l_attr]);
+    // }
+
+    // $("input").attr("type","radio");
+    // $("input").attr("value","방탄소년단");
+    $("input").attr({
+        "type":"radio",
+        "value":"방탄소년단"
+    });
+
+</script>
+</body>
+</html>

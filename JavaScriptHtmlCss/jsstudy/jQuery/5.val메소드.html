@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./myQuery.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+</head>
+<body>
+    <input type="text" id="txt1" value="길"><br>
+    <input type="text" id="txt2" value="가"><br>
+    <input type="text" id="txt3" value="메"><br>
+    <input type="text" id="txt4" value="쉬"><br>
+    <div id="lee" class="mj" style="border: 1px solid pink; color: black;">lee</div>
+    <div id="moon" class="mj" style="border: 1px solid pink;">moon</div>
+    <div id="ju" class="mj" style="border: 1px solid pink;">ju</div>
+<script>
+    console.log($(".mj").eq(1));
+    console.log($(".mj").eq(1).end());
+    // console.log($(".mj").eq(1));
+    // $(".mj").eq(1).html("힘내자!").css("color", "blue").css("font-size", "2em").attr("id","good");
+
+
+    // alert($(".mj").css("border"));
+    // alert($(".mj").css("color"));
+
+    // jquery는 밑에 소스 둘 다 동작함
+    // $(".mj").css("fontSize", "4em");
+    // $(".mj").css("font-size", "4em");
+
+    // 원래 스크립트는 밑에 처럼 써야한다.
+    // let l_mjs = document.querySelectorAll(".mj");
+    // for(let i=0; i<l_mjs.length; i++){
+    //     l_mjs[i].style.fontSize = "4em";
+    // }
+    
+    // $(".mj").css("background-color", "pink");
+    // $(".mj").css("color", function(p_index, p_value){
+    //     if(p_index == 2){
+    //         return "rgba(255,0,255,0.5)";
+    //     }
+    //     return p_value;
+    // });
+
+
+
+
+    // $(".mj").click(function(){ // js의 onclick 함수에 해당
+    //     alert("클릭되었습니다.");
+    // });
+
+    // $(".mj").on("click",function(){ // js의 addEventListener에 해당
+    //     alert("클릭되었습니다");
+    // });
+    
+    // $(".mj").on("click",function(){ // js의 addEventListener에 해당
+    //     alert("클릭되었습니다");
+    // }).html(function(p_inx, p_html){
+    //     if(p_html == "lee"){
+    //         return "이";
+    //     }
+    //     return p_html;
+    // });
+
+    // $(".mj").empty(); // div태그 내의 innerHTML이 없어짐
+    
+    // $(".mj").eq(0).empty();
+
+    // 개발자들이 value속성을 자주 다루다 보니, jquery에는
+    // val()이라는 value속성만을 다루는 메소드가 존재함
+    // html() 메소드와 사용법이 동일
+    // console.log($("input").val()); // 읽기
+    // console.log($("#txt3").val()); // 읽기
+    // console.log($("input").val("아이언맨")); // 쓰기
+    // console.log($("input").val(function(p_index, p_value) {
+    //     if(p_value.indexOf("메") != -1){
+    //         return "메르켈총리";
+    //     }
+    //     return p_value;
+    // })); // 쓰기
+
+    // console.log($("input").val(function(p_index, p_value) {
+    //     if(p_value.indexOf("메") != -1){
+    //         return "메르켈총리";
+    //     }
+    //     return p_value;
+    // }).attr("type","radio").val("모두 다 사랑하리")); // 쓰기
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // js의 버전은 ES5,ES6(2015말) 기준으로 크게 나뉨
+    // let, const, template string, arrow function, spread operator
+    // destructuring, promise, async await 등등
+    // es6 버전 방식을 많이 쓰는 것이 유리(올해로 IE11 안씀)
+
+    // 2번
+    // template string
+
+    let preInsa = "안녕하세요";
+    let guest = "식사는 하셨습니까?";
+
+    // let munSum = preInsa + " " + guest; // 문자열 더하기
+    // 주의 사항 : 나중에 Spring 배우면 js string template과 spring el(expressiong language)의
+    // 문법이 똑같아서 서버쪽에서 에러 발생 그럴때는 $에 \ 를 붙여줌 \$ 처럼
+    // only jsp 파일 안에서만, js파일안에서는 안붙여도 됨
+    // 톰캣이 js파일은 java로 변환하지 않기 때문에
+    let munSum = `${preInsa} ${guest}`; // 빽틱사용
+    alert(munSum);
+
+
+
+    // 1번
+    // 변수 선언 기존 var에 let과 const가 추가됨
+    // var는 function 키워드에 의해서 let은 {}에 의해서 변수영역이 달라짐
+    // 다른 언어들의 변수 선언은 let과 같음, var가 특별함
+
+    // var vs let
+    // for(var i=1; i<=10; i++) {
+    // }
+    // alert(i); //? 11 (함수 안에서만 나눠짐)
+
+    // for(let i=1; i<=10; i++) {
+    // }
+    // alert(i); //? 정의 되지 않음 ({}바디로 나눠짐)
+
+    // const(상수변수) => 숫자, 문자는 무조건 에러, 객체의 그릇을 바꾸는건 안되지만 
+    // 안의 내용물 (속성)은 바꿀 수 있다.
+    // const lmj = "이문주";
+    // lmj = "리문주"; // 안됨
+    // const lmjInFo = {
+    //     name:"이문주",
+    //     alias:"공부하자",
+    //     check:"다시 봐도 공부하자"
+    // }
+    
+    // lmjInFo.check = "절실하게 공부하자"; // 객체의 속성을 바꾸는 것은 가능하다
+    // console.log(lmjInFo);
+
+    // lmjInFo = {"name":"리문주"}; // {}은 new Object()
+    // lmjInFo = new Object();
+    // lmjInFo.name = "리문주";
+
+    const myArr = ["kgb",{"name":"이문주"}];
+    // myArr = ["fbi","이게 바뀔까?"];
+    myArr[1].name = "리문주";
+    console.log(myArr);
+
+</script>

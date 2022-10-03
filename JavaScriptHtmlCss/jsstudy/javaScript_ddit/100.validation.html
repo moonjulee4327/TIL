@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>유효성체크</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!-- 유효성체크는 최대한 프론트쪽에서 -->
+    <form action="" onsubmit="return f_submit()">
+        아이디 <input type="text" name="nm_id" value="" pattern="^[a-zA-Z0-9]{4,9}$" required><br>
+        전화번호 <input type="text" name="nm_tel" value="" pattern="^[0-9]{3}-[0-9]{3,4}-[0-9]{4}" required><br>
+        IT 취미(2개이상 선택하시오) <br>
+        JS<input type="checkbox" name="n_hobby" value="js">&nbsp;
+        JSP<input type="checkbox" name="n_hobby" value="jsp">&nbsp;
+        Servlet<input type="checkbox" name="n_hobby" value="servlet">&nbsp;
+        css<input type="checkbox" name="n_hobby" value="css">
+
+        <input type="submit" value="전송">
+    </form>
+<script>
+    // psyudo class를 활용하면 편함
+    function f_submit() {
+        if($("input[name=n_hobby]:checked").length >= 2){
+            return true;
+        }else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

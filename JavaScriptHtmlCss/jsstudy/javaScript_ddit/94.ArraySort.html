@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // 배열 sort
+    // let l_testArr = [33, 32, 88, 44, 66, 77, 55];
+    // alert(parseInt("아이언맨")); // NaN
+    // alert(Number("아이언맨"));  // NaN number는 원시타입 Number는 Wrapper class
+
+    /*
+        숫자연산 빼기는 문자열을 숫자로 변환할 수 없어서 안되지만 
+        비교연산자는 문자열을 내부적으로 uni code 변환되어 가능
+    if("그루트" >= "헐크"){
+        alert("이건 뜰까요?");
+    }
+    */
+
+    let l_testArr = ["아이언맨", "헐크", "토르", "스파이더맨", "그루트", "가모라", "윈터솔져"];
+    // l_testArr.sort(); // callback 없이 사용, 자동으로 오름차순으로 정렬
+
+    // l_testArr.sort(function(a, b){ // callback사용
+    //     console.log(`a: ${a}, b: ${b}`);
+    //     return b-a; // 내림차순으로 정렬
+    // });
+    l_testArr.sort(function(a, b){ // callback사용
+        // 오름차순
+        // if(a >= b){
+        //     return 1; // 양수 
+        // }
+        // return -1; // 음수
+
+        // 내림차순
+        if(b >= a){
+            return 1; // 양수 
+        }
+        return -1; // 음수
+    });
+
+    console.log("kgb", l_testArr);
+
+</script>
