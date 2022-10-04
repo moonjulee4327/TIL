@@ -11,29 +11,34 @@ class MyWindow(QMainWindow, form_class):
         super().__init__()
         self.setupUi(self)
         self.pb.clicked.connect(self.myclick)
+        self.leMine.returnPressed.connect(self.pb.click)
     
     def myclick(self):
         me = self.leMine.text()
+        com = ""
+        result = ""
         
         comRan = random()
 
         #print(comRan)
         
         if comRan > 0.5 :
-            comRan = "짝"
+            com = "짝"
         else : 
-            comRan = "홀"
+            com = "홀"
         
-        if me == comRan :
-            self.leCom.setText(comRan)
-            self.leRs.setText("승리")
+        if me == com :
+            # self.leCom.setText(comRan)
+            # self.leRs.setText("승리")
+            result = "승리"
 
         else : 
-            self.leCom.setText(comRan)
-            self.leRs.setText("패배")
+            # self.leCom.setText(comRan)
+            # self.leRs.setText("패배")
+            result = "패배"
 
-
-        
+        self.leCom.setText(com)
+        self.leRs.setText(result)
 
 
 if __name__ == "__main__":

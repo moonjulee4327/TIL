@@ -10,6 +10,7 @@ class MyWindow(QMainWindow, form_class):
         super().__init__()
         self.setupUi(self)
         self.pb.clicked.connect(self.myclick)
+        self.le.returnPressed.connect(self.pb.click)
     
     def myclick(self):
         dan = self.le.text()
@@ -22,6 +23,14 @@ class MyWindow(QMainWindow, form_class):
             gugudan += str(idan) + "*" + str(i) + "=" + str(idan*i) + "\n"
         
         self.te.setText(gugudan)
+        
+        # 파이썬 3. 대 버전부터 사용가능
+        txt = "\n"
+        txt += f"{idan}*1={idan*1}\n"
+        txt += f"{idan}*2={idan*2}\n"
+    
+        print("txt", txt)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
