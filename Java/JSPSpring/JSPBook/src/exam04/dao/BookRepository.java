@@ -16,6 +16,7 @@ public class BookRepository {
 		js.setAuthor("황재호");
 		js.setPublisher("한빛미디어");
 		js.setCategory("Hello Coding");
+		js.setFilename("P101.png");
 		
 		listOfBooks.add(js);
 		
@@ -24,6 +25,7 @@ public class BookRepository {
 		java.setAuthor("우종중");
 		java.setPublisher("한빛아카데미");
 		java.setCategory("IT모바일");
+		java.setFilename("P102.png");
 		
 		listOfBooks.add(java);
 	
@@ -32,6 +34,7 @@ public class BookRepository {
 		spring.setAuthor("하세가와 유이치, 모모노 와타루, 토키 코헤이[권은철, 전민수]");
 		spring.setPublisher("한빛미디어");
 		spring.setCategory("IT모바일");
+		spring.setFilename("P103.png");
 		
 		listOfBooks.add(spring);
 	}

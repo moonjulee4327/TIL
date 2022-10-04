@@ -38,7 +38,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2">상세 정보</label>
 				<div class="col-sm-3">
-					<textarea rows="description" rows="2" cols="50" class="form-control"></textarea>
+					<textarea name="description" rows="2" cols="50" class="form-control"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">

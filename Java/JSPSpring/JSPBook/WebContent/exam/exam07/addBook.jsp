@@ -45,7 +45,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2">도서 설명</label>
 				<div class="col-sm-3">
-					<textarea rows="description" rows="2" cols="50" class="form-control"></textarea>
+					<textarea rows="2" cols="50" name="description" class="form-control"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -84,6 +84,12 @@
 					<input type="radio" name="condition" value="New"/>신규상품
 					<input type="radio" name="condition" value="Old"/>중고상품
 					<input type="radio" name="condition" value="Refurbished"/>재생상품					
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2">파일업로드</label>
+				<div class="col-sm-3">
+					<input type="file" name="filename" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">

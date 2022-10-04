@@ -28,6 +28,8 @@ public class ProductRepository {
 		phone.setManufacturer("Apple");
 		phone.setUnitInStock(1000);
 		phone.setCondition("New");
+		// ch07에서 추가
+		phone.setFilename("P1234.png");
 		
 		listOfProducts.add(phone);
 		
@@ -38,7 +40,9 @@ public class ProductRepository {
 		notebook.setManufacturer("Apple");
 		notebook.setUnitInStock(1000);
 		notebook.setCondition("Refurbished"); // 재생상품
-
+		// ch07에서 추가
+		notebook.setFilename("P1235.png");
+		
 		listOfProducts.add(notebook);
 		
 		// 3) tablet 상품 추가 (1행(ProductVO) 추가)
@@ -48,6 +52,8 @@ public class ProductRepository {
 		tablet.setManufacturer("Apple");
 		tablet.setUnitInStock(1000);
 		tablet.setCondition("Old"); // 중고상품
+		// ch07에서 추가
+		tablet.setFilename("P1236.png");
 		
 		listOfProducts.add(tablet);
 	}

@@ -37,9 +37,10 @@
 			<!-- List<ProductVO> 한 행을 꺼내오면 ProductVO -->
 			<c:forEach var="productVO" items="${listOfProducts}">
 				<div class="col-md-4">
+					<img alt="${productVO.pname}" title="${productVO.pname}" src="/resources/images/${productVO.filename}" style="width: 50%; height: 40%">
 					<h3>${productVO.pname}</h3>
 					<p>${productVO.description}</p>
-					<p>${productVO.unitPrice}</p>
+					<p>${productVO.unitPrice}원</p>
 					<!-- 상품 아이디에 대한 상세 정보 페이지가 연결되도록 상세 정보 버튼 작성 -->
 					<p><a href="product.jsp?id=${productVO.productId}" class="btn btn-secondary" role="button">상세 정보&raquo;</a></p>
 				</div>
