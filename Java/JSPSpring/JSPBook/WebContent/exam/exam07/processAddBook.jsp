@@ -13,20 +13,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%! 
-		public String arrToStr(String[] arr){
-			String str = "";
-			for(String strs : arr){
-				str += strs;
-			}
-			return str;
-		}
-	
-	%>
 	
 	<%
-		request.setCharacterEncoding("UTF-8");
-		BookVO vo = new BookVO();
 		
 		/*
 		이렇게 VO에 넣을 수 있나?
@@ -39,55 +27,102 @@
 		}
 		*/	
 		
-		
-		
-		BookRepository brepo = BookRepository.getInstance();
-		
-		vo.setBookId(request.getParameter("bookId"));
-		vo.setName(request.getParameter("name"));
-		vo.setUnitPrice(Integer.parseInt(request.getParameter("unitPrice")));
-		vo.setAuthor(request.getParameter("author"));
-		vo.setCategory(request.getParameter("category"));
-		vo.setDescription(request.getParameter("description"));
-		vo.setPublisher(request.getParameter("publisher"));
-		vo.setCondition(request.getParameter("condition"));
-		
-		brepo.insertBook(vo);
 
-// 		String fileUploadPath = "C:\\upload";
+		String fileUploadPath = "E:\\A_TeachingMaterial\\6.JspSpring\\workspace\\JSPBook\\WebContent\\resources\\examImages";
 		
-// 		DiskFileUpload upload = new DiskFileUpload();
+		DiskFileUpload upload = new DiskFileUpload();
 		
-// 		List items = upload.parseRequest(request);
+		List items = upload.parseRequest(request);
 		
-// 		Iterator params = items.iterator();
+		Iterator params = items.iterator();
 		
-// 		while(params.hasNext()){
+		String bookId = "";
+		String name = "";
+		String unitPrice = "";
+		String author = "";
+		String description = "";
+		String publisher = "";
+		String category = "";
+		String unitsInStock = "";
+		String totalPages = "";
+		String releaseDate = "";
+		String condition = "";
+		int price = 0;
+		long stock = 0;
+		long pages = 0;
+		String fileName = "";
+		
+		while(params.hasNext()){
 			
-// 			FileItem fileItem = (FileItem)params.next();
+			FileItem fileItem = (FileItem)params.next();
 			
-// 			if(fileItem.isFormField()){
+			if(fileItem.isFormField()){
 				
-// 				String value = fileItem.getString("UTF-8");
-				
-				
+				if(fileItem.getFieldName().equals("bookId")){
+					bookId = fileItem.getString("UTF-8");
+				}else if(fileItem.getFieldName().equals("name")){
+					name = fileItem.getString("UTF-8");
+				}else if(fileItem.getFieldName().equals("unitPrice")){
+					unitPrice = fileItem.getString("UTF-8");
+					if(unitPrice.isEmpty()){
+						price = 0;
+					}else{
+						price = Integer.parseInt(unitPrice);
+					}
+				}else if(fileItem.getFieldName().equals("author")){
+					author = fileItem.getString("UTF-8");
+				}else if(fileItem.getFieldName().equals("description")){
+					description = fileItem.getString("UTF-8");
+				}else if(fileItem.getFieldName().equals("publisher")){
+					publisher = fileItem.getString("UTF-8");
+				}else if(fileItem.getFieldName().equals("category")){
+					category = fileItem.getString("UTF-8");
+				}else if(fileItem.getFieldName().equals("unitsInStock")){
+					unitsInStock = fileItem.getString("UTF-8");
+					if(unitsInStock.isEmpty()){
+						stock = 0;
+					}else{
+						stock = Long.valueOf(unitsInStock);
+					}
+				}else if(fileItem.getFieldName().equals("totalPages")){
+					totalPages = fileItem.getString("UTF-8");
+					if(totalPages.isEmpty()){
+						pages = 0;
+					}else{
+						pages = Long.valueOf(totalPages);
+					}
+				}else if(fileItem.getFieldName().equals("releaseDate")){
+					releaseDate = fileItem.getString("UTF-8");
+				}else if(fileItem.getFieldName().equals("condition")){
+					condition = fileItem.getString("UTF-8");
+				}
 		
+			}else{
+				fileName = fileItem.getName();
+				fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
 				
+				File file = new File(fileUploadPath + "/" + fileName);
 				
-// 				out.print(value);
-				
-// 			}else{
-// 				String fileName = fileItem.getName();
-// // 				vo.setFilename(fileName);
-// 				fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
-				
-// 				File file = new File(fileUploadPath + "/" + fileName);
-				
-// 				fileItem.write(file);
-// 			}
+				fileItem.write(file);
+			}
 			
-// 		}
+		}
 		
+		BookVO vo = new BookVO();
+		vo.setBookId(bookId);					
+		vo.setName(name);
+		vo.setUnitPrice(price);
+		vo.setAuthor(author);
+		vo.setDescription(description);
+		vo.setPublisher(publisher);
+		vo.setCategory(category);
+		vo.setUnitsInStock(stock);
+		vo.setTotalPages(pages);
+		vo.setReleaseDate(releaseDate);
+		vo.setCondition(condition);
+		vo.setFilename(fileName);
+		BookRepository brepo = BookRepository.getInstance();
+		brepo.insertBook(vo);
 		
 		response.sendRedirect("books.jsp");
 	%>

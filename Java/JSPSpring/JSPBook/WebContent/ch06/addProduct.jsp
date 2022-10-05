@@ -16,7 +16,7 @@
 	</div>
 <!-- ========================= 상품 등록 시작 =================================== -->
 	<div class="container"> 
-		<form name="newProduct" action="processAddProduct.jsp" class="form-horizontal" method="post">
+		<form name="newProduct" action="processAddProduct.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="form-group row">
 				<label class="col-sm-2">상품 코드</label>
 				<div class="col-sm-3">
@@ -65,6 +65,13 @@
 					<input type="radio" name="condition" value="New"/>신규상품
 					<input type="radio" name="condition" value="Old"/>중고상품
 					<input type="radio" name="condition" value="Refurbished"/>재생상품					
+				</div>
+			</div>
+			<!-- ch07에서 추가됨 -->
+			<div class="form-group row">
+				<label class="col-sm-2">이미지</label>
+				<div class="col-sm-5">
+					<input type="file" name="productImage" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">

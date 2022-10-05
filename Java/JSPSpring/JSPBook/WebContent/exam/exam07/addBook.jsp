@@ -17,7 +17,7 @@
 	</div>
 	
 	<div class="container"> 
-		<form name="newBook" action="processAddBook.jsp" class="form-horizontal" method="post">
+		<form name="newBook" action="processAddBook.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="form-group row">
 				<label class="col-sm-2">도서 아이디</label>
 				<div class="col-sm-3">
@@ -86,10 +86,11 @@
 					<input type="radio" name="condition" value="Refurbished"/>재생상품					
 				</div>
 			</div>
+			<!-- ch07에서 추가됨 -->
 			<div class="form-group row">
-				<label class="col-sm-2">파일업로드</label>
-				<div class="col-sm-3">
-					<input type="file" name="filename" class="form-control">
+				<label class="col-sm-2">이미지</label>
+				<div class="col-sm-5">
+					<input type="file" name="imageFilename" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
