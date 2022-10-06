@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>{{str}}</p>
+{% for i in arr %}
+	<p>{{i}}</p>
+{% endfor %}
+<table border="1px">
+	<tr>
+	{% for i in emp[0].keys() %}
+		<td>{{i}}</td>
+	{% endfor %}
+	</tr>	
+{% for i in emp %}
+	<tr>
+		<td>{{i['e_id']}}</td>
+		<td>{{i['e_name']}}</td>
+		<td>{{i['sex']}}</td>
+		<td>{{i['addr']}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+</body>
+</html>
