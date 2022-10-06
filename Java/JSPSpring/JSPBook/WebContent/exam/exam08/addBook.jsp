@@ -6,6 +6,7 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>상품 등록</title>
+<script type="text/javascript" src="/resources/js/exam/exam08.js"></script>
 </head>
 <body>
 <!-- 머리글에 해당하는 menu.jsp파일의 내용을 포함하도록 include 액션태그 작성 -->
@@ -17,7 +18,7 @@
 	</div>
 	
 	<div class="container"> 
-		<form name="newBook" action="processAddBook.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
+		<form name="newBook" class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="form-group row">
 				<label class="col-sm-2">도서코드</label>
 				<div class="col-sm-3">
@@ -95,7 +96,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" class="btn btn-primary" value="등록"/>
+					<input type="button" class="btn btn-primary" value="등록" onclick="addBookCheck()"/>
 					<a href="books.jsp" class="btn btn-warn">상품목록</a>
 				</div>
 			</div>

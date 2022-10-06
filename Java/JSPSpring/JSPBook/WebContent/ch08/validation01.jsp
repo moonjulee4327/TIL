@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Validation</title>
 <script type="text/javascript">
 	function CheckForm() {
 		let id = document.loginForm.id.value;
