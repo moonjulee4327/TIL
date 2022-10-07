@@ -9,12 +9,17 @@
 		let form = document.loginForm;
 		let s = form.passwd.value;
  		console.log(s);
+ 		
+ 		// \w : 알파벳 + 숫자 + _ 를 찾음
+ 		// \W : 알파벳 + 숫자 + _ 를  제외한 모든 문자를 찾음
+ 		// \d : 숫자를 찾음
+ 		// \D : 숫자가 아닌 값을 찾음
  		if(/(\w)\1\1/.test(s)){
 			alert("영문, 숫자는 3자이상 연속 입력할 수 없습니다."); 
  			return false;
  		}
  		
-		for(var i in s) {
+		for(let i in s) {
 	        if (+s[+i+1] == +s[i]+1 && 
 	            +s[+i+2] == +s[i]+2){
 	        	alert("영문, 숫자는 3자이상 연속 입력할 수 없습니다."); 

@@ -5,6 +5,7 @@
 <head>
 <title>Validation</title>
 <script type="text/javascript">
+
 	function checkLogin() {
 		let form = document.loginForm;
 
@@ -26,6 +27,7 @@
 		
 		form.submit();
 	}
+	
 </script>
 </head>
 <body>

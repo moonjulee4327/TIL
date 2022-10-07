@@ -117,7 +117,7 @@
 	// ProductRepository 클래스의 addProduct 메소드를 호출
 	dao.addProduct(productVO);
 	
-	out.print("productVO : " + productVO.toString());
+// 	out.print("productVO : " + productVO.toString());
 	
-// 	response.sendRedirect("products.jsp");
+	response.sendRedirect("products.jsp");
 %>
