@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function empAdd(){
+		location.href = "emp_addForm";
+	}
+</script>
+</head>
+<body>
+
+	<table border="1px">
+		<tr>
+		{% for i in rows[0].keys() %}
+			<td>{{i}}</td>
+		{% endfor %}
+		</tr>	
+		{% for i in rows %}
+		<tr>
+			<td><a href="emp_detail?e_id={{i.e_id}}">{{i['e_id']}}</a></td>
+			<td>{{i['e_name']}}</td>
+			<td>{{i['sex']}}</td>
+			<td>{{i['addr']}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<input type="button" value="추가" onclick="empAdd()">
+
+</body>
+</html>

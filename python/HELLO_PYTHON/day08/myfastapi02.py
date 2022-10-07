@@ -25,7 +25,7 @@ async def read_item(request: Request):
 
 
 
-@app.get("/select", response_class=HTMLResponse)
+@app.get("/list", response_class=HTMLResponse)
 async def select(request: Request):
 
     conn = pymysql.connect(host='127.0.0.1',
@@ -41,7 +41,7 @@ async def select(request: Request):
     cur.execute(sql)
 
     rows = cur.fetchall()
-    print(rows)
+    # print(rows)
 
     cur.close()
     conn.close()
