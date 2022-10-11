@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function myplus(){
+		let it1 = document.querySelector("#it1");
+		let it2 = document.querySelector("#it2");
+		let val1 = it1.value
+		let val2 = it2.value
+		console.log(val1);
+		console.log(val1);
+		let rs = parseInt(val1) + parseInt(val2);
+
+		let it3 = document.querySelector("#it3");
+		let val3 = it3.value
+		it3.value = rs;
+	}
+</script>
+<style type="text/css">
+	.myit{
+		width: 20px
+	}
+</style>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<td>
+			<input type="text" class="myit" id="it1" />
+		</td>
+		<td>
+			<input type="button" value="plus" class="btn" onclick="myplus()" /> <br/>			
+			<input type="button" value="minus" class="btn" onclick="myminus()" /> <br/>			
+			<input type="button" value="multiply" class="btn" onclick="mymultiply()" /> <br/>		
+			<input type="button" value="divide" class="btn" onclick="mydivide()" /> <br/>
+		</td>
+		<td>
+			<input type="text" class="myit" id="it2" />
+		</td>
+		<td>
+			=
+		</td>
+		<td>
+			<input type="text" class="myit" id="it3" />
+		</td>
+	</tr>
+</table>
+</body>
+</html>

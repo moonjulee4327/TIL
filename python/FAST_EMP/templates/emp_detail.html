@@ -8,12 +8,14 @@
 		location.href = "emp_mod?e_id={{rows.e_id}}";
 	}
 	function fn_del(){
-		location.href = "emp_delete?e_id={{rows.e_id}}";
+		document.frm.submit();
 	}
 </script>
 </head>
 <body>
-
+<form id="frm" name="frm" action="emp_delete" method="post">
+	<input type="hidden" name=e_id value="{{rows.e_id}}">
+</form>
 	<table border="1px">
 		<tr>
 			<td>사번</td>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function myClicks(){
+		let val = document.querySelector("#it");
+		console.log(val);
+		let intVal = parseInt(val.value);
+		intVal += 3;
+		console.log(intVal);
+		val.value = intVal;
+	}
+</script>
+</head>
+<body>
+<input type="text" id="it" value="200" />
+<input type="button" value="plus3" onclick="myClicks()" />
+</body>
+</html>

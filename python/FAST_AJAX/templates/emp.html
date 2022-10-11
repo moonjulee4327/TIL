@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="static/js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$.ajax({
+			url : 'emp_selects',
+			type : 'get',                                 
+			dataType : 'json',
+			contentType : "application/json",
+			success : function(data){
+				let emps = data;
+				
+				let txt = "";
+				
+				for(let i=0; i<emps.length; i++){
+					let emp = emps[i];
+					txt += `
+					<tr>
+				        <td>${emp.e_id}</td>
+				        <td>${emp.e_name}</td>
+				        <td>${emp.sex}</td>
+				        <td>${emp.addr}</td>
+					</tr>
+					
+					`;
+				}
+				$("#mytbody").html(txt);
+			},
+			error : function(xtr,status,error){
+			        alert(xtr +":"+status+":"+error);
+			}
+		});
+	});
+</script>
+</head>
+<body>
+EMP
+<table border= 1px>
+	<thead>
+		<tr>
+	        <td>사번</td>
+	        <td>이름</td>
+	        <td>성별</td>
+	        <td>주소</td>
+		</tr>
+	</thead>
+	<tbody id="mytbody">
+		<tr>
+	        <td>1</td>
+	        <td>1</td>
+	        <td>1</td>
+	        <td>1</td>
+		</tr>
+	</tbody>
+</table>
+
+</body>
+</html>
