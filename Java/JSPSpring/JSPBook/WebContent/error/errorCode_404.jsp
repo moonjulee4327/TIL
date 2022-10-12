@@ -3,14 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Exception</title>
 </head>
 <body>
-	<%
-		session.invalidate();
-	%>
-<script type="text/javascript">
-	location.href="/exam/exam08/addBook.jsp"
-</script>
+	<img src="/resources/images/404.png">
+
 </body>
 </html>

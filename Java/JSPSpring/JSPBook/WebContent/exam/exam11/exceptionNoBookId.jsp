@@ -4,13 +4,9 @@
 <html>
 <head>
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </head>
 <body>
-	<%
-		session.invalidate();
-	%>
-<script type="text/javascript">
-	location.href="/exam/exam08/addBook.jsp"
-</script>
+	<p>ㅎㅇ</p>
 </body>
 </html>

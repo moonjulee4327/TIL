@@ -3,6 +3,7 @@
 <%@ page import="java.util.List"%>
 <%@page import="exam04.dao.BookRepository"%>
 <%@page import="exam04.vo.BookVO"%>
+<%@ page errorPage="/exam/exam11/exceptionNoBookId.jsp"%>
 <!DOCTYPE html>
 <%
 	String bookId = request.getParameter("id");

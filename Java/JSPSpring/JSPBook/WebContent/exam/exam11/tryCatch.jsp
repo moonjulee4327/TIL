@@ -3,14 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Exception</title>
 </head>
 <body>
 	<%
-		session.invalidate();
+		try{
+			int num = 10 / 0;	
+		}catch(Exception e){
+			out.print("<p>오류발생 : " + e.getMessage() + "</p>");
+		}
 	%>
-<script type="text/javascript">
-	location.href="/exam/exam08/addBook.jsp"
-</script>
 </body>
 </html>

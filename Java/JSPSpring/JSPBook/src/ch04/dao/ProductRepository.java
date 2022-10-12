@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch04.vo.ProductVO;
+import java.lang.NullPointerException;
 
 public class ProductRepository {
 	// 싱글톤 패턴

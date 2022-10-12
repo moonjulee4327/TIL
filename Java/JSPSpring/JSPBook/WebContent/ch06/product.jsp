@@ -4,10 +4,13 @@
 <%@ page import="ch04.vo.ProductVO"%>
 <%@ page import="java.util.List"%>
 <%@ page import="ch04.dao.ProductRepository"%>
+<!-- 상품 아이디가 없을 때 exceptionNoProductId.jsp를 요청 -->
+<%@ page errorPage="exceptionNoProductId.jsp"%>
+
 <!DOCTYPE html>
 <% // 스크립틀릿 태그
 	// http://localhost/ch05/product.jsp?id=P1234
-	String id = request.getParameter("id");
+	String id = request.getParameter("id").toString();
 
 	ProductRepository productRepository = ProductRepository.getInstance();
 	// 상세보기 => 1행(ProductVO)을 리턴
@@ -39,7 +42,7 @@
 		<div class="text-right">
 			<!-- ?id=<%=id %>&language=ko 이 param이다. -->
 			<a href="?id=<%=id %>&language=ko">Korea</a> | <a href="?id=<%=id %>&language=en">English</a>
-		</div> ㅋ
+		</div>
 		<div class="row" align="center">
 			<div class="col-md-6">
 				<h3>${productVO.pname}</h3>
