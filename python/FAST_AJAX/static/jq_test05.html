@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/static/js/jquery-3.6.1.js"></script>
 <style type="text/css">
 	.myit {
 		width: 20px
@@ -11,32 +12,31 @@
 </style>
 <script type="text/javascript">
 	function myClicks(){
-		let mine = document.querySelector("#it_mine");
-		let com = document.querySelector("#it_com");
-		let rs = document.querySelector("#it_result");
+		let mine = $("#it_mine");
+		let com = $("#it_com");
+		let rs = $("#it_result");
 
 		let rnd = Math.random();
 
-		console.log(rnd);
-
 		if(rnd > 0.5){
-			com.value = "홀";
+			com.val("홀");
 		}else {
-			com.value = "짝";
+			com.val("짝");
 		}
 		
-		console.log(mine.value);
-		
-		if(mine.value == com.value){
-			rs.value = "승리";
+		if(mine.val() == com.val()){
+			rs.val("승리");
 		}else {
-			rs.value = "패배";
+			rs.val("패배");
 		}
 		
 		// 선언부, 비즈니스 로직, 표시부 이렇게 나눠 짜면 나중에 보기도 편하고 
 		// 유지 보수에도 좋다.. 다음부턴 고려하고 짜자
-		
 	}
+	$(document).ready(function(){
+		$("input[type=button]").on("click",myClicks);
+	});
+	
 </script>
 </head>
 <body>
@@ -61,7 +61,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="게임하기" onclick="myClicks()">
+				<input type="button" value="게임하기">
 			</td>
 		</tr>
 	</table>

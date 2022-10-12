@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.mydisp {
+		height: 200px
+	}
+</style>
+<script type="text/javascript">
+	function myClicks(){
+		let rf = document.querySelector("input[type=radio][name=rf]:checked");
+		let rl = document.querySelector("input[type=radio][name=rl]:checked");
+
+		let rfVal = rf.value;
+		let rlVal = rl.value;
+
+		console.log(rfVal);
+		console.log(rlVal);
+		
+		let star = "";
+		
+		for(let i=rfVal; i<=rlVal; i++){
+			star += drawStar(i);
+		}
+
+		let td = document.querySelector(".mydisp");
+		td.innerHTML = star;
+		
+	}
+	
+	function drawStar(num){
+		let ret = "";
+		for(let i=0; i<num; i++) {
+			ret += "*";
+		}
+			
+		ret += "<br/>";
+		return ret;
+		
+	}
+	
+	
+</script>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<td>시작별수</td>
+		<td>
+			<input type="radio" name="rf" value="2"/>2
+			<input type="radio" name="rf" value="3"/>3
+			<input type="radio" name="rf" value="4"/>4
+			<input type="radio" name="rf" value="5"/>5
+		</td>
+	</tr>
+	<tr>
+		<td>끝별수</td>
+		<td>
+			<input type="radio" name="rl" value="6"/>6
+			<input type="radio" name="rl" value="7"/>7
+			<input type="radio" name="rl" value="8"/>8
+			<input type="radio" name="rl" value="9"/>9
+		</td>                        
+	</tr>                            
+	<tr>                            
+		<td colspan="2">
+			<input type="button" value="별출력하기" onclick="myClicks()"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="mydisp" colspan="2">
+			&nbsp;
+		</td>
+	</tr>
+</table>
+</body>
+</html>

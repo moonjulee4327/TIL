@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#it{
+		width: 30px;
+	}
+</style>
+<script type="text/javascript">
+
+	function myRandom(){
+		let arr9 = [1,2,3,4,5,6,7,8,9];
+		
+		for(let i=0; i < 100; i++) {
+			let ran = Math.floor(Math.random()*arr9.length);
+			let a = arr9[0];
+			let b = arr9[ran];
+			arr9[0] = b;
+			arr9[ran] = a;
+		}
+		
+		
+		comRan = arr9[0] + "" + arr9[1] + "" + arr9[2] + "";
+		return comRan;
+// 		console.log(comRan);
+	}
+
+	let com = myRandom();
+
+	function getStrike(){
+		let mine = document.querySelector("#it").value;
+		let str1 = mine.substring(0,1);
+		let str2 = mine.substring(1,2);
+		let str3 = mine.substring(2,3);
+		
+		let com1 = com.substring(0,1);
+		let com2 = com.substring(1,2);
+		let com3 = com.substring(2,3);
+
+		let sRs = 0;
+
+		if(com1 == mine1) sRs++;
+		if(com2 == mine2) sRs++;
+		if(com3 == mine3) sRs++;
+		
+		return sRs;
+	}
+
+	function getBall(){
+		let mine = document.querySelector("#it").value;
+		let str1 = mine.substring(0,1);
+		let str2 = mine.substring(1,2);
+		let str3 = mine.substring(2,3);
+
+		let com1 = com.substring(0,1);
+		let com2 = com.substring(1,2);
+		let com3 = com.substring(2,3);
+
+		let bRs = 0;
+		
+		if(mine1==com2 || mine1==com3) bRs++;
+		if(mine2==com3 || mine2==com1) bRs++;
+		if(mine3==com2 || mine3==com1) bRs++;
+		
+		return bRs;
+	}
+	
+	function myGame(){
+		let ta = document.querySelector("#ta");
+		let sRs = getStrike();
+		let bRs = getBall();
+		console.log(sRs + " : " + bRs);
+	}
+
+	
+</script>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<td>스트라이크:</td>
+		<td>
+			<input type="text" id="it" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="맞추기" onclick="myGame()"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<textarea id="ta" cols="20" rows="20"></textarea>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it{
+	width: 30px;
+}
+
+</style>
+<script type="text/javascript">
+var com = "123";
+
+function getBall(com,mine) {
+	var cnt = 0;
+	var c1 = com.substring(0, 1);
+	var c2 = com.substring(1, 2);
+	var c3 = com.substring(2, 3);
+	
+	var m1 = mine.substring(0, 1);
+	var m2 = mine.substring(1, 2);
+	var m3 = mine.substring(2, 3);
+	
+	if(c1==m2||c1==m3) cnt++;
+	if(c2==m1||c2==m3) cnt++;
+	if(c3==m1||c3==m1) cnt++;
+	return cnt;
+}
+
+function getStrike(com,mine) {
+	var cnt = 0;
+	var c1 = com.substring(0, 1);
+	var c2 = com.substring(1, 2);
+	var c3 = com.substring(2, 3);
+	
+	var m1 = mine.substring(0, 1);
+	var m2 = mine.substring(1, 2);
+	var m3 = mine.substring(2, 3);
+	
+	if(c1==m1) cnt++;
+	if(c2==m2) cnt++;
+	if(c3==m3) cnt++;
+	return cnt;
+}
+
+function myclick(){
+	var obj_it = document.querySelector("#it");
+	var obj_ta = document.querySelector("#ta");
+	
+	var str_old = obj_ta.value;
+	var mine = obj_it.value;
+	
+	var s = getStrike(com,mine);
+	var b = getBall(com,mine);	
+
+	var str_new = mine+" "+s+"S"+b+"B"+"\n";
+	
+	obj_ta.value=str_old+str_new;
+	obj_it.value="";
+	
+	if(s == 3) {
+		alert(mine+"을 맞췄습니다.");
+	}
+}
+
+function myinit(){
+	var arr9 = [
+		1,2,3,4,5       ,6,7,8,9
+	];
+	
+	for(var i=0;i<100;i++) {
+		var rnd = parseInt(Math.random()*9);
+		var a = arr9[0];
+		var b = arr9[rnd];
+		arr9[0]=b;
+		arr9[rnd]=a;
+	}
+	com = arr9[0]+""+arr9[1]+""+arr9[2];
+	console.log("com:"+com);	
+}
+
+</script>
+</head>
+<body onload="myinit()">
+<table border="1px">
+	<tr>
+		<td>스트라이크:</td>
+		<td>
+			<input type="text" id="it" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" >
+			<input type="button" value="맞추기" onclick="myclick()" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" >
+			<textarea id="ta" rows="20" cols="20"></textarea>
+		</td>
+	</tr>	
+	
+
+</table>
+</body>
+</html>

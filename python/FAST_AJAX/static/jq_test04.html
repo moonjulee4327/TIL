@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/static/js/jquery-3.6.1.js"></script>
 <script type="text/javascript">
 	function myClicks(){
 		let arr45 = [
@@ -20,14 +21,20 @@
 			arr45[0] = b;
 			arr45[rd] = a;
 		}
-		console.log(arr45);
+		let divAll = $(".mydiv");
 		
-		let divAll = document.querySelectorAll(".mydiv");
-		console.log(divAll);
+		// console.log(divAll.length);
+		// console.log($($(".mydiv")[0]).html(arr45[0]));
+		
 		for(let i=0; i<divAll.length; i++){
-			divAll[i].innerHTML = arr45[i];
+			$($(".mydiv")[i]).html(arr45[i])
 		}
 	}
+	
+	$(document).ready(function(){
+		$("#btn").on("click",myClicks);
+	});
+
 </script>
 </head>
 <body>
@@ -42,7 +49,7 @@
 	</tr>
 	<tr>
 		<td colspan="6">
-			<input type="button" value="로또생성하기" onclick="myClicks()">
+			<input type="button" value="로또생성하기" id="btn">
 		</td>
 	</tr>
 </table>
