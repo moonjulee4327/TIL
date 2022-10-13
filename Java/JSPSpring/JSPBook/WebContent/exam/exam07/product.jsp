@@ -10,6 +10,13 @@
 	String bookId = request.getParameter("id");
 	BookRepository brp = BookRepository.getInstance();
 	BookVO bookVO = brp.getBookById(bookId);
+	
+	if(bookId.equals("")){
+		throw new Exception();
+	}else if(!bookVO.getBookId().equals(bookId)){
+		throw new Exception();
+	}
+	
 %>
 
 <c:set var="bookVO" value="<%=bookVO %>" scope="page" />

@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page errorPage="isErrorPage.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Exception</title>
+<title>Filter</title>
 </head>
 <body>
 	<%
-		request.getParameter("name").toUpperCase();
-// 		throw new RuntimeException();
-	 %>
+		Object id = session.getAttribute("id");
+		String idStr = (String) id;
+		out.print(idStr + "님 로그인을 성공했습니다.");
+	%>
 </body>
 </html>

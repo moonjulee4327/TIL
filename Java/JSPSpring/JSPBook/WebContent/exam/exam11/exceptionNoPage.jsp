@@ -10,7 +10,7 @@
 	<jsp:include page="../exam04/menu.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
-			<h2 class="alert alert-danger">해당 도서가 존재하지 않습니다.</h2>
+			<h2 class="alert alert-danger">요청하신 페이지를 찾을 수 없습니다.</h2>
 		</div>
 	</div>
 	<div class="container">
