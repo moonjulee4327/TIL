@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/static/js/jquery-3.6.1.js"></script>
+<style type="text/css">
+	#it {
+		width: 100px;
+		text-align: right;
+	}
+	table {
+		text-align: center;
+	}
+</style>
+<script type="text/javascript">
+	
+	function call(){
+		let txt = $('#it');
+		txt.val();
+		alert(`${txt.val()} Call~`);
+	}
+	
+	function btnClick(e){
+		let obj = e.target;
+		let str_new = obj.value;
+		let str_old = $('#it').val();
+
+		$('#it').val(str_old + str_new);
+	}
+	
+	$(document).ready(function(){
+		$("#btn_call").on("click",call);
+		$("#btn1").on("click", function(event){btnClick(event);});
+		$("#btn2").on("click", function(event){btnClick(event);});
+		$("#btn3").on("click", function(event){btnClick(event);});
+		$("#btn4").on("click", function(event){btnClick(event);});
+		$("#btn5").on("click", function(event){btnClick(event);});
+		$("#btn6").on("click", function(event){btnClick(event);});
+		$("#btn7").on("click", function(event){btnClick(event);});
+		$("#btn8").on("click", function(event){btnClick(event);});
+		$("#btn9").on("click", function(event){btnClick(event);});
+		$("#btn0").on("click", function(event){btnClick(event);});
+	});
+	
+</script>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<td colspan="3">
+			<input type="text" id="it">
+		</td>
+	</tr>
+	<tr>
+		<!-- onclick에 event(속성을 알아보자 ex)target) 나 this(태그가 넘어간다.) 를 매개변수로 준다. -->
+		<td><input type="button" id="btn1" value="1"></td>
+		<td><input type="button" id="btn2" value="2"></td>
+		<td><input type="button" id="btn3" value="3"></td>
+	</tr>
+	<tr>
+		<td><input type="button" id="btn4" value="4"></td>
+		<td><input type="button" id="btn5" value="5"></td>
+		<td><input type="button" id="btn6" value="6"></td>
+	</tr>
+	<tr>
+		<td><input type="button" id="btn7" value="7"></td>
+		<td><input type="button" id="btn8" value="8"></td>
+		<td><input type="button" id="btn9" value="9"></td>
+	</tr>
+	<tr>
+		<td><input type="button" id="btn0" value="0" onclick="btnClick()"></td>
+		<td colspan="2">
+			<input type="button" id="btn_call" value="CALL">
+		</td>
+	</tr>
+</table>
+</body>
+</html>

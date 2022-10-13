@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/static/js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	function myClicks(){
+		let sel = $("#mysel");
+		let s = sel.val();
+		let intS = parseInt(s);
+		let txt = "";
+
+		console.log(s);
+		
+		for(let i=1; i<=9; i++){
+			txt += `${s} * ${i} = ${intS * i}\n`;
+		}
+		
+		let ta = $("#myta");
+		
+		ta.val() = txt;
+		
+	}
+	$(document).ready(function(){
+		$("input[type=button]").on("click",myClicks);
+	});
+</script>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<td>출력단수</td>
+		<td>
+			<select id="mysel">
+				<option value="2">2단</option>
+				<option value="3">3단</option>
+				<option value="4">4단</option>
+				<option value="5">5단</option>
+				<option value="6">6단</option>
+				<option value="7">7단</option>
+				<option value="8">8단</option>
+				<option value="9">9단</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="구구단출력하기"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<textarea id="myta" rows="20" cols="20"></textarea>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

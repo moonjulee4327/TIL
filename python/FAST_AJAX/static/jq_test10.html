@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/static/js/jquery-3.6.1.js"></script>
+<style type="text/css">
+#it{
+	width: 30px;
+}
+
+</style>
+<script type="text/javascript">
+
+function getBall(com,mine) {
+	let cnt = 0;
+	let c1 = com.substring(0, 1);
+	let c2 = com.substring(1, 2);
+	let c3 = com.substring(2, 3);
+	
+	let m1 = mine.substring(0, 1);
+	let m2 = mine.substring(1, 2);
+	let m3 = mine.substring(2, 3);
+	
+	if(c1==m2||c1==m3) cnt++;
+	if(c2==m1||c2==m3) cnt++;
+	if(c3==m1||c3==m2) cnt++;
+	return cnt;
+}
+
+function getStrike(com,mine) {
+	let cnt = 0;
+	let c1 = com.substring(0, 1);
+	let c2 = com.substring(1, 2);
+	let c3 = com.substring(2, 3);
+	
+	let m1 = mine.substring(0, 1);
+	let m2 = mine.substring(1, 2);
+	let m3 = mine.substring(2, 3);
+	
+	if(c1==m1) cnt++;
+	if(c2==m2) cnt++;
+	if(c3==m3) cnt++;
+	return cnt;
+}
+
+function myclick(){
+	let obj_it = $("#it");
+	let obj_ta = $("#ta");
+	
+	let str_old = obj_ta.val();
+	let mine = obj_it.val();
+	
+	let s = getStrike(com,mine);
+	let b = getBall(com,mine);	
+
+	let str_new = mine+" "+s+"S"+b+"B"+"\n";
+	
+	obj_ta.val(str_old+str_new);
+	obj_it.val("");
+	
+	if(s == 3) {
+		alert(mine+"을 맞췄습니다.");
+	}
+}
+
+function myinit(){
+	let arr9 = [
+		1,2,3,4,5,6,7,8,9
+	];
+	
+	for(let i=0;i<100;i++) {
+		let rnd = parseInt(Math.random()*9);
+		let a = arr9[0];
+		let b = arr9[rnd];
+		arr9[0]=b;
+		arr9[rnd]=a;
+	}
+	com = arr9[0]+""+arr9[1]+""+arr9[2];
+	console.log("com:"+com);	
+}
+
+$(document).ready(function(){
+	myinit();
+	$("input[type=button]").on("click",myclick);
+});
+
+
+</script>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<td>스트라이크:</td>
+		<td>
+			<input type="text" id="it" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" >
+			<input type="button" value="맞추기" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" >
+			<textarea id="ta" rows="20" cols="20"></textarea>
+		</td>
+	</tr>	
+	
+
+</table>
+</body>
+</html>

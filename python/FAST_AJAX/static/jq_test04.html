@@ -27,7 +27,8 @@
 		// console.log($($(".mydiv")[0]).html(arr45[0]));
 		
 		for(let i=0; i<divAll.length; i++){
-			$($(".mydiv")[i]).html(arr45[i])
+// 			$($(".mydiv")[i]).html(arr45[i]);
+			$(".mydiv").eq(i).html(arr45[i]);
 		}
 	}
 	
