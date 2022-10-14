@@ -70,3 +70,11 @@ if __name__ == '__main__':
     ed = EmpDao()
     emp = ed.delete(8)
     print(emp)
+    
+    
+    
+    
+    
+    
+    
+    

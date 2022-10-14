@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="static/js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+let img2D = [
+		[1,1,2,2]
+	,	[3,3,4,4]
+	,	[5,5,6,6]
+	,	[7,7,8,8]
+];
+
+// let cvr2D = [
+// 		[1,1,0,0]
+// 	,	[0,0,1,1]
+// 	,	[1,1,0,0]
+// 	,	[0,0,1,1]
+// ]
+
+let cvr2D = [
+		[1,1,1,1]
+	,	[1,1,1,1]
+	,	[1,1,1,1]
+	,	[1,1,1,1]
+]
+	
+// bgm 다 맞췄을 때, 카드를 뒤집을 때
+
+// 섞는 것도 4진법 사용 img2D[Math.floor(Math.random*img2D.length)][Math.floor(Math.random()*i*4+j)]
+function shuffle(){
+	for(let i = 0; i<1000; i++){
+		let f = Math.floor(Math.random()*img2D.length);
+		let l = Math.floor(Math.random()*img2D.length);
+		let a = img2D[0][0];
+		let b = img2D[f][l];
+		img2D[0][0] = b;
+		img2D[f][l] = a;
+	}
+	
+	for(let i=0; i<img2D.length; i++){
+		for(let j=0; j<img2D[i].length; j++){
+			if(cvr2D[i][j] == 0){
+				$("img").eq(i*4+j).attr("src","static/img/0.png");
+			}else {
+				$("img").eq(i*4+j).attr("src","static/img/"+img2D[i][j]+".png");
+			}
+		}
+	}
+}
+
+function render(){
+// 	let cnt = 0;
+	for(let i=0; i<img2D.length; i++){
+		for(let j=0; j<img2D[i].length; j++){
+			if(cvr2D[i][j] == 0){
+				$("img").eq(i*4+j).attr("src","static/img/0.png");
+			}else {
+				$("img").eq(i*4+j).attr("src","static/img/"+img2D[i][j]+".png");
+			}
+		}
+	}
+}
+</script>
+</head>
+<body onload="shuffle()">
+	<table>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+	</table>
+	<a href="javascript:render()">render</a>
+</body>
+</html>

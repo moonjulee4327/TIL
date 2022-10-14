@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="static/js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$.ajax({
+			url : 'mem_selects',
+			type : 'get',                                 
+			dataType : 'json',
+			contentType : "application/json",
+			success : function(data){
+				let emps = data;
+				
+				let txt = "";
+				
+				for(let i=0; i<emps.length; i++){
+					let emp = emps[i];
+					txt += `
+					<tr>
+				        <td><a href="javascript:fn_one('${emp.m_seq}')">${emp.m_seq}</a></td>
+				        <td>${emp.m_name}</td>
+				        <td>${emp.tel}</td>
+				        <td>${emp.army_yn}</td>
+					</tr>
+					
+					`;
+				}
+				$("#mytbody").html(txt);
+			},
+			error : function(xtr,status,error){
+			        alert(xtr +":"+status+":"+error);
+			}
+		});
+		$("input[value=추가]").on("click",fn_insert);
+		$("input[value=수정]").on("click",fn_update);
+		$("input[value=삭제]").on("click",fn_delete);
+	});
+	
+	function fn_list(){
+		$.ajax({
+			url : 'mem_selects',
+			type : 'get',                                 
+			dataType : 'json',
+			contentType : "application/json",
+			success : function(data){
+				let emps = data;
+				
+				let txt = "";
+				
+				for(let i=0; i<emps.length; i++){
+					let emp = emps[i];
+					txt += `
+					<tr>
+				        <td><a href="javascript:fn_one('${emp.m_seq}')">${emp.m_seq}</a></td>
+				        <td>${emp.m_name}</td>
+				        <td>${emp.tel}</td>
+				        <td>${emp.army_yn}</td>
+					</tr>
+					
+					`;
+				}
+				$("#mytbody").html(txt);
+			},
+			error : function(xtr,status,error){
+			        alert(xtr +":"+status+":"+error);
+			}
+		});
+	}
+	
+	function fn_one(m_seq){
+		let params = JSON.stringify({
+			"m_seq" : m_seq
+		})
+		$.ajax({
+			url : 'mem_select',
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			contentType : "application/json",
+			success : function(data){
+				console.log(data.m_seq);
+				$("#m_seq").val(data.m_seq);
+				$("#m_name").val(data.m_name);
+				$("#tel").val(data.tel);
+				$("#army_yn").val(data.army_yn);
+			},
+			error : function(xtr,status,error){
+			        alert(xtr +":"+status+":"+error);
+			}
+		});
+	}
+	
+	function fn_insert(){
+		let params = JSON.stringify({
+			"m_name" : $("#m_name").val(),
+			"tel" : $("#tel").val(),
+			"army_yn" : $("#army_yn").val()
+		})
+		$.ajax({
+			url : 'mem_insert',
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			contentType : "application/json",
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					fn_list();
+					$("#m_seq").val("");
+					$("#m_name").val("");
+					$("#tel").val("");
+					$("#army_yn").val("");
+				}else {
+					alert("추가 도중 오류가 발생했습니다.");
+				}
+				
+			},
+			error : function(xtr,status,error){
+			        alert(xtr +":"+status+":"+error);
+			}
+		});
+	}
+	
+	function fn_update(){
+		let params = JSON.stringify({
+			"m_name" : $("#m_name").val(),
+			"tel" : $("#tel").val(),
+			"army_yn" : $("#army_yn").val()
+		})
+		$.ajax({
+			url : 'mem_update',
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			contentType : "application/json",
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					fn_list();
+					$("#m_seq").val("");
+					$("#m_name").val("");
+					$("#tel").val("");
+					$("#army_yn").val("");
+				}else {
+					alert("수정 도중 오류가 발생했습니다.");
+				}
+				
+			},
+			error : function(xtr,status,error){
+			        alert(xtr +":"+status+":"+error);
+			}
+		});
+	}
+	
+	function fn_delete(){
+		let params = JSON.stringify({
+			"m_seq" : $("#m_seq").val()
+		})
+		$.ajax({
+			url : 'mem_delete',
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			contentType : "application/json",
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					fn_list();
+					$("#m_seq").val("");
+					$("#m_name").val("");
+					$("#tel").val("");
+					$("#army_yn").val("");
+				}else {
+					alert("삭제 도중 오류가 발생했습니다.");
+				}
+				
+			},
+			error : function(xtr,status,error){
+			        alert(xtr +":"+status+":"+error);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<table border="1px">
+		<thead>
+			<tr>
+				<td>아이디</td>
+				<td>이름</td>
+				<td>전화번호</td>
+				<td>군필여부</td>
+			</tr>
+		</thead>
+		<tbody id="mytbody">
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+		</tbody>
+	</table>
+	<table border="1px">
+	<tr>
+		<td>아이디</td>
+		<td>
+			<input type="text" id="m_seq">
+		</td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td>
+			<input type="text" id="m_name">
+		</td>
+	</tr>
+	<tr>
+		<td>전화번호</td>
+		<td>
+			<input type="text" id="tel">
+		</td>
+	</tr>
+	<tr>
+		<td>군필여부</td>
+		<td>
+			<input type="text" id="army_yn">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="추가">
+			<input type="button" value="수정">
+			<input type="button" value="삭제">
+		</td>
+	</tr>
+</table>
+</body>
+</html>
