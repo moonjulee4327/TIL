@@ -14,7 +14,7 @@
 			out.print("<p>로그인 실패</p>");
 		}else if(id.equals("admin") && passwd.equals("admin1234")){
 			session.setAttribute("id", id);
-			response.sendRedirect("login_success.jsp");
+			request.getRequestDispatcher("login_success.jsp").forward(request, response);
 		}else {
 			session.getAttribute(id);
 			out.print("<p>로그인 성공</p>");

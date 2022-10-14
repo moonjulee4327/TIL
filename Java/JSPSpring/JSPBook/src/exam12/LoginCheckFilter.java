@@ -31,7 +31,12 @@ public class LoginCheckFilter implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
-		HttpSession session = (HttpSession)req.getAttribute("id");
+		HttpSession session = req.getSession();
+		
+		session.setAttribute("id", id);
+		
+		
+//		HttpSession session = (HttpSession)req.getAttribute("id");
 		
 //		if(session == null) {
 //			resp.sendRedirect("/exam/exam12/loginForm.jsp");

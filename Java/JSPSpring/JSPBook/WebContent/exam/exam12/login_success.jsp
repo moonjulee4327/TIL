@@ -11,5 +11,6 @@
 		String idStr = (String) id;
 		out.print(idStr + "님 로그인을 성공했습니다.");
 	%>
+
 </body>
 </html>

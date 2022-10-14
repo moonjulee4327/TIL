@@ -52,18 +52,21 @@
   </error-page>
   -->
   <!-- Filter01과 Filter 인터페이스를 구현한 자바 클래스인 AuthenFilter를 연결시켜줌 -->
+  <!-- 
   <filter>
   	<filter-name>filter01</filter-name>
   	<filter-class>ch12.AuthenFilter</filter-class>
   </filter>
-  
+   -->
   <!-- url-pattern의 URL을 요청 시 이 필터가 작동함 -->
+  <!--
   <filter-mapping>
   	<filter-name>filter01</filter-name>
   	<url-pattern>/ch12/filter01_process.jsp</url-pattern>
   </filter-mapping>
-  
+  -->
   <!-- filter02_process.jsp URL을 요청 시 InitParamFilter.java를 filter로 연결해줌 -->
+   <!--
   <filter>
   	<filter-name>filter02</filter-name>
   	<filter-class>ch12.InitParamFilter</filter-class>
@@ -81,15 +84,65 @@
   	<filter-name>filter02</filter-name>
   	<url-pattern>/ch12/filter02_process.jsp</url-pattern>
   </filter-mapping>
-  
+   -->
   <!-- exam12 -->
+  <!--
   <filter>
   	<filter-name>loginFilter</filter-name>
-  	<filter-class>exam12.LoginCheckFilter</filter-class>s
+  	<filter-class>exam12.LoginCheckFilter</filter-class>
   </filter>
   
   <filter-mapping>
   	<filter-name>loginFilter</filter-name>
   	<url-pattern>/exam/exam12/login_success.jsp</url-pattern>
   </filter-mapping>
+  -->
+  <!-- Filter 인터페이스를 구현할 LogFileFilter 클래스 설정 -->
+  <!--
+  <filter>
+  	<filter-name>Filter02_2</filter-name>
+  	<filter-class>ch12.LogFileFilter</filter-class>
+  	<init-param>
+  		<param-name>filename</param-name>
+  		<param-value>c:\\logs\\monitor.log</param-value>
+  	</init-param>
+  </filter>
+  -->
+  <!-- filter02_process.jsp를 요청시 LogFileFilter를 실행 후 처리 -->
+	<!--
+	<filter-mapping>
+		<filter-name>Filter02_2</filter-name>
+		<url-pattern>/ch12/filter02_process.jsp</url-pattern>
+	</filter-mapping>
+	-->
+	<!-- 모든 URI 요청 처리 전에 LogFilter를 먼저 실행 -->
+	<!--
+	<filter>
+		<filter-name>LogFilter</filter-name>
+		<filter-class>ch12.LogFilter</filter-class>
+		<init-param>
+		<param-name>filename</param-name>
+		<param-value>c:\\logs\\webmarket.log</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LogFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
+	
+	<filter>
+		<filter-name>JSPBookFilter</filter-name>
+		<filter-class>exam12.LogFilter</filter-class>
+		<init-param>
+			<param-name>filename</param-name>
+			<param-value>c:\\logs\\book.log</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>JSPBookFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>
