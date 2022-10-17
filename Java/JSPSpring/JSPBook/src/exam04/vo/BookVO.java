@@ -14,12 +14,15 @@ public class BookVO {
 	private String releaseDate; // 출판일(월/년)
 	private String condition; // 신규 도시 or 중고 도서 or E-Book
 	private String filename; // 이미지 파일명
+	private int quantity; // 장바구니에 담은 도서 개수
 	
 	// 기본 생성자
 	public BookVO() {
 
 	}
 	
+
+
 
 	public BookVO(String bookId, String name, Integer unitPrice) {
 		
@@ -126,13 +129,21 @@ public class BookVO {
 		this.filename = filename;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+	
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@Override
 	public String toString() {
 		return "BookVO [bookId=" + bookId + ", name=" + name + ", unitPrice=" + unitPrice + ", author=" + author
 				+ ", description=" + description + ", publisher=" + publisher + ", category=" + category
 				+ ", unitsInStock=" + unitsInStock + ", totalPages=" + totalPages + ", releaseDate=" + releaseDate
-				+ ", condition=" + condition + ", filename=" + filename + "]";
-	}
-
+				+ ", condition=" + condition + ", filename=" + filename + ", quantity=" + quantity + "]";
+	}	
 	
 }

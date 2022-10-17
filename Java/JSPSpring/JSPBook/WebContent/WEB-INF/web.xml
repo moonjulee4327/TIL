@@ -144,5 +144,12 @@
 		<filter-name>JSPBookFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
+	<!-- 세션 유효 시간 설정 (1. web.xml에서 설정. 2. jsp에서 설정) -->
+	<!-- 단위 : 분. 기본은 30분 -->
+	<!-- 
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+	-->
 </web-app>

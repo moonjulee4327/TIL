@@ -26,6 +26,22 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>상품 상세 정보</title>
+<script type="text/javascript">
+	// 핸들러 함수(상품 주문 버튼 클릭 시 실행)
+	function addToCart() {
+		console.log("왔다.");
+		let result = confirm("상품을 장바구니에 추가하시겠습니까?");
+		if(result){ // true
+			console.log("true");
+			// addCart.jsp?id=P1235
+			document.addForm.submit();
+		}else{ // false
+			console.log("false");
+			// 초기화
+			document.addForm.reset();
+		}
+	}
+</script>
 </head>
 <body>
 	<fmt:setLocale value="${param.language}"/>
@@ -53,8 +69,14 @@
 				<p><b><fmt:message key="unitInStock"/></b> : ${productVO.unitInStock}</p>
 				<h4>${productVO.unitPrice}<fmt:message key="won"/></h4>
 				<p>
-					<a href="#" class="btn btn-info"><fmt:message key="productOrder"/>&raquo;</a>
+				<form name="addForm" action="addCart.jsp?id=${productVO.productId}" method="post">
+					<!-- 상품 주문 -> 상품을 장바구니에 넣음 -->
+					<a href="#" class="btn btn-info" onclick="addToCart()"><fmt:message key="productOrder"/>&raquo;</a>
+					<!-- 장바구니에 넣어진 상품 목록을 봄 -->
+					<a href="cart.jsp" class="btn btn-warning"><fmt:message key="cart"/>&raquo;</a>
+					<!-- 등록된 상품 목록을 봄 -->
 					<a href="products.jsp" class="btn btn-secondary"><fmt:message key="productList"/>&raquo;</a>
+				</form>
 				</p>
 			</div>
 		</div>
