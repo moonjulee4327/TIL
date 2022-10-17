@@ -29,25 +29,62 @@ let cvr2D = [
 // bgm 다 맞췄을 때, 카드를 뒤집을 때
 
 // 섞는 것도 4진법 사용 img2D[Math.floor(Math.random*img2D.length)][Math.floor(Math.random()*i*4+j)]
-function shuffle(){
-	for(let i = 0; i<1000; i++){
-		let f = Math.floor(Math.random()*img2D.length);
-		let l = Math.floor(Math.random()*img2D.length);
-		let a = img2D[0][0];
-		let b = img2D[f][l];
-		img2D[0][0] = b;
-		img2D[f][l] = a;
-	}
+// function shuffle(){
+// 	for(let i = 0; i<1000; i++){
+// 		let f = Math.floor(Math.random()*img2D.length);
+// 		let l = Math.floor(Math.random()*img2D.length);
+// 		let a = img2D[0][0];
+// 		let b = img2D[f][l];
+// 		img2D[0][0] = b;
+// 		img2D[f][l] = a;
+// 	}
 	
-	for(let i=0; i<img2D.length; i++){
-		for(let j=0; j<img2D[i].length; j++){
-			if(cvr2D[i][j] == 0){
-				$("img").eq(i*4+j).attr("src","static/img/0.png");
-			}else {
-				$("img").eq(i*4+j).attr("src","static/img/"+img2D[i][j]+".png");
-			}
-		}
+// 	for(let i=0; i<img2D.length; i++){
+// 		for(let j=0; j<img2D[i].length; j++){
+// 			if(cvr2D[i][j] == 0){
+// 				$("img").eq(i*4+j).attr("src","static/img/0.png");
+// 			}else {
+// 				$("img").eq(i*4+j).attr("src","static/img/"+img2D[i][j]+".png");
+// 			}
+// 		}
+// 	}
+// }
+
+// // 섞는 법 1번
+// function shuffle(){
+// 	let arr16 = [
+// 		1,1,2,2
+// 		,3,3,4,4
+// 		,5,5,6,6
+// 		,7,7,8,8
+// 	]
+
+// 	for(let i=0; i<100; i++){
+// 		let rnd = parseInt(Math.random()*16);
+// 		let a = arr16[0];
+// 		let b = arr16[rnd];
+// 		arr16[0] = b;
+// 		arr16[rnd] = a;
+// 	}
+// 	for(let i=0; i<4; i++){
+// 		for(let j=0; j<4; j++){
+// 			img2D[i][j]=arr16[i*4+j];
+// 		}
+// 	}
+// 	console.log(img2D);
+// }
+
+// 섞는 법 2번
+function shuffle(){
+	for(let i=0; i<100; i++){
+		let rndi = parseInt(Math.random()*4);
+		let rndj = parseInt(Math.random()*4);
+		let a = img2D[rndi][rndj];
+		let b = img2D[0][0];
+		img2D[0][0] = a;
+		img2D[rndi][rndj] = b;
 	}
+	console.log(img2D);
 }
 
 function render(){

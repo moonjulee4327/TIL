@@ -12,4 +12,4 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/", response_class=HTMLResponse)
 async def zzang(request: Request):
     
-    return templates.TemplateResponse("zzang.html", {"request" : request})
+    return templates.TemplateResponse("zzang3.html", {"request" : request})

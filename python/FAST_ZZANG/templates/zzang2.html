@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="static/js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+let flag_ing = true;
+let step = 0;
+
+let s1i = -1;
+let s1j = -1;
+let s1v = -1;
+let s2i = -1;
+let s2j = -1;
+let s2v = -1;
+
+let img2D = [
+		[1,1,2,2]
+	,	[3,3,4,4]
+	,	[5,5,6,6]
+	,	[7,7,8,8]
+];
+
+let cvr2D = [
+		[0,0,0,0]
+	,	[0,0,0,0]
+	,	[0,0,0,0]
+	,	[0,0,0,0]
+];
+
+let dsp2D = [
+		[0,0,0,0]
+	,	[0,0,0,0]
+	,	[0,0,0,0]
+	,	[0,0,0,0]
+];
+
+function shuffle(){
+	for(let i = 0; i<1000; i++){
+		let f = Math.floor(Math.random()*img2D.length);
+		let l = Math.floor(Math.random()*img2D.length);
+		let a = img2D[0][0];
+		let b = img2D[f][l];
+		img2D[0][0] = b;
+		img2D[f][l] = a;
+	}
+	
+	for(let i=0; i<img2D.length; i++){
+		for(let j=0; j<img2D[i].length; j++){
+			if(cvr2D[i][j] == 0){
+				$("img").eq(i*4+j).attr("src","static/img/0.png");
+			}else {
+				$("img").eq(i*4+j).attr("src","static/img/"+img2D[i][j]+".png");
+			}
+		}
+	}
+}
+
+function myInit(){
+	// shuffle();
+	patchIjEvent();
+}
+
+function setDsp2D(){
+	for(let i=0; i<cvr2D.length; i++){
+		for(let j=0; j<cvr2D[i].length; j++){
+			if(cvr2D[i][j] == 1){
+				dsp2D[i][j] = img2D[i][j];
+			}else{
+				dsp2D[i][j] = 0;
+			}
+		}
+	}
+	if(step == 0){
+		dsp2D[s1i][s1j] = s1v;
+	}
+	if(step == 1){
+		dsp2D[s1i][s1j] = s1v;
+		dsp2D[s2i][s2j] = s2v;
+	}
+	if(s1v == s2v){
+		dsp2D[s1i][s1j] = s1v;
+		dsp2D[s2i][s2j] = s2v;
+	}
+}
+
+function myClick(e){
+	if(!flag_ing){
+		return;
+	}
+	if(step == 2){
+		return;
+	}
+	// console.log(e.target.alt);
+	let alt = e.target.alt;
+	let spl = alt.split(",");
+	// console.log(spl[0]);
+	// console.log(spl[1]);
+	let i = parseInt(spl[0]);
+	let j = parseInt(spl[1]);
+	if(step == 0){
+		s1i = i;
+		s1j = j;
+		s1v = img2D[i][j];
+	}
+	if(step == 1){
+		if(s1i == i && s1j == j){
+			return;
+		}
+		s2i = i;
+		s2j = j;
+		s2v = img2D[i][j];
+	}
+
+	setDsp2D();
+	render();
+
+	nextStep();
+	console.log("step", step);
+
+	if(step == 2){
+		setTimeout(gostep3, 1000);
+		
+	}
+}
+
+function gostep3(){
+	if(s1v == s2v){
+		cvr2D[s1i][s1j] = 1;
+		cvr2D[s2i][s2j] = 1;
+		let txt = $("#mydisp").html();
+		console.log(txt);
+		let numTxt = parseInt(txt);
+		$("#mydisp").html(numTxt-2);
+	}
+	setDsp2D();
+	render();
+
+	let cnt_final = 0;
+	for(let i=0; i<img2D.length; i++){
+		for(let j=0; j< img2D[i].length; j++){
+			if(cvr2D[i][j]==1){
+				cnt_final++;
+			}
+		}
+	}
+	if(cnt_final == 16){
+		alert("게임 승리");
+		flag_ing = false;
+	}
+
+	s1i = -1;
+	s1j = -1;
+	s1v = -1;
+	s2i = -1;
+	s2j = -1;
+	s2v = -1;
+	
+	nextStep();
+	console.log("ㅎㅇ");
+	console.log(cvr2D);
+}
+
+function nextStep(){
+	if(step == 0){
+		step = 1;
+	}else if(step == 1){
+		step = 2;
+	}else if(step == 2){
+		step = 0;
+	}
+}
+
+function patchIjEvent(){
+	for(let i=0; i<img2D.length; i++){
+		for(let j=0; j< img2D[i].length; j++){
+			$("img").eq(i*4+j).attr("alt", i + ","+ j);
+		}
+	}
+	// let a = $("img").eq(0).attr("alt", "0,0");
+	$("img").on("click", function(event) {myClick(event);})
+}
+
+// 섞는 법 2번
+function shuffle(){
+	for(let i=0; i<100; i++){
+		let rndi = parseInt(Math.random()*4);
+		let rndj = parseInt(Math.random()*4);
+		let a = img2D[rndi][rndj];
+		let b = img2D[0][0];
+		img2D[0][0] = a;
+		img2D[rndi][rndj] = b;
+	}
+	console.log(img2D);
+}
+
+function render(){
+// 	let cnt = 0;
+	for(let i=0; i<img2D.length; i++){
+		for(let j=0; j<img2D[i].length; j++){
+			$("img").eq(i*4+j).attr("src","static/img/"+dsp2D[i][j]+".png");
+		}
+	}
+}
+
+// // onclick을 줘서 만든것
+// function disp(){
+// 	let src = $("img").eq(0).attr("src", "static/img/" + img2D[0][0] + ".png");
+// 	console.log(src);
+// }
+
+</script>
+</head>
+<body onload="myInit()">
+	<table>
+		<tr>
+			<td>남은 개수</td>
+			<td>
+				<div id="mydisp">16</div>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+		<tr>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+			<td><img src="static/img/0.png"></td>
+		</tr>
+	</table>
+	<a href="javascript:render()">render</a>
+</body>
+</html>
