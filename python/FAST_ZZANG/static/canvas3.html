@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	let cvr2D = [
+			[1,0,1,0]
+		,	[1,1,1,0]
+		,	[0,0,0,1]
+		,	[1,1,0,0]
+	];
+
+    function myinit(){
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        // ctx.fillStyle = 'blue'; 
+        // ctx.fillRect(0,0,9,9);
+        // ctx.fillStyle = 'black'; 
+        // ctx.fillRect(0,10,9,9);
+        for(let i=0; i<cvr2D.length; i++){
+            for(let j=0; j<cvr2D[i].length; j++){
+                if(cvr2D[i][j] == 0){
+                    ctx.fillStyle = "black";  
+                }else {
+                    ctx.fillStyle = "yellow";  
+                }
+                // ctx.fillStyle = "yellow";
+                ctx.fillRect(j*10, i*10, 9, 9);
+            }
+        }
+    }
+
+   
+</script>
+</head>
+<body onload="myinit()">
+
+<canvas id="mycan" width="400px" height="400px">
+	
+</canvas>
+
+</body>
+</html>

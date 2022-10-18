@@ -209,10 +209,10 @@ function shuffle(){
 
 function render(){
 // 	let cnt = 0;
+	let img = document.querySelectorAll("img");
 	for(let i=0; i<img2D.length; i++){
 		for(let j=0; j<img2D[i].length; j++){
 			// $("img").eq(i*4+j).attr("src","static/img/"+dsp2D[i][j]+".png");
-			let img = document.querySelectorAll("img");
 			img[i*4+j].src = "static/img/"+dsp2D[i][j]+".png";
 		}
 	}

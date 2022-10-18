@@ -26,7 +26,6 @@
 <title>상품 상세 정보</title>
 <script type="text/javascript">
 	function addToCart() {
-		console.log("왔다.");
 		let result = confirm("해당 도서를 장바구니에 추가하시겠습니까?");
 		
 		if(result){
@@ -63,7 +62,7 @@
 				<form name="addForm" action="addCart.jsp?id=${bookVO.bookId}" method="post">
 					<a href="#" class="btn btn-info" onclick="addToCart()">상품주문&raquo;</a>
 					<a href="cart.jsp" class="btn btn-warning">장바구니&raquo;</a>
-					<a href="books.jsp" class="btn btn-secondary">상품목록&raquo;</a>
+					<a href="books.jsp" class="btn btn-secondary">도서목록&raquo;</a>
 				</form>
 				</p>
 			</div>
