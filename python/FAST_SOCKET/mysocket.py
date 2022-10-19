@@ -33,8 +33,13 @@ manager = ConnectionManager()
 
 
 @app.get("/", response_class=HTMLResponse)
-async def get(request: Request):
+async def root(request: Request):
     return templates.TemplateResponse("socket.html", {"request" : request})
+
+
+@app.get("/card", response_class=HTMLResponse)
+async def card(request: Request):
+    return templates.TemplateResponse("card.html", {"request" : request})
 
 
 @app.websocket("/ws/{client_id}")
@@ -43,10 +48,12 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
     try:
         while True:
             data = await websocket.receive_text()
-            await manager.send_personal_message(f"You wrote: {data}", websocket)
-            await manager.broadcast(f"Client #{client_id} says: {data}")
+            print("data",data)
+            # await manager.send_personal_message(f"You wrote: {data}", websocket)
+            await manager.broadcast(f"{data}")
     except WebSocketDisconnect:
+        print("error")
         manager.disconnect(websocket)
-        await manager.broadcast(f"Client #{client_id} left the chat")
+        await manager.broadcast(f"error")
         
         
