@@ -1,8 +1,8 @@
-<%@page import="exam04.dao.BookRepository"%>
-<%@page import="exam04.vo.BookVO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="exam04.dao.BookRepository"%>
+<%@ page import="exam04.vo.BookVO"%>
+<%@ page import="java.util.ArrayList"%>
 <%
 	String id = request.getParameter("id"); // QueryString으로 표현 된것이 온다.
 	

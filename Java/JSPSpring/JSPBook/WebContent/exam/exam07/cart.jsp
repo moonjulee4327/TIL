@@ -93,6 +93,6 @@
 	</div>
 	<!-- 장바구니 출력 끝 -->
 	<!-- 장바구니 상세내용 끝 -->
-
+	<jsp:include page="../exam04/footer.jsp"/>
 </body>
 </html>
