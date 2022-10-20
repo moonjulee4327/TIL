@@ -4,7 +4,6 @@ from pydantic import BaseModel
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles 
 import pymysql
-from emp_dao import EmpDao
 
 
 
@@ -15,8 +14,5 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/", response_class=HTMLResponse)
 @app.get("/threejs", response_class=HTMLResponse)
 async def selects(request: Request):
-    return templates.TemplateResponse("emp_list.html", {"request": request})
-
-
-
+    return templates.TemplateResponse("threejs.html", {"request": request})
 
