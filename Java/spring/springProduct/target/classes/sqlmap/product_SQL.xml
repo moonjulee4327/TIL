@@ -48,4 +48,21 @@
 		FROM PRODUCT
 		WHERE PRODUCT_ID = #{productId}
 	</select>
+	
+	<update id="update" parameterType="productVO">
+		UPDATE PRODUCT 
+		SET   PNAME = #{pname}
+		    , UNIT_PRICE = #{unitPrice}
+		    , DESCRIPTION = #{description}
+		    , MANUFACTURER = #{manufacturer}
+		    , CATEGORY = #{category}
+		    , UNIT_IN_STOCK = #{unitInStock}
+		    , CONDITION = #{condition}
+		WHERE PRODUCT_ID = #{productId}
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM PRODUCT 
+		WHERE PRODUCT_ID = #{productId}
+	</delete>
 </mapper>

@@ -47,6 +47,13 @@
 					<!-- 등록된 상품 목록을 봄 -->
 					<a href="products" class="btn btn-secondary"><spring:message code="productList"/>&raquo;</a>
 				</form>
+				<form action="/delete" method="post">
+					<!-- 상품 수정 하기 -->
+					<a href="/update?productId=${data.productId}" class="btn btn-info"><spring:message code="update"/>&raquo;</a>
+					<!-- 상품 삭제 하기 -->
+					<input type="hidden" name="productId" value="${data.productId}">
+					<input type="submit" class="btn btn-danger" value="<spring:message code="delete"/>&raquo;">
+				</form>	
 			</div>
 		</div>
 	</div>

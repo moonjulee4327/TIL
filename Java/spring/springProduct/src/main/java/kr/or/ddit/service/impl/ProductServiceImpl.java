@@ -29,4 +29,14 @@ public class ProductServiceImpl implements ProductService{
 	public ProductVO detail(ProductVO productVO) {
 		return this.productDao.detail(productVO);
 	}
+	
+	@Override
+	public int update(ProductVO productVO) {
+		return productDao.update(productVO);
+	}
+	
+	@Override
+	public int delete(String productId) {
+		return productDao.delete(productId);
+	}
 }

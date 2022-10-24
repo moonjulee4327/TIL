@@ -11,5 +11,9 @@ public interface ProductService {
 	public List<ProductVO> list();
 
 	public ProductVO detail(ProductVO productVO);
+
+	public int update(ProductVO productVO);
+
+	public int delete(String productId);
 	
 }

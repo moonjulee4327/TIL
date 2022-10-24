@@ -25,4 +25,12 @@ public class ProductDao {
 	public ProductVO detail(ProductVO productVO) {
 		return this.sqlSessionTemplate.selectOne("product.select_detail", productVO);
 	}
+	
+	public int update(ProductVO productVO) {
+		return this.sqlSessionTemplate.update("product.update", productVO);
+	}
+	
+	public int delete(String productId) {
+		return this.sqlSessionTemplate.delete("product.delete", productId);
+	}
 }

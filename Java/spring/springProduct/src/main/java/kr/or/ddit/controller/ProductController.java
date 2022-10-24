@@ -53,7 +53,7 @@ public class ProductController {
 		log.info("result : " + result);
 		
 		if(result > 0) {
-			mav.setViewName("redirect:/deltail?productId=" + productVO.getProductId());
+			mav.setViewName("redirect:/product?productId=" + productVO.getProductId());
 		}else {
 			mav.setViewName("redirect:/addproduct");
 		}
@@ -76,5 +76,50 @@ public class ProductController {
 		
 		return mav;
 		
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ModelAndView update(ModelAndView mav, ProductVO productVO) {
+		
+		ProductVO data = this.productService.detail(productVO); 
+		
+		mav.addObject("data", data);
+		
+		mav.setViewName("product/update");			
+		
+		return mav;
+		
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ModelAndView updatePost(ModelAndView mav, ProductVO productVO) {
+		log.info("updatePost => productVO : " + productVO.toString());
+		
+		int result = this.productService.update(productVO); 
+		
+		if(result > 0) {
+			mav.setViewName("redirect:/product?productId=" + productVO.getProductId());						
+		}else {
+			mav.setViewName("redirect:/update?productId=" + productVO.getProductId());
+		}
+		
+		return mav;
+		
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ModelAndView delete(ModelAndView mav, String productId) {
+		log.info("productId : " + productId);
+		
+		int result = this.productService.delete(productId);
+		
+		// redirect => detail 메소드를 다시 실행함
+		if(result > 0) { // 삭제 성공	
+			mav.setViewName("redirect:/products");
+		}else {
+			mav.setViewName("redirect:/product?productId=" + productId);
+		}
+		
+		return mav;
 	}
 }
