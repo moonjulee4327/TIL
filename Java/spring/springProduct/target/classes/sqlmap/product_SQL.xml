@@ -21,4 +21,31 @@
 			, #{condition}
 			)
 	</insert>
+	
+	<!-- 상품 목록 -->
+	<select id="list" resultType="productVO">
+		SELECT PRODUCT_ID
+			, PNAME
+			, UNIT_PRICE
+			, DESCRIPTION
+			, MANUFACTURER
+			, CATEGORY
+			, UNIT_IN_STOCK
+			, CONDITION
+		FROM PRODUCT
+		ORDER BY PRODUCT_ID DESC
+	</select>
+	
+	<select id="select_detail" parameterType="productVO" resultType="productVO">
+		SELECT PRODUCT_ID
+			, PNAME
+			, UNIT_PRICE
+			, DESCRIPTION
+			, MANUFACTURER
+			, CATEGORY
+			, UNIT_IN_STOCK
+			, CONDITION
+		FROM PRODUCT
+		WHERE PRODUCT_ID = #{productId}
+	</select>
 </mapper>

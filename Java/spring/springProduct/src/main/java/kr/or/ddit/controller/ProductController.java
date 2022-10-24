@@ -1,5 +1,7 @@
 package kr.or.ddit.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,11 +19,14 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 	
+	// 상품 목록
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
-	public ModelAndView products() {
-		
-		ModelAndView mav = new ModelAndView();
-		
+	public ModelAndView products(ModelAndView mav) {
+		// Model
+		List<ProductVO> data = this.productService.list();
+		mav.addObject("data", data);
+		mav.addObject("productId", data.get(0).getProductId());
+		// View
 		mav.setViewName("product/products");
 		
 		return mav;
@@ -56,5 +61,20 @@ public class ProductController {
 		return mav;
 		
 	}
-	
+
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public ModelAndView detail(ModelAndView mav, ProductVO productVO) {
+		log.info("detail");
+		
+		log.info("vo : " + productVO.toString());
+
+		ProductVO data = this.productService.detail(productVO); 
+		
+		mav.setViewName("product/product");
+		mav.addObject("data", data);
+		mav.addObject("productId", data.getProductId());
+		
+		return mav;
+		
+	}
 }

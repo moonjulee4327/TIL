@@ -1,5 +1,7 @@
 package kr.or.ddit.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,14 @@ public class ProductServiceImpl implements ProductService{
 	public int insertProduct(ProductVO productVO) {	
 		return this.productDao.insertProduct(productVO);
 	}
-
+	
+	@Override
+	public List<ProductVO> list() {
+		return this.productDao.list();
+	}
+	
+	@Override
+	public ProductVO detail(ProductVO productVO) {
+		return this.productDao.detail(productVO);
+	}
 }
