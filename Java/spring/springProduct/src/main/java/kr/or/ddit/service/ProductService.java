@@ -15,5 +15,7 @@ public interface ProductService {
 	public int update(ProductVO productVO);
 
 	public int delete(String productId);
+
+	public ProductVO cartSelect(String productId);
 	
 }

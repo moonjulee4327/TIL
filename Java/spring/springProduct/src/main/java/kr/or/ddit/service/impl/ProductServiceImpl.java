@@ -31,6 +31,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
+	public ProductVO cartSelect(String productId) {
+		return this.productDao.cartSelect(productId);
+	}
+	
+	@Override
 	public int update(ProductVO productVO) {
 		return productDao.update(productVO);
 	}

@@ -26,6 +26,10 @@ public class ProductDao {
 		return this.sqlSessionTemplate.selectOne("product.select_detail", productVO);
 	}
 	
+	public ProductVO cartSelect(String productId) {
+		return this.sqlSessionTemplate.selectOne("product.cart_select", productId);
+	}
+	
 	public int update(ProductVO productVO) {
 		return this.sqlSessionTemplate.update("product.update", productVO);
 	}

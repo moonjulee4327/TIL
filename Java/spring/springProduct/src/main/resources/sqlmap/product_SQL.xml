@@ -57,6 +57,20 @@
 		WHERE PRODUCT_ID = #{productId}
 	</select>
 	
+	<select id="cart_select" parameterType="string" resultType="productVO">
+		SELECT PRODUCT_ID
+			, PNAME
+			, UNIT_PRICE
+			, DESCRIPTION
+			, MANUFACTURER
+			, CATEGORY
+			, UNIT_IN_STOCK
+			, CONDITION
+			, FILENAME
+		FROM PRODUCT
+		WHERE PRODUCT_ID = #{productId}
+	</select>
+	
 	<update id="update" parameterType="productVO">
 		UPDATE PRODUCT 
 		SET   PNAME = #{pname}

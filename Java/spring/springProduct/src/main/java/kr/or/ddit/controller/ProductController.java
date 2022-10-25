@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -125,7 +126,20 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/addCart", method = RequestMethod.POST)
-	public void cart() {
-		log.info("product/cart");
+	public String addCart(Model model, String productId) {
+		log.info("addCart : " + productId);
+		
+		ProductVO data = productService.cartSelect(productId);
+		
+		model.addAttribute("name", data);
+		
+		return "product/addCart";
+	}
+	
+	@RequestMapping(value = "/cart", method = RequestMethod.GET)
+	public String cart() {
+		log.info("cart");
+		
+		return "product/cart";
 	}
 }
