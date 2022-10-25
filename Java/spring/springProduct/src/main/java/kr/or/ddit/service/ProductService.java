@@ -8,7 +8,7 @@ public interface ProductService {
 	
 	public int insertProduct(ProductVO productVO);
 
-	public List<ProductVO> list();
+	public List<ProductVO> list(String keyword);
 
 	public ProductVO detail(ProductVO productVO);
 

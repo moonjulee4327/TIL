@@ -32,8 +32,15 @@
 			, CATEGORY
 			, UNIT_IN_STOCK
 			, CONDITION
+			, FILENAME
 		FROM PRODUCT
+		WHERE 1 = 1
+		<if test="keyword != null and keyword != ''">
+		AND (PNAME LIKE '%' || #{keyword} || '%'
+		OR CATEGORY LIKE '%' || #{keyword} || '%'
+		OR MANUFACTURER LIKE '%' || #{keyword} || '%')
 		ORDER BY PRODUCT_ID DESC
+		</if>
 	</select>
 	
 	<select id="select_detail" parameterType="productVO" resultType="productVO">
@@ -45,6 +52,7 @@
 			, CATEGORY
 			, UNIT_IN_STOCK
 			, CONDITION
+			, FILENAME
 		FROM PRODUCT
 		WHERE PRODUCT_ID = #{productId}
 	</select>

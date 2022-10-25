@@ -26,13 +26,20 @@
 	</div>
 	<!-- container : 이 안에 내용있다 -->
 	<div class="container">
+		<form>
+			<div align="center">
+				<input type="text" placeholder="검색어를 입력하세요" name="keyword" value="${param.keyword}" />
+				<input type="submit" value="검색" />
+			</div>
+		</form>
+		<hr>
 		<!-- 행별 처리 -->
 		<div class="row" align="center">
 			<c:forEach var="product" items="${data}">
 			<div class="col-md-4">
 				<!-- /images/P1234.jpg -->
-<%-- 				<img src="/resources/images/${product.filename}%>" --%>
-<%-- 				style="width:100%;" alt="${product.pname}" title="${product.pname}" /> --%>
+				<img src="/resources/images/${product.filename}"
+				style="width:100%; height: 50%" alt="${product.pname}" title="${product.pname}" />
 				<h3>${product.pname}</h3>
 				<p>${product.description}</p>
 				<p>${product.unitPrice}원</p>

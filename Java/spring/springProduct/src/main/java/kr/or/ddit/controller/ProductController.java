@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ddit.service.ProductService;
@@ -21,9 +22,10 @@ public class ProductController {
 	
 	// 상품 목록
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
-	public ModelAndView products(ModelAndView mav) {
+	public ModelAndView products(ModelAndView mav, @RequestParam(value = "keyword", required = false) String keyword) {
+		
 		// Model
-		List<ProductVO> data = this.productService.list();
+		List<ProductVO> data = this.productService.list(keyword);
 		mav.addObject("data", data);
 		mav.addObject("productId", data.get(0).getProductId());
 		// View
@@ -47,7 +49,6 @@ public class ProductController {
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public ModelAndView addProductPost(ModelAndView mav, @ModelAttribute ProductVO productVO) {
 		log.info("ProductVO : " + productVO.toString());
-		System.out.println("여기는 옴");
 		int result = this.productService.insertProduct(productVO);
 		
 		log.info("result : " + result);
@@ -121,5 +122,10 @@ public class ProductController {
 		}
 		
 		return mav;
+	}
+	
+	@RequestMapping(value = "/addCart", method = RequestMethod.POST)
+	public void cart() {
+		log.info("product/cart");
 	}
 }

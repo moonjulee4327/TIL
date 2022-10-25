@@ -18,8 +18,8 @@ public class ProductDao {
 		return this.sqlSessionTemplate.insert("product.insert", productVO);
 	}
 	
-	public List<ProductVO> list() {
-		return this.sqlSessionTemplate.selectList("product.list");
+	public List<ProductVO> list(String keyword) {
+		return this.sqlSessionTemplate.selectList("product.list", keyword);
 	}
 	
 	public ProductVO detail(ProductVO productVO) {
