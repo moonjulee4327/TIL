@@ -22,6 +22,10 @@ public class ProductDao {
 		return this.sqlSessionTemplate.selectList("product.list", keyword);
 	}
 	
+	public List<ProductVO> listAll() {
+		return this.sqlSessionTemplate.selectList("product.listAll");
+	}
+	
 	public ProductVO detail(ProductVO productVO) {
 		return this.sqlSessionTemplate.selectOne("product.select_detail", productVO);
 	}

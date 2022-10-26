@@ -15,12 +15,12 @@
 		return;
 	}
 	
-	ProductDao dao = new ProductDao();
+// 	ProductDao dao = new ProductDao();
 	
 	// 1) P1235에 해당되는 productVO를 가져옴
 	// select * from product where product_id = 'P1235'
 	// id : P1235
-	ProductVO product = dao.cartSelect(id);
+// 	ProductVO product = dao.cartSelect(id);
 // 	if(product == null){ // 해당 상품이 없으면 예외 처리 페이지로 이동
 // 		response.sendRedirect("exceptionNoProductId.jsp");
 // 	}
@@ -28,7 +28,12 @@
 	// 2) session 객체에 cartlist라는 속성이 있는지 체크 => 장바구니
 	// 	  session.getAttribute("cartlist");
 	// 	   장바구니 안에는 상품들(List<ProductVO>)이 있다.
-	ArrayList<ProductVO> list = (ArrayList<ProductVO>)session.getAttribute("cartlist");
+	ArrayList<ProductVO> list = (ArrayList<ProductVO>)session.getAttribute("data");
+	
+	ProductVO vo = (ProductVO)session.getAttribute("vo");
+	
+// 	out.println(vo.getPname());
+// 	out.println(id);
 	
 	// 2-2) cartlist라는 장바구니가 없으면 장바구니를 생성
 	// 		session.setAttribute("cartlist");
@@ -58,8 +63,8 @@
 	// 3-2) cartlist라는 장바구니에 P1235라는 상품이 없는 경우(cnt => 0)
 	// 		cartlist라는 장바구니에 P1235라는 상품을 넣자. quantity 값을 1로 처리
 	if(cnt == 0){
-		product.setQuantity(1);
-		list.add(product);
+		vo.setQuantity(1);
+		list.add(vo);
 	}
 	
 	// 장바구니 확인
@@ -68,6 +73,6 @@
 // 		out.println("vo : " + vo.toString() + "<br/><hr/>");
 // 	}
 	// 4) product.jsp?id=P1235 경로로 되돌아가자
-	response.sendRedirect("product/product?productId=" + id);		
+	response.sendRedirect("/product?productId=" + id);		
 			
 %>

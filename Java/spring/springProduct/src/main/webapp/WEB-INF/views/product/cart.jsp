@@ -14,8 +14,8 @@
 	<%
 		// 장바구니 = 세션
 		// 장바구니 고유번호 = session.getId()
-		String cartId = session.getId();
-		out.println("<p>cartId : " + cartId + "</p>");
+// 		String cartId = session.getId();
+// 		out.println("<p>cartId : " + cartId + "</p>");
 	%>
 	<jsp:include page="menu.jsp"/>
 	
@@ -32,10 +32,10 @@
 			<table width="100%">
 				<tr>
 					<td align="left">
-						<a href="deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a>
+						<a href="/deleteCart" class="btn btn-danger">삭제하기</a>
 					</td>
 					<td align="right">
-						<a href="shippingInfo.jsp?cartId=<%=cartId%>" class="btn btn-success">주문하기</a>
+						<a href="/shippingInfo" class="btn btn-success">주문하기</a>
 					</td>
 				</tr>
 			</table>
@@ -77,7 +77,7 @@
 								<td><fmt:formatNumber value="<%=vo.getQuantity() %>" pattern="#,###"/></td>
 								<td><fmt:formatNumber value="<%=totalBig %>" pattern="#,###"/></td>
 								<td>
-									<a href="removeCart.jsp?id=<%=vo.getProductId()%>" class="badge badge-danger">삭제</a>
+									<a href="/removeCart?productId=<%=vo.getProductId()%>" class="badge badge-danger">삭제</a>
 								</td>
 							</tr>
 							
@@ -99,7 +99,7 @@
 					} // end if
 				%>
 			</table>
-			<a  href="product.jsp" class="btn btn-secondary">&laquo;쇼핑 계속하기</a>
+			<a href="/products" class="btn btn-secondary">&laquo;쇼핑 계속하기</a>
 		</div>
 		<!-- 장바구니 출력 끝 -->
 	</div>

@@ -55,6 +55,11 @@ public class BookDao {
 		return this.sqlSessionTemplate.selectList("book.list", keyword);
 	}
 	
+	// 책 목록보기
+	public List<BookVO> listAll() {
+		return this.sqlSessionTemplate.selectList("book.listAll");
+	}
+	
 	// 책 수정하기
 	// insert/update/delete 의 resultType은 생략
 	public int update(BookVO bookVO) {

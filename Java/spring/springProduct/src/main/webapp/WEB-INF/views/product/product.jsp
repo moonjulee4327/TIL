@@ -55,7 +55,9 @@
 				<p><b><spring:message code="category"/></b> : ${data.category}</p>
 				<p><b><spring:message code="unitInStock"/></b> : ${data.unitInStock}</p>
 				<h4>${data.unitPrice}<spring:message code="won"/></h4>
-				<form name="addForm" action="/addCart?productId=${data.productId}" method="post">
+				<form name="addForm" action="/addCart" method="post">
+					<!-- 상품 아이디를 가려서 보낸다 -->
+					<input type="hidden" name="productId" value="${data.productId}">
 					<!-- 상품 주문 -> 상품을 장바구니에 넣음 -->
 					<a href="#" class="btn btn-info" onclick="addToCart()"><spring:message code="productOrder"/>&raquo;</a>
 					<!-- 장바구니에 넣어진 상품 목록을 봄 -->

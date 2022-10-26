@@ -43,6 +43,19 @@
 		</if>
 	</select>
 	
+	<select id="listAll" resultType="productVO">
+		SELECT PRODUCT_ID
+			, PNAME
+			, UNIT_PRICE
+			, DESCRIPTION
+			, MANUFACTURER
+			, CATEGORY
+			, UNIT_IN_STOCK
+			, CONDITION
+			, FILENAME
+		FROM PRODUCT
+	</select>
+	
 	<select id="select_detail" parameterType="productVO" resultType="productVO">
 		SELECT PRODUCT_ID
 			, PNAME

@@ -18,9 +18,12 @@ public interface BookService {
 	// 책 목록보기
 	public List<BookVO> list(String keyword);
 	
+	public List<BookVO> listAll();
+	
 	// 책 수정하기
 	public int update(BookVO bookVO);
 	
 	// 책 삭제하기
 	public int delete(int bookId);
+
 }

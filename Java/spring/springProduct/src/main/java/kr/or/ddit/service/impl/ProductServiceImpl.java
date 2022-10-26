@@ -26,6 +26,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
+	public List<ProductVO> listAll() {
+		return this.productDao.listAll();
+	}
+	
+	@Override
 	public ProductVO detail(ProductVO productVO) {
 		return this.productDao.detail(productVO);
 	}

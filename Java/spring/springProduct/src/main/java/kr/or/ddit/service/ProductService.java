@@ -17,5 +17,7 @@ public interface ProductService {
 	public int delete(String productId);
 
 	public ProductVO cartSelect(String productId);
+
+	public List<ProductVO> listAll();
 	
 }

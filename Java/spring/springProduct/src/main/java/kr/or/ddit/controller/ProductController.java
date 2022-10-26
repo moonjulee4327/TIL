@@ -1,6 +1,14 @@
 package kr.or.ddit.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.or.ddit.service.ProductService;
 import kr.or.ddit.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
+
+
 @Slf4j
 @Controller
 public class ProductController {
@@ -125,15 +135,66 @@ public class ProductController {
 		return mav;
 	}
 	
+	// 요청 URI : /addCart
+	// 요청 파라미터 : {"productId":"P1235"}
+	// 장바구니(=세션(cartlist))에 해당 상품을 넣음
+	// spring에서 요청파라미터를 매개변수로 받을 수 있다.
 	@RequestMapping(value = "/addCart", method = RequestMethod.POST)
-	public String addCart(Model model, String productId) {
+	public String addCart(HttpServletRequest req, @RequestParam String productId, @ModelAttribute ProductVO productVO) {
 		log.info("addCart : " + productId);
 		
-		ProductVO data = productService.cartSelect(productId);
+		// 장바구니에 넣을 상품이 없다면
+		if(productId == null) {
+			return "redirect:/product?productId=" + productId;
+		}
 		
-		model.addAttribute("name", data);
+		// 장바구니에 넣을 상품을 검색
+		ProductVO vo = this.productService.detail(productVO);
+		log.info("vo : " + vo);
 		
-		return "product/addCart";
+		if(vo == null) {
+			return "redirect:/exceptionNoProdcutId";
+		}
+
+		// 장바구니(세션) => 세션명 : cartlist
+		HttpSession session = req.getSession();
+		
+		// 세션에 cartlist가 있는가
+		ArrayList<ProductVO> list = (ArrayList<ProductVO>)session.getAttribute("cartlist");
+		
+		// 장바구니가 없다면 생성
+		if(list == null) {
+			// list는 null 이므로 여기서 리스트를 생성해줘야 함
+			list = new ArrayList<ProductVO>();
+			// cartlist라는 세션명으로 생성
+			session.setAttribute("cartlist", list);
+		}
+		
+		// 장바구니가 있으면 다음을 실행
+		int cnt = 0; // 장바구니에 상품이 담긴 개수
+		
+		for(int i=0; i<list.size(); i++) {
+			// list는 session의 장바구니(P1234,P1235,P1236)
+			if(list.get(i).getProductId().equals(productId)) {
+				cnt++;
+				// 장바구니에 상픔이 이미 들어있다면 장바구니에 담은 개수만 1 증가
+				list.get(i).setQuantity(list.get(i).getQuantity() + 1);
+			}
+		}
+		
+		// 장바구니에 해당 상품이 없다면
+		if(cnt == 0) {
+			vo.setQuantity(1);
+			// 장바구니에 상품 추가
+			list.add(vo);
+		}
+		
+		for(ProductVO pv : list) {
+			log.info("pv : " + pv.toString());
+		}
+		
+//		return "product/addCart";
+		return "redirect:/product?productId=" + productId;
 	}
 	
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
@@ -142,4 +203,62 @@ public class ProductController {
 		
 		return "product/cart";
 	}
+	
+	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
+	public String deleteCart(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		session.invalidate();
+		
+		return "redirect:/cart";
+	}
+	
+	@RequestMapping(value = "/removeCart", method = RequestMethod.GET)
+	public String removeCart(HttpServletRequest req, @RequestParam String productId) {
+		HttpSession session = req.getSession();
+		
+//		log.info(session.getAttribute("cartlist").toString());
+		
+		ArrayList<ProductVO> cartlist = (ArrayList<ProductVO>)session.getAttribute("cartlist");
+		
+		for(int i=0; i < cartlist.size(); i++) {
+			if(cartlist.get(i).getProductId().equals(productId)) {
+				cartlist.remove(cartlist.get(i));
+			}
+		}
+		
+		return "redirect:/cart";
+	}
+	
+	@RequestMapping(value = "/shippingInfo", method = RequestMethod.GET)
+	public String shippingInfo() {
+
+		return "product/shippingInfo";
+	}
+	
+	@RequestMapping(value = "/processShippingInfo", method = RequestMethod.POST)
+	public String processShippingInfo() throws Exception {
+		
+		return "product/processShippingInfo";
+	}
+	
+	@RequestMapping(value = "/checkOutCancelled", method = RequestMethod.GET)
+	public String checkOutCancelled() {
+
+		return "product/checkOutCancelled";
+	}
+	
+	@RequestMapping(value = "/thankCustomer", method = RequestMethod.GET)
+	public String thankCustomer() {
+
+		return "product/thankCustomer";
+	}
+	
+	
+	@RequestMapping(value = "/orderConfirmation", method = RequestMethod.GET)
+	public String orderConfirmation() {
+
+		return "product/orderConfirmation";
+	}
+	
 }

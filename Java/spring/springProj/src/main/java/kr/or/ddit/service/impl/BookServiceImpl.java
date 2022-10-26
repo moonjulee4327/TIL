@@ -39,6 +39,11 @@ public class BookServiceImpl implements BookService{
 		return this.bookDao.list(keyword);
 	}
 	
+	@Override
+	public List<BookVO> listAll() {
+		return this.bookDao.listAll();
+	}
+	
 	// 책 수정하기
 	@Override
 	public int update(BookVO bookVO) {
