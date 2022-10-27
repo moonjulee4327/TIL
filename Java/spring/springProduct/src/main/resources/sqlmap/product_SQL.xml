@@ -100,4 +100,19 @@
 		DELETE FROM PRODUCT 
 		WHERE PRODUCT_ID = #{productId}
 	</delete>
+	
+	<!-- CART_DET 테이블에 insert 
+		파라미터 : CartVO
+		반환값 : int
+	-->
+	<insert id="insertCart">
+		INSERT INTO CART(CART_ID, NAME, SHIPPING_DATE
+					, COUNTRY, ZIP_CODE, ADDRESS_NAME
+					, ADDRESS_DETAIL, REGIST_DT)
+		VALUES(#{cartId}, #{name}, #{shippingDate}
+			, #{country}, #{zipCode}, #{addressName}
+			, #{addressDetail}, sysdate)
+	
+	</insert>
+	
 </mapper>

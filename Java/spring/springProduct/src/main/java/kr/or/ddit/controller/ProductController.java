@@ -1,6 +1,7 @@
 package kr.or.ddit.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ddit.service.ProductService;
+import kr.or.ddit.vo.CartDetVO;
+import kr.or.ddit.vo.CartVO;
 import kr.or.ddit.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -231,15 +234,48 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/shippingInfo", method = RequestMethod.GET)
-	public String shippingInfo() {
-
+	public String shippingInfo(@RequestParam String cartId, Model model) {
+		
+		log.info("cartId : " + cartId);
+		
+		model.addAttribute("cartId", cartId);
+		
 		return "product/shippingInfo";
 	}
 	
 	@RequestMapping(value = "/processShippingInfo", method = RequestMethod.POST)
-	public String processShippingInfo() throws Exception {
+	public String processShippingInfo(@ModelAttribute CartVO cartVO, HttpServletResponse resp, Model model) throws Exception {
 		
-		return "product/processShippingInfo";
+		// 쿠키 생성
+		Cookie cartId = new Cookie("Shipping_cartId",URLEncoder.encode(cartVO.getCartId(), "UTF-8"));
+		Cookie name = new Cookie("Shipping_name",URLEncoder.encode(cartVO.getName(), "UTF-8"));
+		Cookie shippingDate = new Cookie("Shipping_shippingDate",URLEncoder.encode(cartVO.getShippingDate(), "UTF-8"));
+		Cookie country = new Cookie("Shipping_country",URLEncoder.encode(cartVO.getCountry(), "UTF-8"));
+		Cookie zipCode = new Cookie("Shipping_zipCode",URLEncoder.encode(cartVO.getZipCode(), "UTF-8"));
+		Cookie addressName = new Cookie("Shipping_addressName",URLEncoder.encode(cartVO.getAddressName(), "UTF-8"));
+		Cookie addressDetail = new Cookie("Shipping_addressDetail",URLEncoder.encode(cartVO.getAddressDetail(), "UTF-8"));
+		
+		// 쿠키의 유효 기간을 1일로 설정(초단위) -> 60 * 60 * 24
+		cartId.setMaxAge(24*60*60);
+		name.setMaxAge(24*60*60);
+		shippingDate.setMaxAge(24*60*60);
+		country.setMaxAge(24*60*60);
+		zipCode.setMaxAge(24*60*60);
+		addressName.setMaxAge(24*60*60);
+		addressDetail.setMaxAge(24*60*60);
+		
+		// 생성된 쿠키를 등록(서버에서 생성이 되어 response객체에 담겨서 클라이언트로 가져와짐)
+		resp.addCookie(cartId);
+		resp.addCookie(name);
+		resp.addCookie(shippingDate);
+		resp.addCookie(country);
+		resp.addCookie(zipCode);
+		resp.addCookie(addressName);
+		resp.addCookie(addressDetail);
+		
+		model.addAttribute("cartVO", cartVO);
+		
+		return "product/orderConfirmation";
 	}
 	
 	@RequestMapping(value = "/checkOutCancelled", method = RequestMethod.GET)
@@ -249,8 +285,81 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/thankCustomer", method = RequestMethod.GET)
-	public String thankCustomer() {
-
+	public String thankCustomer(HttpServletRequest request, CartVO cartVO) throws Exception {
+		// 1. 쿠키정보를 가져와 CART 테이블로 insert
+		String Shipping_cartId = "";
+		String Shipping_name = "";
+		String Shipping_shippingDate = "";
+		String Shipping_country = "";
+		String Shipping_zipCode = "";
+		String Shipping_addressName = "";
+		String Shipping_addressDetail = "";
+		
+		// request 객체에 있는 모든 쿠키 객체를 받자
+		Cookie[] cookies = request.getCookies();
+		
+		// 쿠키 개수 만큼 반복
+		for(int i=0; i<cookies.length; i++){
+			Cookie thisCookie = cookies[i];
+			// 쿠키 이름 가져옴
+//	 		out.println(thisCookie.getName() + "<br/>");
+			// 쿠키 값 가져옴
+			// URLEncoder.encode(request.getParameter("cartId")
+//	 		out.println(URLDecoder.decode(thisCookie.getValue()) + "<br/>");
+			if(thisCookie.getName().equals("Shipping_cartId")){
+				Shipping_cartId = URLDecoder.decode(thisCookie.getValue(), "UTF-8");
+				cartVO.setCartId(Shipping_cartId);
+			}
+			if(thisCookie.getName().equals("Shipping_name")){
+				Shipping_name = URLDecoder.decode(thisCookie.getValue(), "UTF-8");
+				cartVO.setName(Shipping_name);
+			}
+			if(thisCookie.getName().equals("Shipping_shippingDate")){
+				Shipping_shippingDate = URLDecoder.decode(thisCookie.getValue(), "UTF-8");
+				cartVO.setShippingDate(Shipping_shippingDate);
+			}
+			if(thisCookie.getName().equals("Shipping_country")){
+				Shipping_country = URLDecoder.decode(thisCookie.getValue(), "UTF-8");
+				cartVO.setCountry(Shipping_country);
+			}
+			if(thisCookie.getName().equals("Shipping_zipCode")){
+				Shipping_zipCode = URLDecoder.decode(thisCookie.getValue(), "UTF-8");
+				cartVO.setZipCode(Shipping_zipCode);
+			}
+			if(thisCookie.getName().equals("Shipping_addressName")){
+				Shipping_addressName = URLDecoder.decode(thisCookie.getValue(), "UTF-8");
+				cartVO.setAddressName(Shipping_addressName);
+			}
+			if(thisCookie.getName().equals("Shipping_addressDetail")){
+				Shipping_addressDetail = URLDecoder.decode(thisCookie.getValue(), "UTF-8");
+				cartVO.setAddressDetail(Shipping_addressDetail);
+			}
+		}
+		
+		log.info(cartVO.toString());
+		
+		// 2. 세션 정보를 가져와 CART_DET 테이블러 다중 insert
+		HttpSession session = request.getSession();
+		ArrayList<ProductVO> list = (ArrayList<ProductVO>) session.getAttribute("cartlist");
+		
+		// 3. CartVO : CartDetVO = 1 : N
+		List<CartDetVO> carDetVOList = new ArrayList<CartDetVO>(); 
+		for(ProductVO vo : list) {
+			CartDetVO cartDetVO = new CartDetVO();
+			cartDetVO.setCartId(cartVO.getCartId());
+			cartDetVO.setProductId(vo.getProductId());
+			cartDetVO.setUnitPrice(vo.getUnitPrice());
+			cartDetVO.setQuantity(vo.getQuantity());
+			cartDetVO.setAmount(vo.getUnitPrice() * vo.getQuantity());
+			
+			carDetVOList.add(cartDetVO);
+		}
+		cartVO.setCartDetVOList(carDetVOList);
+		
+		log.info("cartVO : " + cartVO.toString());
+		
+		this.productService.thankCustomer(cartVO);
+		
 		return "product/thankCustomer";
 	}
 	

@@ -1,3 +1,4 @@
+<%@page import="org.springframework.ui.Model"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -15,6 +16,7 @@
 	
 	// request 객체에 있는 모든 쿠키 객체를 받자
 	Cookie[] cookies = request.getCookies();
+	
 	// 쿠키 개수 만큼 반복
 	for(int i=0; i<cookies.length; i++){
 		Cookie thisCookie = cookies[i];
@@ -67,13 +69,13 @@
 		<!-- 고객 정보 시작 : cookie 사용 -->
 		<div class="row justify-content-between">
 			<strong>배송 주소</strong>
-			성명 : <%=Shipping_name %><br/> 
-			우편번호 : <%=Shipping_zipCode %><br/> 
-			주소 : <%=Shipping_addressName %>&nbsp;<%=Shipping_country %><br/> 
+			성명 : ${cartVO.name}<br/> 
+			우편번호 : ${cartVO.zipCode}<br/> 
+			주소 : ${cartVO.addressName}&nbsp;${cartVO.country}<br/> 
 		</div>
 		<div class="col-4" align="right">
 			<p>
-				<em>배송일 : <%=Shipping_shippingDate %></em>
+				<em>배송일 : ${cartVO.shippingDate}</em>
 			</p>
 		</div>
 		<!-- 고객 정보 끝 -->

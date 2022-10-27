@@ -14,7 +14,7 @@
 	<%
 		// 장바구니 = 세션
 		// 장바구니 고유번호 = session.getId()
-// 		String cartId = session.getId();
+		String cartId = session.getId();
 // 		out.println("<p>cartId : " + cartId + "</p>");
 	%>
 	<jsp:include page="menu.jsp"/>
@@ -35,7 +35,7 @@
 						<a href="/deleteCart" class="btn btn-danger">삭제하기</a>
 					</td>
 					<td align="right">
-						<a href="/shippingInfo" class="btn btn-success">주문하기</a>
+						<a href="/shippingInfo?cartId=<%=cartId %>" class="btn btn-success">주문하기</a>
 					</td>
 				</tr>
 			</table>

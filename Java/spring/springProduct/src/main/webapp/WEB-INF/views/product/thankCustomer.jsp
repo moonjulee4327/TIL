@@ -92,6 +92,9 @@ for(int i=0;i<cookies.length;i++){
 	if(thisCookie.getName().equals("Shipping_addressName")){
 		thisCookie.setMaxAge(0);
 	}
+	if(thisCookie.getName().equals("Shipping_addressDetail")){
+		thisCookie.setMaxAge(0);
+	}
 	if(thisCookie.getName().equals("Shipping_shippingDate")){
 		thisCookie.setMaxAge(0);
 	}
