@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ddit.dao.ProductDao;
 import kr.or.ddit.service.ProductService;
+import kr.or.ddit.util.FileUploadUtil;
 import kr.or.ddit.vo.CartVO;
 import kr.or.ddit.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,15 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public int insertProduct(ProductVO productVO) {	
-		return this.productDao.insertProduct(productVO);
+		// PRODUCT 테이블에 insert
+		int result = this.productDao.insertProduct(productVO);
+		// ATTACH 테이블에 다중 insert
+		if(result > 0) { // insert 성공 시
+			// 파일 업로드 및 insert 수행
+			FileUploadUtil.FileUploadUtil(productVO.getProductImage(), productVO.getProductId());
+		}
+		
+		return result;
 	}
 	
 	@Override

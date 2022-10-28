@@ -115,4 +115,16 @@
 	
 	</insert>
 	
+	<!-- ATTACH 테이블에 insert 
+		파라미터 : List<AttachVO>
+		반환값 : 생략
+	 -->
+	<update id="insertAttach" parameterType="java.util.List">
+       <foreach collection="list" item="attachVO" open="INSERT ALL "
+          close="SELECT * FROM SYS.DUAL" separator=" ">
+          INTO ATTACH VALUES(#{attachVO.seq},#{attachVO.tid},#{attachVO.attachName}
+             ,#{attachVO.attachSize},#{attachVO.attachType},sysdate)
+       </foreach>
+    </update>
+	
 </mapper>
