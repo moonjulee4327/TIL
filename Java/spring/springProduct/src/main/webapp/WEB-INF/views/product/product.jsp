@@ -45,7 +45,7 @@
 		</div>
 		<div class="row" align="center">
 			<div class="col-md-5">
-				<img src="/resources/images/${data.filename}" alt="${data.pname}" title="${data.pname}" style="width:100%; height: 400px"/>
+				<img src="/resources/upload${data.filename}" alt="${data.pname}" title="${data.pname}" style="width:100%; height: 400px"/>
 			</div>	
 			<div class="col-md-6">
 				<h3>${data.pname}</h3>

@@ -6,7 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.ddit.vo.AttachVO;
 import kr.or.ddit.vo.BookVO;
+import kr.or.ddit.vo.ExamMemberVO;
 
 // 매퍼xml(book_SQL.xml)을 실행시키는
 // DAO(Data Access Object) 클래스
@@ -71,4 +73,16 @@ public class BookDao {
 		// .delete("namespace.id", 파라미터)
 		return this.sqlSessionTemplate.delete("book.delete", bookId);
 	}
+	
+	// Attach 테이블 insert
+	public int insertAttach(List<AttachVO> attachVOList) {
+		return this.sqlSessionTemplate.insert("book.insertAttach", attachVOList);
+	}
+	
+	
+	// ExamMember 전체 조회
+	public List<ExamMemberVO> examMemList() {
+		return this.sqlSessionTemplate.selectList("book.memberList");
+	}
+	
 }

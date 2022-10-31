@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,13 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.ddit.service.BookService;
 import kr.or.ddit.vo.BookVO;
+import kr.or.ddit.vo.ExamMemberVO;
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/board")
+//@RequestMapping("/board")
 @Slf4j
 @Controller
 public class BoardController {
+	
+	@Autowired
+	BookService bookService;
 	
 	/**
 	 * 	1. RequestMapping의 value속성에 요청 경로를 설정
@@ -242,6 +248,18 @@ public class BoardController {
 		bookVOList.add(bookVO);
 		
 		return bookVOList;
+	}
+	
+	@GetMapping("/board/list")
+	public String boardList(Model model) {
+		
+		List<ExamMemberVO> list = this.bookService.examMemList();
+		
+		log.info("ExamMemberVO : " + list.get(0).toString());
+		
+		model.addAttribute("list", list);
+		
+		return "board/list";
 	}
 	
 }

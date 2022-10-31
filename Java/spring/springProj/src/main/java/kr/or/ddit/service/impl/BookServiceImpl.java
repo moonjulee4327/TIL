@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ddit.dao.BookDao;
 import kr.or.ddit.service.BookService;
+import kr.or.ddit.vo.AttachVO;
 import kr.or.ddit.vo.BookVO;
+import kr.or.ddit.vo.ExamMemberVO;
 
 // 이 클래스는 서비스 클래스야 라고 스프링에게 알려준다.
 // 스프링이 자바빈으로 등록해줌
@@ -55,4 +57,17 @@ public class BookServiceImpl implements BookService{
 	public int delete(int bookId) {
 		return this.bookDao.delete(bookId);
 	}
+	
+	// Attach 테이블 insert
+	@Override
+	public int insertAttach(List<AttachVO> attachVOList) {
+		return this.bookDao.insertAttach(attachVOList);
+	}
+	
+	// ExamMember 전체 조회
+	@Override
+	public List<ExamMemberVO> examMemList() {
+		return this.bookDao.examMemList();
+	}
+	
 }
