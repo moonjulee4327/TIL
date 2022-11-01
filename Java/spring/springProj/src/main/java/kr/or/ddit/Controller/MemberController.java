@@ -1,21 +1,33 @@
 package kr.or.ddit.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.or.ddit.service.MemberService;
+import kr.or.ddit.vo.AddressVO;
+import kr.or.ddit.vo.CardVO;
 import kr.or.ddit.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class MemberController {
+	
+	@Autowired
+	MemberService memberService;
 	
 	// 요청 파라미터 : register?userId=hongkd&passwd=1234
 	@GetMapping("/register")
@@ -120,10 +132,30 @@ public class MemberController {
 	// 요청파라미터 : {"userId":"a001","password":"1234","coin":"100"}
 	// coin은 int 형이다. 
 	@PostMapping("/register/register05")
-	public String register05ByBeansPost(MemberVO memberVO, int coin) {
-		log.info("memberVO : " + memberVO.toString());
-		log.info("coin : " + coin);
+	public String register05ByBeansPost(@ModelAttribute MemberVO memberVO, int coin, ArrayList<String> cars, AddressVO addressVO, Model model) {
+		log.info("처음 memberVO : " + memberVO.toString());
+		List<CardVO> cardVOList = memberVO.getCardVOList(); 
+		log.info("cardVOList1 : " + cardVOList);
+		log.info("cardVOList2 : " + memberVO.getCardVOList().toString() );
 		
+		addressVO = memberVO.getAddressVO();
+		log.info("addressVO : " + addressVO.toString());
+		
+		// 보유 자동차들(String[] hobbyList) -> 보유 자동차(String car)
+		String car = StringUtils.join(memberVO.getCars(),",");
+		memberVO.setCar(car);
+		
+		// 취미들
+		String hobby = StringUtils.join(memberVO.getHobbyList(),",");
+		memberVO.setHobby(hobby);
+		
+		log.info("나중 memberVO : " + memberVO.toString());
+		
+		int result = this.memberService.memberInsert(memberVO);
+		
+		model.addAttribute("result", result);
+		
+		// forwarding
 		return "register/success";
 	}
 	
@@ -143,7 +175,7 @@ public class MemberController {
 	
 	// 요청 URI : /registerByGet01?userId=a001&birth=1234 (x)
 	// 요청 URI : /registerByGet01?userId=a001&birth=2022-10-31 (x)
-	// 요청 URI : /registerByGet01?userId=a001&birth=20221031 (x)	
+	// 요청 URI : /registerByGet01?userId=a001&birth=20221031 (△)	=> @DateTimeFormat으로 변환후 사용가능
 	// 요청 URI : /registerByGet01?userId=a001&birth=2022/10/31 (o)	
 	@GetMapping("/register/registerByGet02")
 	public String registerByGet02(MemberVO memberVO) {
