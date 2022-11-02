@@ -5,7 +5,8 @@ public class ExamMemberVO {
 	private String memName;
 	private String memJob;
 	private String memLike;
-	
+	private String memHp;
+
 	public ExamMemberVO() {}
 
 	public String getMemId() {
@@ -40,10 +41,18 @@ public class ExamMemberVO {
 		this.memLike = memLike;
 	}
 
+	public String getMemHp() {
+		return memHp;
+	}
+	
+	public void setMemHp(String memHp) {
+		this.memHp = memHp;
+	}
+
 	@Override
 	public String toString() {
 		return "ExamMemberVO [memId=" + memId + ", memName=" + memName + ", memJob=" + memJob + ", memLike=" + memLike
-				+ "]";
+				+ ", memHp=" + memHp + "]";
 	}
 	
 	

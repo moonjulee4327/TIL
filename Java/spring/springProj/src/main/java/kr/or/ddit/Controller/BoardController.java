@@ -3,6 +3,7 @@ package kr.or.ddit.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ddit.service.BookService;
+import kr.or.ddit.util.ArticlePage;
 import kr.or.ddit.vo.BookVO;
 import kr.or.ddit.vo.ExamMemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -250,16 +255,74 @@ public class BoardController {
 		return bookVOList;
 	}
 	
+	// 요청 URI : /board/list?currentPage=2
+	// 요청 파라미터 : currentPage=2
 	@GetMapping("/board/list")
-	public String boardList(Model model) {
+	public String boardList(Model model, @RequestParam(defaultValue = "1", required = false) int currentPage, @RequestParam Map<String,String> map) {
 		
-		List<ExamMemberVO> list = this.bookService.examMemList();
+		log.info("currentPage : " + currentPage);
 		
-		log.info("ExamMemberVO : " + list.get(0).toString());
+		// /board/list 이렇게 요청되었을 경우 처리
+		String cPage = map.get("currentPage");
+		String show = map.get("show");
+		String keyword = map.get("keyword");
 		
-		model.addAttribute("list", list);
+		if(cPage == null) {
+			map.put("currentPage", "1");
+		}
+		if(show == null) {
+			map.put("show", "10");
+		}
+		if(keyword == null) {
+			map.put("keyword","");
+		}
+		
+		// map : {currentPage=3, show=50}
+		log.info("map : " + map);
+		
+		List<ExamMemberVO> list = this.bookService.examMemList(map);
+		int total = this.bookService.getTotal(map);
+//		int total = this.bookService.getTotal();
+		
+		// 한 화면에 보여질 행 수
+		int size = Integer.parseInt(map.get("show"));
+		
+//		log.info("ExamMemberVO : " + list.get(0).toString());
+		
+//		model.addAttribute("list", list);
+		
+		// (전체 글 수, 현재 페이지, 한 화면에 보여질 행 수, select 결과 list)
+		model.addAttribute("list", new ArticlePage<ExamMemberVO>(total, currentPage, size, list));
 		
 		return "board/list";
+	}
+	
+	@GetMapping("/board/signUp")
+	public String boardSignUp() {
+		return "board/signUp";
+	}
+	
+	@PostMapping("/board/signUp")
+	public String boardSignUpPost(ExamMemberVO memberVO) {
+		
+		bookService.memberinsert(memberVO);
+		
+		
+		
+		return "board/list";
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("/board/idCheck")
+	public int boardIdCheck(String memId) {
+		
+		log.info("memId : " + memId);
+		
+		int result = this.bookService.memberIdCheck(memId);
+		
+		return result;
+		
 	}
 	
 }

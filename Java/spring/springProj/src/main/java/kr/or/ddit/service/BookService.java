@@ -1,6 +1,7 @@
 package kr.or.ddit.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.vo.AttachVO;
 import kr.or.ddit.vo.BookVO;
@@ -32,5 +33,14 @@ public interface BookService {
 	public int insertAttach(List<AttachVO> attachVOList);
 
 	// ExamMember 전체 조회
-	public List<ExamMemberVO> examMemList();
+	public List<ExamMemberVO> examMemList(Map<String,String> map);
+	
+	// MEM 테이블의 전체 행의 수 
+	public int getTotal(Map<String,String> map);
+	
+	// MEM 테이블 INSERT
+	public int memberinsert(ExamMemberVO memberVO);
+	
+	// MEM 테이블 IDCHECK
+	public int memberIdCheck(String memId);
 }

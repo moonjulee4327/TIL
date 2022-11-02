@@ -1,6 +1,7 @@
 package kr.or.ddit.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,8 +67,26 @@ public class BookServiceImpl implements BookService{
 	
 	// ExamMember 전체 조회
 	@Override
-	public List<ExamMemberVO> examMemList() {
-		return this.bookDao.examMemList();
+	public List<ExamMemberVO> examMemList(Map<String,String> map) {
+		return this.bookDao.examMemList(map);
+	}
+	
+	// MEM 테이블의 전체 행의 수 
+	@Override
+	public int getTotal(Map<String,String> map) {
+		return this.bookDao.getTotal(map);
+	}
+	
+	// MEM 테이블 INSERT
+	@Override
+	public int memberinsert(ExamMemberVO memberVO) {
+		return this.bookDao.memberinsert(memberVO);
+	}
+	
+	// MEM 테이블 IDCHECK
+	@Override
+	public int memberIdCheck(String memId) {
+		return this.bookDao.memberIdCheck(memId);
 	}
 	
 }
