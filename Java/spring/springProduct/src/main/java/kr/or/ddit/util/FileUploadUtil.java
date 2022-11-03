@@ -31,7 +31,7 @@ public class FileUploadUtil {
 	ProductService productService;
 	
 	// 파일 업로드 실행
-	public int FileUploadUtil(MultipartFile[] multipartFiles, String tid) {
+	public int fileUploadUtil(MultipartFile[] multipartFiles, String tid) {
 		log.info("파일 업로드를 수행합니다.");
 		
 		List<AttachVO> attachVOList = new ArrayList<AttachVO>();

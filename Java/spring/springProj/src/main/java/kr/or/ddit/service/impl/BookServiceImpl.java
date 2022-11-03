@@ -3,11 +3,15 @@ package kr.or.ddit.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ddit.dao.BookDao;
 import kr.or.ddit.service.BookService;
+import kr.or.ddit.util.FileUploadUtil;
 import kr.or.ddit.vo.AttachVO;
 import kr.or.ddit.vo.BookVO;
 import kr.or.ddit.vo.ExamMemberVO;
@@ -20,6 +24,9 @@ public class BookServiceImpl implements BookService{
 	// 데이터베이스 접근을 위해 BookDao 인스턴스를 주입 받자
 	@Autowired
 	BookDao bookDao;
+	
+	@Inject
+	FileUploadUtil fileUploadUtil;
 	
 	// BOOK 테이블에 insert
 	// 메소드 재정의
@@ -78,9 +85,15 @@ public class BookServiceImpl implements BookService{
 	}
 	
 	// MEM 테이블 INSERT
+	@Transactional
 	@Override
 	public int memberinsert(ExamMemberVO memberVO) {
-		return this.bookDao.memberinsert(memberVO);
+		//  MEM 테이블 INSERT
+		this.bookDao.memberinsert(memberVO);
+		
+		// FileUploadUtil 활용 -> 업로드, attach 테이블에 insert
+		return this.fileUploadUtil.fileUploadAction(memberVO.getPictureArray(), memberVO.getMemId());
+		
 	}
 	
 	// MEM 테이블 IDCHECK

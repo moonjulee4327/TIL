@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService{
 			// 파일 업로드 및 insert 수행
 			// 밑에 방법은 왜 안되고, 그 밑에 방법은 왜 되는지 알아보기
 //			FileUploadUtil.FileUploadUtil(productVO.getProductImage(), productVO.getProductId());
-			fileUploadUtil.FileUploadUtil(productVO.getProductImage(), productVO.getProductId());
+			fileUploadUtil.fileUploadUtil(productVO.getProductImage(), productVO.getProductId());
 			
 		}
 		

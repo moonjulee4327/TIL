@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ddit.service.BookService;
 import kr.or.ddit.util.ArticlePage;
+import kr.or.ddit.util.FileUploadUtil;
 import kr.or.ddit.vo.BookVO;
 import kr.or.ddit.vo.ExamMemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +38,9 @@ public class BoardController {
 	
 	@Autowired
 	BookService bookService;
+	
+	@Inject
+	FileUploadUtil fileUploadUtil; 
 	
 	/**
 	 * 	1. RequestMapping의 value속성에 요청 경로를 설정
@@ -303,13 +311,17 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board/signUp")
-	public String boardSignUpPost(ExamMemberVO memberVO) {
+	public String boardSignUpPost(MultipartFile[] file, ExamMemberVO memberVO) {
+
+//		bookService.memberinsert(memberVO);
 		
-		bookService.memberinsert(memberVO);
+//		log.info("파일 이름 : " + file.getOriginalFilename());
 		
 		
+		this.bookService.memberinsert(memberVO);
 		
-		return "board/list";
+		
+		return "redirect:/board/list";
 		
 	}
 	
@@ -323,6 +335,137 @@ public class BoardController {
 		
 		return result;
 		
+	}
+	
+	
+	/*
+	  	8. 파일업로드 폼 방식 요청 처리
+	  	파일업로드 폼 파일<input type="file" ... 요소(=태그)> 값을 
+	  	스프링 MVC가 지원하는 MultipartFile 매개변수로 처리함
+	 
+	 */
+	@GetMapping("/board/register06")
+	public String register06() {
+		log.info("register06에 왔다.");
+		return "board/register06";
+	}
+	
+	// <input type="file" name="picture">
+	// MultipartFile picture 이 두개의 명은 같아야 한다.
+	@PostMapping("/board/registerFile01")
+	public String registerFile01Post(MultipartFile picture) {
+		log.info("registerFile01");
+		log.info("originalName : " + picture.getOriginalFilename());
+		log.info("size : " + picture.getSize());
+		log.info("contentType(MINE타입) : " + picture.getContentType());
+		
+		// forward
+		return "board/success";
+	}
+	
+	// <input type="file" name="picture">
+	// MultipartFile picture 이 두개의 명은 같아야 한다.
+	@PostMapping("/board/registerFile02")
+	public String registerFile02Post(String userId, String password, MultipartFile picture) {
+		log.info("registerFile02");
+		log.info("userId : " + userId);
+		log.info("password : " + password);
+		
+		log.info("originalName : " + picture.getOriginalFilename());
+		log.info("size : " + picture.getSize());
+		log.info("contentType(MINE타입) : " + picture.getContentType());
+		
+		// forward
+		return "board/success";
+	}
+	
+	// <input type="file" name="picture">
+	// MultipartFile picture 이 두개의 명은 같아야 한다.
+	@PostMapping("/board/registerFile03")
+	public String registerFile03Post(ExamMemberVO memVO, MultipartFile picture) {
+		log.info("registerFile02");
+		log.info("memVO : " + memVO.toString());
+		
+		log.info("originalName : " + picture.getOriginalFilename());
+		log.info("size : " + picture.getSize());
+		log.info("contentType(MINE타입) : " + picture.getContentType());
+		
+		// forward
+		return "board/success";
+	}
+	
+	// <input type="file" name="picture">
+	// <input type="file" name="picture2">
+	// MultipartFile picture 이 두개의 명은 같아야 한다.
+	@PostMapping("/board/registerFile05")
+	public String registerFile05Post(ExamMemberVO memVO, MultipartFile picture, MultipartFile picture2) {
+		log.info("registerFile05");
+		log.info("memVO : " + memVO.toString());
+		
+		log.info("originalName : " + picture.getOriginalFilename());
+		log.info("size : " + picture.getSize());
+		log.info("contentType(MINE타입) : " + picture.getContentType());
+
+		log.info("originalName : " + picture2.getOriginalFilename());
+		log.info("size : " + picture2.getSize());
+		log.info("contentType(MINE타입) : " + picture2.getContentType());
+		
+		// forward
+		return "board/success";
+	}
+	
+	@PostMapping("/board/registerFile06")
+	public String registerFile06Post(ExamMemberVO memVO, List<MultipartFile> pictureList) {
+		log.info("registerFile06");
+		log.info("memVO : " + memVO.toString());
+		
+		for(MultipartFile picture : pictureList) {
+			log.info("originalName : " + picture.getOriginalFilename());
+			log.info("size : " + picture.getSize());
+			log.info("originalName : " + picture.getContentType());
+		}
+		
+		// forward
+		return "board/success";
+	}
+	
+	@PostMapping("/board/registerFile07")
+	public String registerFile07Post(ExamMemberVO memVO, MultipartFile[] pictures) {
+		log.info("registerFile07");
+		log.info("memVO : " + memVO.toString());
+		
+		MultipartFile[] pictureArray = memVO.getPictureArray();
+		
+		for(MultipartFile picture : pictureArray) {
+			log.info("originalName : " + picture.getOriginalFilename());
+			log.info("size : " + picture.getSize());
+			log.info("originalName : " + picture.getContentType());
+		}
+		
+		// forwarding
+		return "board/success";
+	}
+	
+	@GetMapping("/board/register07")
+	public String register07Get() {
+		// forwarding
+		return "board/register07";
+	}
+	
+	// formData.append("file",file);
+	// 매개변수 MultipartFile file 가 명이 같음
+//	@PostMapping("/board/uploadAjax")
+	@RequestMapping(value = "/board/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> uploadAjax(MultipartFile[] file) {
+		String originalFileName = file[0].getOriginalFilename();
+		log.info("originalName : " + originalFileName);
+		ResponseEntity<String> enity = new ResponseEntity<String>("SUCCESS : " + originalFileName, HttpStatus.OK);
+		
+		UUID uid = UUID.randomUUID();
+		
+		this.fileUploadUtil.fileUploadAction(file, uid.toString());
+		
+		return enity;
 	}
 	
 }
