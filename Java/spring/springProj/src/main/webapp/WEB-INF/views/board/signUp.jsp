@@ -115,6 +115,7 @@ $(function () {
 								</div>
                             </div>
                             <input type="button" id="signUp" onclick="checkAddMem()" class="btn btn-primary btn-user btn-block" value="회원 가입하기" disabled>
+                            <a ></a>
                         </form>
                         <hr>
                         <div class="text-center">
