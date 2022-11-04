@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.or.ddit.service.BookService;
 import kr.or.ddit.util.ArticlePage;
 import kr.or.ddit.util.FileUploadUtil;
+import kr.or.ddit.vo.AttachVO;
 import kr.or.ddit.vo.BookVO;
 import kr.or.ddit.vo.ExamMemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -288,7 +289,7 @@ public class BoardController {
 		// map : {currentPage=3, show=50}
 		log.info("map : " + map);
 		
-		List<ExamMemberVO> list = this.bookService.examMemList(map);
+		List<ExamMemberVO> list = this.bookService.examMemberList(map);
 		int total = this.bookService.getTotal(map);
 //		int total = this.bookService.getTotal();
 		
@@ -467,5 +468,27 @@ public class BoardController {
 		
 		return enity;
 	}
+	
+	// 요청 URI : 
+	// URL :
+	// 요청 파라미터 : 
+	@GetMapping("/board/detail")
+	public String detail(String memId, Model model) {
+		log.info("memId : " + memId);
+		
+		// 회원 상세 정보(1)
+		ExamMemberVO memVO = this.bookService.detail(memId);
+		
+		// 회원 증명 사진(N)
+		List<AttachVO> attachVOList = memVO.getAttachVOList();
+		
+		log.info("memVO : " + memVO);
+		
+		model.addAttribute("memVO", memVO);
+		model.addAttribute("attachVOList", attachVOList);
+		
+		return "board/detail";
+	}
+	
 	
 }

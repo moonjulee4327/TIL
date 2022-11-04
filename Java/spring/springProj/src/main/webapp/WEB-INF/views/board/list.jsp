@@ -97,6 +97,10 @@ $(function() {
 											rowspan="1" colspan="1"
 											aria-label="Age: activate to sort column ascending"
 											style="width: 72px;">취미</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1"
+											aria-label="Age: activate to sort column ascending"
+											style="width: 72px;">연락처</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -114,7 +118,7 @@ $(function() {
 										<tr class="odd">									
 									</c:if>
 											<td class="sorting_1">${row.memId}</td>
-											<td>${row.memName}</td>
+											<td><a href="/board/detail?memId=${row.memId}">${row.memName}</a></td>
 											<td>${row.memJob}</td>
 											<td>${row.memLike}</td>
 											<td>${row.memHp}</td>

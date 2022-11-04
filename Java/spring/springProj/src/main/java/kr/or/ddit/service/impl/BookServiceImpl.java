@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ddit.dao.BookDao;
+import kr.or.ddit.mapper.BookMapper;
 import kr.or.ddit.service.BookService;
 import kr.or.ddit.util.FileUploadUtil;
 import kr.or.ddit.vo.AttachVO;
@@ -25,6 +26,9 @@ public class BookServiceImpl implements BookService{
 	@Autowired
 	BookDao bookDao;
 	
+	@Autowired
+	BookMapper bookMapper;
+	
 	@Inject
 	FileUploadUtil fileUploadUtil;
 	
@@ -33,55 +37,55 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public int insert(BookVO bookVO) {
 		// insert 처리 결과(0 또는 1이상)
-		return this.bookDao.insert(bookVO);
+		return this.bookMapper.insert(bookVO);
 	}
 	
 	// 책 상세보기
 	@Override
 	public BookVO selectDetail(BookVO bookVO) {
 		// bookVO => {bookId=0, title=null, category=null, price=0, insertDate=null}
-		return this.bookDao.selectDetail(bookVO);
+		return this.bookMapper.selectDetail(bookVO);
 	}
 	
 	// 책 목록보기
 	@Override
 	public List<BookVO> list(String keyword) {
-		return this.bookDao.list(keyword);
+		return this.bookMapper.list(keyword);
 	}
 	
 	@Override
 	public List<BookVO> listAll() {
-		return this.bookDao.listAll();
+		return this.bookMapper.listAll();
 	}
 	
 	// 책 수정하기
 	@Override
 	public int update(BookVO bookVO) {
-		return this.bookDao.update(bookVO);
+		return this.bookMapper.update(bookVO);
 	}
 	
 	// 책 삭제하기
 	@Override
 	public int delete(int bookId) {
-		return this.bookDao.delete(bookId);
+		return this.bookMapper.delete(bookId);
 	}
 	
 	// Attach 테이블 insert
 	@Override
 	public int insertAttach(List<AttachVO> attachVOList) {
-		return this.bookDao.insertAttach(attachVOList);
+		return this.bookMapper.insertAttach(attachVOList);
 	}
 	
 	// ExamMember 전체 조회
 	@Override
-	public List<ExamMemberVO> examMemList(Map<String,String> map) {
-		return this.bookDao.examMemList(map);
+	public List<ExamMemberVO> examMemberList(Map<String,String> map) {
+		return this.bookMapper.examMemberList(map);
 	}
 	
 	// MEM 테이블의 전체 행의 수 
 	@Override
 	public int getTotal(Map<String,String> map) {
-		return this.bookDao.getTotal(map);
+		return this.bookMapper.getTotal(map);
 	}
 	
 	// MEM 테이블 INSERT
@@ -89,7 +93,7 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public int memberinsert(ExamMemberVO memberVO) {
 		//  MEM 테이블 INSERT
-		this.bookDao.memberinsert(memberVO);
+		this.bookMapper.memberinsert(memberVO);
 		
 		// FileUploadUtil 활용 -> 업로드, attach 테이블에 insert
 		return this.fileUploadUtil.fileUploadAction(memberVO.getPictureArray(), memberVO.getMemId());
@@ -99,7 +103,13 @@ public class BookServiceImpl implements BookService{
 	// MEM 테이블 IDCHECK
 	@Override
 	public int memberIdCheck(String memId) {
-		return this.bookDao.memberIdCheck(memId);
+		return this.bookMapper.memberIdCheck(memId);
+	}
+	
+	// 상세 보기
+	@Override
+	public ExamMemberVO detail(String memId){
+		return this.bookMapper.detail(memId);
 	}
 	
 }
