@@ -55,7 +55,7 @@ public class BoardController {
 			log.info("글 쓰기 실패!!!!!");		
 		}
 		
-		return "board/list";
+		return "redirect:/board/list";
 	}
 	
 }

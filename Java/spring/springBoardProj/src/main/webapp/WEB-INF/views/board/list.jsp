@@ -23,16 +23,16 @@
             </tr>
           </thead>
           <tbody>
-          	<c:forEach var="list" items="${list}">
-            <tr>
-              <td>${list.writeNo}</td>
-              <td>${list.title}</td>
-              <td class="text-info">${list.writer}<i class="mdi mdi-arrow-up"></i>
-              </td>
-              <td>
-                <label class="badge badge-danger">${list.writeDt}</label>
-              </td>
-            </tr>
+          	<c:forEach var="list" items="${list}" varStatus="stat">
+	            <tr>
+		              <td>${stat.count}</td>
+		              <td>${list.title}</td>
+		              <td class="text-info">${list.writer}<i class="mdi mdi-arrow-up"></i>
+		              </td>
+		              <td>
+		                <label class="badge badge-danger">${list.writeDt}</label>
+		              </td>
+	            </tr>
             </c:forEach>
           </tbody>
         </table>
