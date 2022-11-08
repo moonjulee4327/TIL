@@ -1,6 +1,8 @@
 package kr.or.ddit.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.ddit.service.MemService;
 import kr.or.ddit.vo.MemVO;
@@ -106,5 +111,58 @@ public class PreviewsController {
 		return "previews/list";
 	}
 	
+	// 회원 상세보기
+	// 요청 URI : /previews/detail?userNo=${memVO.userNo}
+	// 요청 파라미터 : userNo=${memVO.userNo}
+	// detail.jsp <- memVO -> PreviewsController.java
+	@GetMapping("/detail")
+	public String memDetail(@RequestParam String userNo, @ModelAttribute MemVO memVO, Model model) {
+		
+		memVO = this.memService.memDetail(userNo);
+//		log.info("memVO : " + memVO);
+		
+		model.addAttribute("memVO", memVO);
+		
+		// forwarding
+		return "previews/detail";
+	}
 	
+	
+	// 요청 URI : /previews/detailPwCheck
+	// 요청 파라미터(json) : {"userPw":"java"}
+	@ResponseBody
+	@PostMapping("/detailPwCheck")
+	public Map<String, String> detailPwCheck(@RequestBody MemVO memVO) {
+		log.info("MemVO : " + memVO.toString());
+		
+		// 비밀번호 확인
+		int result = this.memService.detailPwCheck(memVO);
+		
+		//결과 리턴(1 이상이면 비밀번호 맞음. 0이면 비밀번호 다름)
+		Map<String, String> resultMap = new HashMap<String, String>();
+		resultMap.put("result", result + "");
+		
+		return resultMap;
+	}
+	
+	// 요청 URI : /previews/updatePost
+	// 요청 파라미터 : MemVO 
+	@PostMapping("/updatePost")
+	public String updatePost(@ModelAttribute MemVO memVO) {
+		log.info("memVO : " + memVO.toString());
+		
+		// 회원정보 변경
+		int result = this.memService.memUpdate(memVO);
+		log.info("result : " + result);
+		
+		return "redirect:/previews/detail?userNo=" + memVO.getUserNo();
+	}
+	
+	@PostMapping("/deletePost")
+	public String deletePost(@ModelAttribute MemVO memVO) {
+		
+		this.memService.memDelete(memVO);
+		
+		return "redirect:/previews/list";
+	}
 }

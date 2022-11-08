@@ -156,7 +156,7 @@ public class MemController {
 				multipartFile.transferTo(saveFile);
 				
 				AttachVO attachVO = new AttachVO();
-				attachVO.setUserNo(memVO.getUserNo());
+//				attachVO.setUserNo(memVO.getUserNo());
 				attachVO.setSeq(cnt++);	//1을 attachVO에 setting한 후에 1 증가
 				attachVO.setFilename(memVO.getFilename());
 				//Long.valueOf(multipartFile.getSize()).intValue()

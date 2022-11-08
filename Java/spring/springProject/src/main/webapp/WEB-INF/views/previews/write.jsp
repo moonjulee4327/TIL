@@ -114,5 +114,8 @@ function fn_chk(){
 	function minusFile() {
 		$("input[id='fileNamePlus'][name='attachVOList["+(--cnt)+"].filename']").remove();
 		console.log("cnt : " + cnt);
+		if(cnt <= 0){
+			cnt = 1;
+		}
 	}
 </script>
