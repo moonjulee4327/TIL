@@ -158,6 +158,8 @@ public class PreviewsController {
 		return "redirect:/previews/detail?userNo=" + memVO.getUserNo();
 	}
 	
+	// 요청 URI : /previews/deletePost
+	// 요청 파라미터 : MemVO
 	@PostMapping("/deletePost")
 	public String deletePost(@ModelAttribute MemVO memVO) {
 		
