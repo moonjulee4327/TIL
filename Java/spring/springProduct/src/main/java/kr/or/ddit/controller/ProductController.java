@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +39,12 @@ public class ProductController {
 	ProductService productService;
 	
 	// 상품 목록
+	// 1) 로그인한 사용자만 접근 가능
+	// @PreAuthorize("isAuthenticated()")
+	// 2) 회원권한을 가진 사용자만 접근 가능
+	// @PreAuthorize("hasRole('ROLE_MEMBER')")
+	// 3) 회원 권한 또는 관리자 권한을 가진 사용자만 접근 가능
+	@PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public ModelAndView products(ModelAndView mav, @RequestParam(value = "keyword", required = false) String keyword) {
 		

@@ -20,7 +20,8 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	@GetMapping("/register")
+	@GetMapping(
+)
 	public String registerForm() {
 		log.info("registerForm : access to member");
 		

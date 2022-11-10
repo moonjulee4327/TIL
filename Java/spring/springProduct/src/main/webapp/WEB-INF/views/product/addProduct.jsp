@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,9 +59,15 @@
 		
 		// 이미지 미리보기 끝////////////////////////////
 		
+		let header = "${_csrf.headerName}";
+		let token = "${_csrf.token}";
+		
 		// PRODUCT 테이블의 PRODUCT_ID 자동 생성
 		$.ajax({
 			url : "/getProductId",
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header,token);
+			},
 			type : "post",
 			dataType : "json",
 			success : function(result) {
@@ -155,6 +162,12 @@
 				</div>
 			</div>
 		</form>
+		<!-- 사용자 정보 -->
+		<p>principal : <sec:authentication property="principal"/></p>
+		<p>memberVO : <sec:authentication property="principal.memberVO"/></p>
+		<p>사용자 이름 : <sec:authentication property="principal.memberVO.memName"/></p>
+		<p>사용자 아이디 : <sec:authentication property="principal.memberVO.memId"/></p>
+		<p>사용자 권한 리스트 : <sec:authentication property="principal.memberVO.memberAuthVOList"/></p>
 	</div>
 	<!-- ========================= 상품 등록 끝 ================================= -->
 	<jsp:include page="footer.jsp"/>
