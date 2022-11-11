@@ -1,6 +1,7 @@
 package kr.or.ddit.security;
 
 import java.util.Collection;
+
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -8,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import kr.or.ddit.vo.MemberVO;
+
 
 public class CustomUser extends User{
 	
