@@ -20,4 +20,18 @@ public class BookServiceImpl implements BookService{
 		return this.bookMapper.list();
 	}
 	
+	@Override
+	public BookVO detail(int bookId) {
+		return this.bookMapper.detail(bookId);
+	}
+	
+	@Override
+	public int update(BookVO bookVO) {
+		return this.bookMapper.update(bookVO);
+	}
+	
+	@Override
+	public int insert(BookVO bookVO) {
+		return this.bookMapper.insert(bookVO);
+	}
 }

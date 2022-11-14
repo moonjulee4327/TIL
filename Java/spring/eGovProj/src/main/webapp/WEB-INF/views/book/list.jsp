@@ -43,7 +43,7 @@
 								<c:if test="${stat.count%2!=0}"><tr class="odd"></c:if>
 								<c:if test="${stat.count%2==0}"><tr class="even"></c:if>								
 									<td class="dtr-control sorting_1" tabindex="0">${list.bookId}</td>
-									<td>${list.title}</td>
+									<td><a href="/book/detail?bookId=${list.bookId}">${list.title}</a></td>
 									<td>${list.category}</td>
 									<td>${list.price}</td>
 									<td>${list.insertDate}</td>
@@ -101,6 +101,8 @@
 <!-- 			</div> -->
 		</div>
 	</div>
-
+	<div style="float: right;">
+		<a href="/book/addBookForm" id="addBookForm" class="btn btn-block bg-gradient-primary btn-sm" style="width: 100px; float: left: ;" onclick="update()">도서등록</a>
+	</div>
 </div>
 

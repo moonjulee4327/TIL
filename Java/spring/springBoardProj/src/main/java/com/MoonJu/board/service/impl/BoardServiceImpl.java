@@ -23,6 +23,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardVO> selectList(){
 		return this.boardMapper.selectList();
-	};
+	}
+	
+	@Override
+	public BoardVO detail(int writeNo) {
+		return this.boardMapper.detail(writeNo);
+	}
+	
+	@Override
+	public int update(BoardVO boardVO) {
+		return this.boardMapper.update(boardVO);
+	}
 	
 }

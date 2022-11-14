@@ -7,60 +7,55 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.MoonJu.board.service.BoardService;
 import com.MoonJu.board.vo.BoardVO;
 
 import lombok.extern.slf4j.Slf4j;
 
+@RequestMapping("/spa")
 @Slf4j
-@RequestMapping("/board")
 @Controller
-public class BoardController {
+public class SpaController {
 	
 	@Autowired
 	BoardService boardService;
 	
 	@GetMapping("/")
-	public String boardIndex() {
-		
-		return "index";
-	}
-	
-	@GetMapping("/list")
-	public String boardList(Model model) {
+	public String index(Model model) {
 		
 		List<BoardVO> list = this.boardService.selectList();
 		
 		model.addAttribute("list", list);
 		
-		return "board/list";
+		return "spa/spaIndex";
 	}
 	
-	@GetMapping("/write")
-	public String boardInsertForm() {
-			
-		return "board/writeForm";
-	}
-	
-	@PostMapping("/writePost")
-	public String boardInsert(BoardVO boardVO) {
-		
-		int result = boardService.insertBoard(boardVO);
-		
-		if(result > 0) {
-			log.info("글 쓰기 성공");			
-		}else {
-			log.info("글 쓰기 실패!!!!!");		
-		}
-		
-		return "redirect:/board/list";
-	}
-	
+	@ResponseBody
 	@GetMapping("/detail")
-	public String detail() {
-		return "";
+	public BoardVO detail(@RequestParam int writeNo) {
+		
+//		log.info("writeNo : " + writeNo);
+		
+		BoardVO data = this.boardService.detail(writeNo);
+		
+		return data;
 	}
+	
+	@ResponseBody
+	@PostMapping("/update")
+	public int update(@RequestBody BoardVO boardVO) {
+		
+		log.info("boardVO : " + boardVO.toString());
+		
+		int result = this.boardService.update(boardVO);
+		
+		return result;
+	}
+	
 	
 }

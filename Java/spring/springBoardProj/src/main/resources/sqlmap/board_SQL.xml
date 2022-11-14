@@ -8,9 +8,19 @@
 		VALUES(#{writeNo},#{title},#{content},#{writer},SYSDATE)
 	</insert>
 	
-	<select id="selectList" resultType="boardVO">
+	<select id="selectList" resultType="com.MoonJu.board.vo.BoardVO">
 		SELECT WRITE_NO, TITLE, WRITER, WRITE_DT
 		FROM BOARD
 	</select>
 	
+	<select id="detail" parameterType="int" resultType="com.MoonJu.board.vo.BoardVO">
+		SELECT WRITE_NO, TITLE, CONTENT, WRITER, WRITE_DT
+		FROM BOARD
+		WHERE WRITE_NO = #{writeNo}
+	</select>
+	
+	<update id="update" parameterType="com.MoonJu.board.vo.BoardVO">
+		UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content}, WRITER = #{writer}
+		WHERE WRITE_NO = #{writeNo}
+	</update>
 </mapper>

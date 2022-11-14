@@ -15,4 +15,10 @@ public interface BoardMapper {
 	// 게시판 리스트 조회
 	public List<BoardVO> selectList();
 	
+	// 게시판 상세 조회
+	public BoardVO detail(int writeNo);
+	
+	// 게시글 수정하기
+	public int update(BoardVO boardVO);
+	
 }

@@ -10,6 +10,26 @@
 		FROM BOOK
 	</select>
 	
+	<select id="detail" parameterType="int" resultType="kr.or.ddit.vo.BookVO">
+		SELECT BOOK_ID, TITLE, CATEGORY, PRICE, INSERT_DATE, CONTENT
+		FROM BOOK
+		WHERE BOOK_ID = #{bookId}
+	</select>
+	
+	<update id="update" parameterType="kr.or.ddit.vo.BookVO">
+		UPDATE BOOK 
+		SET TITLE = #{title}, CATEGORY = #{category}, PRICE = #{price} 
+		WHERE BOOK_ID = #{bookId}
+	</update>
+	
+	<insert id="insert" parameterType="kr.or.ddit.vo.BookVO">
+		<selectKey order="BEFORE" keyProperty="bookId" resultType="int">
+			SELECT NVL(MAX(BOOK_ID),0) + 1 FROM BOOK
+		</selectKey>
+	
+		INSERT INTO BOOK(BOOK_ID, TITLE, CATEGORY, PRICE, INSERT_DATE, CONTENT) 
+		VALUES (#{bookId},#{title},#{category},#{price},sysdate,#{content})
+	</insert>
 </mapper>
 
 
