@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
@@ -31,11 +32,11 @@
 								<th class="sorting" tabindex="0" aria-controls="example1"
 									rowspan="1" colspan="1"
 									aria-label="Engine version: activate to sort column ascending"
-									style="display: none;">price</th>
+									>price</th>
 								<th class="sorting" tabindex="0" aria-controls="example1"
 									rowspan="1" colspan="1"
 									aria-label="CSS grade: activate to sort column ascending"
-									style="display: none;">Insert Date</th>
+									>Insert Date</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -45,8 +46,8 @@
 									<td class="dtr-control sorting_1" tabindex="0">${list.bookId}</td>
 									<td><a href="/book/detail?bookId=${list.bookId}">${list.title}</a></td>
 									<td>${list.category}</td>
-									<td>${list.price}</td>
-									<td>${list.insertDate}</td>
+									<td><fmt:formatNumber value="${list.price}" pattern="#,###"/></td>
+									<td><fmt:formatDate value="${list.insertDate}" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -55,8 +56,8 @@
 								<th rowspan="1" colspan="1">bookId</th>
 								<th rowspan="1" colspan="1">Title</th>
 								<th rowspan="1" colspan="1">Category</th>
-								<th rowspan="1" colspan="1" style="display: none;">Price</th>
-								<th rowspan="1" colspan="1" style="display: none;">Insert Date</th>
+								<th rowspan="1" colspan="1">Price</th>
+								<th rowspan="1" colspan="1">Insert Date</th>
 							</tr>
 						</tfoot>
 					</table>

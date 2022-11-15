@@ -1,6 +1,7 @@
 package kr.or.ddit.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -16,6 +17,7 @@ public class BookVO {
 	private Date insertDate;
 	// 책 내용
 	private String content;
+	private List<AttachVO> attachVOList;
 	
 	public BookVO() {}
 
@@ -67,10 +69,19 @@ public class BookVO {
 		this.content = content;
 	}
 
+	public List<AttachVO> getAttachVOList() {
+		return attachVOList;
+	}
+
+	public void setAttachVOList(List<AttachVO> attachVOList) {
+		this.attachVOList = attachVOList;
+	}
+
 	@Override
 	public String toString() {
 		return "BookVO [bookId=" + bookId + ", title=" + title + ", category=" + category + ", price=" + price
-				+ ", insertDate=" + insertDate + ", content=" + content + "]";
+				+ ", insertDate=" + insertDate + ", content=" + content + ", attachVOList=" + attachVOList + "]";
 	}
-
+	
+	
 }

@@ -37,6 +37,13 @@
 					<input type="text" id="price" name="price" class="form-control" value='<fmt:formatNumber pattern="#,###" value="${data.price}"/>' readonly="readonly"/>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label>내용</label>
+				<div class="input-group">
+					<textarea id="content" name="content" readonly="readonly">${data.content}</textarea>
+				</div>
+			</div>
 			
 			<div class="form-group">
 				<label>입력 일자</label>
@@ -45,12 +52,6 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label>내용</label>
-				<div class="input-group">
-					<textarea id="content" name="content" class="form-control" readonly="readonly">${data.content}</textarea>
-				</div>
-			</div>
 		</form>
 	</div>
 	<!-- 일반모드 시작 -->
@@ -81,6 +82,14 @@
 		$("#title").removeAttr("readonly");
 		$("#category").removeAttr("readonly");
 		$("#price").removeAttr("readonly");
+		$("#content").removeAttr("readonly");
+		
+		$("#title").attr("required", true);
+		$("#category").attr("required", true);
+		$("#price").attr("required", true);
+		$("#content").attr("required", true);
+		
+		CKEDITOR.instances['content'].setReadOnly(false);
 		
 		$("#detailForm").css("display","none");
 		$("#updateForm").css("display","block");

@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,10 +28,6 @@
   <link rel="stylesheet" href="/resources/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/resources/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-  <!-- datatables -->
-  <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -41,22 +36,26 @@
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="/resources/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
+
+  <!-- Navbar -->
   <!-- header 시작 -->
   <tiles:insertAttribute name="header"/>
   <!-- header 끝 -->
-  
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
   <!-- aside 시작 -->
-  <tiles:insertAttribute name="aside"/>
+  <tiles:insertAttribute name="aside2"/>
   <!-- aside 끝 -->
 
-
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">${bodyTitle}</h1>
+            <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -68,12 +67,12 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-  	<!-- body 시작 -->
+	<!-- body 시작 -->
   	<tiles:insertAttribute name="body"/>
   	<!-- body 끝 -->
+    <!-- /.content -->
   </div>
-  
+  <!-- /.content-wrapper -->
   <!-- footer 시작 -->
   <tiles:insertAttribute name="footer"/>
   <!-- footer 끝 -->
@@ -139,7 +138,6 @@
 <script src="/resources/AdminLTE/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/resources/AdminLTE/dist/js/demo.js"></script>
-<!-- Page specific script -->
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -157,6 +155,5 @@
     });
   });
 </script>
-
 </body>
 </html>

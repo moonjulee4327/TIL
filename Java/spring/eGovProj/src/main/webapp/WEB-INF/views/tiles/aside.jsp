@@ -140,7 +140,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
-             	도서관리
+             	도서 관리
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -148,17 +148,43 @@
             <li class="nav-item">
               <a href="/book/list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>도서목록</p>
+                <p>도서 목록</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/book/register" class="nav-link">
+              <a href="/book/addBookForm" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>도서등록</p>
+                <p>도서 등록</p>
               </a>
             </li>
           </ul>
         </li>
+        <!-- 도서관리 메뉴 끝 -->
+        <!-- 이미지 갤러리 목록 시작 -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+             	이미지 갤러리
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/gallery/list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>목록 보기</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/gallery/register" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>이미지 등록</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- 이미지 갤러리 목록 끝 -->
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>

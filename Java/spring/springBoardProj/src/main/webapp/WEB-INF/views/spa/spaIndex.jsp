@@ -145,10 +145,13 @@ function update() {
 		dataType : "json",
 		success : function (result) {
 			console.log("result : " + result);
-// 			$.ajax({
-// 				url : "/spa/",
-// 				type : "get"
-// 			})
+			$.ajax({
+				url : "/spa/list",
+				type : "get",
+				success : function(result) {
+					
+				}
+			})
 		}
 	});
 }

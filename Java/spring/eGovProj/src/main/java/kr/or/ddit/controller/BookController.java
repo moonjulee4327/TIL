@@ -90,4 +90,8 @@ public class BookController {
 		return "redirect:/book/list";
 	}
 	
+	@GetMapping("comfirm")
+	public String comfirm() {
+		return "/tiles/index2";
+	}
 }

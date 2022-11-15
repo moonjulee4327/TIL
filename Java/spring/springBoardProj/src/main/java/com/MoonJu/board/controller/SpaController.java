@@ -57,5 +57,11 @@ public class SpaController {
 		return result;
 	}
 	
+	@ResponseBody
+	@GetMapping("/list")
+	public List<BoardVO> list(){
+		return this.boardService.selectList();
+	}
+	
 	
 }
