@@ -44,4 +44,15 @@
 		FROM BOOK
 		ORDER BY TITLE ASC
 	</select>
+	
+	<update id="imageUpdate" parameterType="kr.or.ddit.vo.AttachVO">
+		UPDATE ATTACH
+		SET FILENAME = #{filename}
+		WHERE USER_NO = #{userNo} AND SEQ = #{seq}
+	</update>
+	
+	<delete id="imageDelete">
+		DELETE FROM ATTACH 
+		WHERE USER_NO = #{userNo} AND SEQ = #{seq}
+	</delete>
 </mapper>
