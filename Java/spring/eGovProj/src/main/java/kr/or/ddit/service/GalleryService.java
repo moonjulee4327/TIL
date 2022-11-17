@@ -15,4 +15,6 @@ public interface GalleryService {
 
 	public int imageDelete(AttachVO attachVO);
 
+	public List<BookVO> searchBook(BookVO bookVO);
+
 }

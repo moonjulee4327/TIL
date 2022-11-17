@@ -47,8 +47,8 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title"></h4>
-				<input type="text" id="txtUserNo" value="" />
-				<input type="text" id="txtSeq" value="" />
+				<input type="hidden" id="txtUserNo" value="" />
+				<input type="hidden" id="txtSeq" value="" />
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">×</span>
@@ -280,9 +280,9 @@ $(function () {
 		// contentType : 보내는 타입
 		// dataType : 응답 데이터 타입
 		$.ajax({
-			url : "./deletePost",
+			url : "/gallery/deletePost",
 			contentType : "application/json;charset=utf-8",
-			data : data,
+			data :  JSON.stringify(data),
 			dataType : "json",
 			type : "post",
 			success : function(result) {

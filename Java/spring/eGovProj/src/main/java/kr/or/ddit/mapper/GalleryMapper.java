@@ -14,4 +14,7 @@ public interface GalleryMapper {
 	public int imageUpdate(AttachVO attachVO);
 	
 	public int imageDelete(AttachVO attachVO);
+	
+	public List<BookVO> searchBook(BookVO bookVO);
+		
 }
