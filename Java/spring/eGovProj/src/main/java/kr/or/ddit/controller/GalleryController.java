@@ -1,12 +1,14 @@
 package kr.or.ddit.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -195,6 +197,99 @@ public class GalleryController {
 		List<BookVO> bookVOList = this.galleryService.searchBook(bookVO);
 		
 		return bookVOList;
+	}
+	
+	/*
+	 * 	요청 파라미터 : uploadFile[] , bookId => 폼으로 오므로 RequestBody는 안쓴다.
+	 * 	응답 데이터 : {"bookId":"3","status":"1"}
+	 * 
+	 * */
+	@ResponseBody
+	@PostMapping("/uploadAjaxAction")
+	public Map<String, String> uploadAjaxAction(MultipartFile[] uploadFile, @RequestParam String bookId) {
+		log.info("uploadFile[0].getOriginalFilename() : " + uploadFile[0].getOriginalFilename() + ", bookId : " + bookId);
+		
+		List<AttachVO> attachVOList = new ArrayList<AttachVO>();
+		
+		// ATTACH 테이블의 bookId에 해당하는 MAX(SEQ)+1 를 가져와보자(이미 첨부 파일을 가지고 있다면...)
+		int seq = this.galleryService.getSeq(bookId);
+		log.info("seq : " + seq);
+		
+		// 파일 업로드 + 썸네일 이미지
+		// 윈도우 업로드 경로 설정
+		String uploadFolder = "C:\\eGovFrameDev-3.10.0-64bit\\workspace\\eGovProj\\src\\main\\webapp\\resources\\upload";
+		
+		// 연월일 폴더 생성
+		File uploadPath = new File(uploadFolder, getFolder());
+		log.info("uploadPath : " + uploadPath);
+		
+		// 만약 연/월/일 해당 폴더가 없으면 생성
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		String uploadFileName = "";
+		for(MultipartFile multipartFile : uploadFile) {
+			AttachVO attachVO = new AttachVO();
+			uploadFileName = multipartFile.getOriginalFilename(); 
+
+			UUID uuid = UUID.randomUUID();
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
+			
+			File saveFile = new File(uploadPath, uploadFileName);
+			
+			try {
+				multipartFile.transferTo(saveFile);
+				
+//				attachVO.setUserNo(bookId);
+//				attachVO.setSeq(seq++);
+//				attachVO.setFilename(uploadFileName);
+//				attachVO.setFilesize(Long.valueOf(multipartFile.getSize()).intValue());
+//				
+//				attachVOList.add(attachVO);
+				
+				if(checkImageType(saveFile)) {
+					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_"+uploadFileName));
+					
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					thumbnail.close();
+				}
+				
+				String filename = "/" + getFolder().replace("\\", "/") + "/" + uploadFileName;
+				
+				attachVO.setUserNo(bookId);
+				attachVO.setSeq(seq++);
+				attachVO.setFilename(filename);
+				attachVO.setFilesize(Long.valueOf(multipartFile.getSize()).intValue());
+				
+				attachVOList.add(attachVO);
+				
+				
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+				return null;
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+		}
+		
+		int result = this.galleryService.uploadAjaxAction(attachVOList);
+		
+		if(result > 0) {
+			log.info("성공");
+		}else {
+			log.info("실패");
+		}
+		
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("bookId", bookId);
+		map.put("status", String.valueOf((result)));
+		
+		return map;
 	}
 	
 }

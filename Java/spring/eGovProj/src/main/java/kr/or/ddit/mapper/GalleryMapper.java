@@ -16,5 +16,8 @@ public interface GalleryMapper {
 	public int imageDelete(AttachVO attachVO);
 	
 	public List<BookVO> searchBook(BookVO bookVO);
-		
+	
+	public int uploadAjaxAction(List<AttachVO> attachVOList);
+	
+	public int getSeq(String bookId);
 }

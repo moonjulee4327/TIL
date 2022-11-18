@@ -8,6 +8,7 @@
 			<div class="card card-primary">
 				<div class="card-header">
 					<h3 class="card-title">도서 정보</h3>
+					<input type="text" name="bookId" id="bookId" />
 					<div class="card-tools">
 						<button type="button" class="btn btn-tool"
 							data-card-widget="collapse" title="Collapse">
@@ -21,7 +22,7 @@
 							<label for="inputName">제목</label>
 						</div>
 						<div style="width: 70%; float: left;"> 
-							<input type="text" id="title" name="title" class="form-control"/>
+							<input type="text" id="title" name="title" class="form-control" readonly="readonly"/>
 						</div>
 						<div style="width: 30%; float: right;">
 							<button type="button" data-toggle="modal" data-target="#modal-lg" class="btn btn-outline-secondary btn-block btn-flat"><i class="fa fa-book"></i>책 검색</button>
@@ -29,7 +30,7 @@
 					</div>
 					<div class="form-group">
 						<label for="inputStatus">카테고리</label> 
-						<select id="category" name="category" class="form-control custom-select">
+						<select id="category" name="category" class="form-control custom-select" disabled="disabled">
 							<option value="a0101" selected>소설</option>
 							<option value="a0102">에쎄이</option>
 							<option value="a0103">어린이</option>
@@ -40,15 +41,15 @@
 					</div>
 					<div class="form-group">
 						<label for="price">가격</label> 
-						<input type="text" id="price" name="price" class="form-control">
+						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
 					</div>
 					<div class="form-group">
 						<label for="insertDate">등록일자</label> 
-						<input type="text" id="insertDate" name="insertDate" class="form-control">
+						<input type="text" id="insertDate" name="insertDate" class="form-control" readonly="readonly">
 					</div>
 					<div class="form-group">
 						<label for="content">책 내용</label>
-						<textarea id="content" name="content" class="form-control" rows="4"></textarea>
+						<textarea id="content" name="content" class="form-control" rows="4" readonly="readonly"></textarea>
 					</div>
 				</div>
 
@@ -66,22 +67,27 @@
 						</button>
 					</div>
 				</div>
-				<div class="card-body" style="display: block;">
-					<div class="form-group">
-						<label for="inputEstimatedBudget">Estimated budget</label> <input
-							type="number" id="inputEstimatedBudget" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="inputSpentBudget">Total amount spent</label> <input
-							type="number" id="inputSpentBudget" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="inputEstimatedDuration">Estimated project
-							duration</label> <input type="number" id="inputEstimatedDuration"
-							class="form-control">
+				<!-- 미리보기 이미지 보이기 시작 -->
+				<div id="card-images" class="card-body" style="display: block;">
+				
+				</div>
+				<!-- 미리보기 이미지 보이기 끝 -->
+				<div class="card-footer">
+					<div class="input-group">
+						<div class="custom-file">
+							<input type="file" name="uploadFile" class="custom-file-input"
+								id="input_imgs" multiple="multiple" disabled="disabled" > <label
+								class="custom-file-label" for="exampleInputFile">Choose
+								file</label>
+						</div>
+						<div class="input-group-append">
+							<span class="input-group-text" id="uploadBtn" style="cursor: pointer;">Upload</span>
+						</div>
+					 	<button type="button" class="btn btn-success swalDefaultSuccess">
+		                  Launch Success Toast
+		                </button>
 					</div>
 				</div>
-
 			</div>
 
 		</div>
@@ -111,17 +117,15 @@
 				<!-- 검색 영역 시작 -->
 				<div class="row">
 					<div class="col-md-8 offset-md-2">
-						<form action="simple-results.html">
-							<div class="input-group">
-								<input type="search" id="searchVal" class="form-control form-control-lg"
-									placeholder="Type your keywords here">
-								<div class="input-group-append">
-									<button type="submit" id ="searchBtn" class="btn btn-lg btn-default">
-										<i class="fa fa-search"></i>
-									</button>
-								</div>
+						<div class="input-group">
+							<input type="text" id="searchVal" class="form-control form-control-lg"
+								placeholder="Type your keywords here">
+							<div class="input-group-append">
+								<button type="button" id ="searchBtn" class="btn btn-lg btn-default">
+									<i class="fa fa-search"></i>
+								</button>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 				<!-- 검색 영역 끝 -->
@@ -134,9 +138,8 @@
 				</div>
 				<!-- 결과 영역 끝-->
 			</div>
-			<div class="modal-footer justify-content-between">
+			<div class="modal-footer"> <!-- justify-content-between -->
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 	</div>
@@ -147,6 +150,95 @@
 CKEDITOR.replace("content");
 let dtResult = "";
 $(function() {
+	// 이미지 미리보기 시작
+	// 이미지 객체를 담을 배열
+	let sel_file = [];
+	$("#input_imgs").on("change",handleImgFileSelect);
+	
+	// e : onchange 이벤트 객체
+	function handleImgFileSelect(e) {
+		// e.target : <input type="file"
+		let files = e.target.files;
+		// 이미지 오브젝트 배열
+		let fileArr = Array.prototype.slice.call(files);
+		
+		// f : 각각의 이미지 파일
+		fileArr.forEach(function(f) {
+			if(!f.type.match("image.*")){
+				alert("이미지 확장자만 가능합니다.");
+				// 함수 종료
+				return;
+			}
+			// 이미지를 배열에 넣음
+			sel_file.push(f);
+			
+			let reader = new FileReader();
+			// e : 리더가 이미지 읽을 때 그 이벤트
+			reader.onload = function(e) {
+				let img_html = "<img src=\"" + e.target.result + "\" style='width: 50%' />";
+				$("#card-images").append(img_html);
+			}
+			// 다음 이미지 파일(f)을 위해 리더를 초기화
+			reader.readAsDataURL(f);
+		});
+	}
+	// 이미지 미리보기 끝
+	
+	// ajax 파일 업로드 시작
+	$("#uploadBtn").on("click", function() {
+		// 가상 폼
+		let formData = new FormData();
+		let inputFile = $("input[name='uploadFile']");
+		// 이미지 파일들을 변수에 담음
+		let files = inputFile[0].files;
+		
+		console.log("files : ", files);
+		
+		for(let i=0; i<files.length; i++){
+			// uploadFile[]
+			formData.append("uploadFile", files[i]);
+		}
+		
+		// /upload/uploadAjaxAction
+		// ATTACH 테이블 user_no 컬럼의 데이터에는 bookId가 들어가야 함
+		let bookId = $("#bookId").val();
+		console.log("bookId : " , bookId);
+		
+		formData.append("bookId", bookId);
+		// ATTACH 테이블의 seq 컬럼의 데이터는 1부터 1씩 자동증가
+		$.ajax({
+			url : "/gallery/uploadAjaxAction",
+			processData : false,
+			contentType : false,
+			data : formData,
+			dataType : "json",
+			type : "post",
+			success : function(result) {
+				console.log("result : ", JSON.stringify(result));
+				
+				if(result.status > 0){ // 다중 insert 성공
+				     var Toast = Swal.mixin({
+				       toast: true,
+				       position: 'top-end',
+				       showConfirmButton: false,
+				       timer: 3000
+				     });
+					
+					Toast.fire({
+					      icon: 'success',
+					      title: '이미지 등록을 성공했습니다!'
+				    });
+// 					location.href = "/gallery/list?bookId=" + result.bookId;
+				}else{
+					alert("실패");
+				}
+			}
+		});
+		
+		
+	});
+	// ajax 파일 업로드 끝
+		
 	$("#searchBtn").on("click", function(event) {
 		event.preventDefault();
 		let searchVal = $("#searchVal").val();
@@ -198,6 +290,8 @@ $(function() {
 	                $(".list-group").append(content);   
 
 				});
+				
+				
 			}
 		});
 	});
@@ -209,11 +303,38 @@ function clickVal(item) {
 // 	opener.$("#title").val() = $("#chVal").html();
 	// $(parent.document).find("#title").val($("#chVal").html());
 	// console.log("item : ", item.title);
+	console.log("item.category : ", item.category);
+// 	console.log("$('#category option').val() : ", $("#category options").val());
+// 	$(선택자).is(':selected')
+	$("#bookId").val(item.bookId);
 	$("#title").val(item.title);
+	$("#category").val(item.category).prop("selected", true);
 	$("#price").val(item.price);
 	$("#insertDate").val(dtResult);
 	$("#content").val(item.content);
 	CKEDITOR.instances.content.setData(item.content);
+	
+	$("#modal-lg").modal("hide"); // hide : 모달창 닫음 , show : 모달창 보임
+	
+	$("#input_imgs").attr("disabled",false);
+	return;
 }
 
+
+
+// $(function() {
+//     var Toast = Swal.mixin({
+//       toast: true,
+//       position: 'top-end',
+//       showConfirmButton: false,
+//       timer: 3000
+//     });
+
+// $('.swalDefaultSuccess').click(function() {
+//     Toast.fire({
+//       icon: 'success',
+//       title: '성공'
+//     })
+//   });
+// });
 </script>

@@ -17,4 +17,8 @@ public interface GalleryService {
 
 	public List<BookVO> searchBook(BookVO bookVO);
 
+	public int uploadAjaxAction(List<AttachVO> attachVOList);
+
+	public int getSeq(String bookId);
+
 }

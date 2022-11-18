@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html>
+<html class>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,8 +33,10 @@
   <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/resources/AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="sidebar-mini sidebar-closed sidebar-collapse">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -140,6 +142,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/resources/AdminLTE/dist/js/demo.js"></script>
 <!-- Page specific script -->
+<!-- SweetAlert2 -->
+<script src="/resources/AdminLTE/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
