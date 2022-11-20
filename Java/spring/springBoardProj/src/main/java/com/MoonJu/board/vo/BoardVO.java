@@ -1,6 +1,7 @@
 package com.MoonJu.board.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -13,5 +14,5 @@ public class BoardVO {
 	private String writer;
 	private Date writeDt;
 	
-	
+	private List<AttachFileBoardVO> attachFileBoardVOList;
 }

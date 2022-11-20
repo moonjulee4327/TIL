@@ -13,7 +13,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 <!-- 		<property name="username" value="jspexam"/> -->
-		<property name="username" value="pc17"/>
+		<property name="username" value="mj"/>
 		<property name="password" value="java"/>
 	</bean>
 	
