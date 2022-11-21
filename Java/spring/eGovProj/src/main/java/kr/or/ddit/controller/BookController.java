@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.or.ddit.security.CustomUser;
 import kr.or.ddit.service.BookService;
+import kr.or.ddit.service.MemberService;
 import kr.or.ddit.vo.BookVO;
+import kr.or.ddit.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,6 +30,9 @@ public class BookController {
 	
 	@Autowired
 	BookService bookService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -76,8 +86,16 @@ public class BookController {
 		return "redirect:/book/detail?bookId=" + bookVO.getBookId();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/addBookForm")
 	public String registerForm() {
+		
+//		MemberVO memVO = this.memberService.read(memberVO.getMemId());
+		
+//		log.info("auth : " + auth.getName());
+		
+//		model.addAttribute("memberVO", memVO);
+		
 		return "book/register";
 	}
 	

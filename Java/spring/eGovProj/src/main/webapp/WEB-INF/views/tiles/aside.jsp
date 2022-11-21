@@ -1,25 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
     <img src="/resources/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <span class="brand-text font-weight-light">성균관</span>
   </a>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
+    <sec:authorize access="isAnonymous()">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <img src="/resources/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">비로그인</a>
+<%-- 		<sec:authentication property="principal.memberVO"/> --%>
       </div>
     </div>
-
+    </sec:authorize>
+    
+    <sec:authorize access="isAuthenticated()">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="/resources/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+      <a href="#" class="d-block">
+      	<sec:authentication property="principal.memberVO.memName"/>
+		(<sec:authentication property="principal.memberVO.memName"/>)님 반갑습니다.
+	  </a>
+		<form action="/logout" method="post">
+			<button type="submit" class="btn btn-block bg-gradient-primary btn-sm">로그아웃</button>
+			<sec:csrfInput/>
+		</form>
+      </div>
+    </div>
+	 </sec:authorize>
+	
     <!-- SidebarSearch Form -->
     <div class="form-inline">
       <div class="input-group" data-widget="sidebar-search">

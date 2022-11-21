@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.ddit.mapper.ProdMapper">
+	
+	
+	<!-- 상품 별 판매금액의 합계를 구글차트로 표현해보자 -->
+	<select id="amtSale" resultType="hashMap">
+		SELECT PROD_NAME prodName, SUM(PROD_SALE * CART_QTY) money
+		FROM PROD, CART
+		WHERE PROD_ID = CART_PROD
+		GROUP BY PROD_NAME
+		HAVING SUM(PROD_SALE * CART_QTY) >= 10000000
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

@@ -16,6 +16,7 @@ import java.util.UUID;
 import javax.servlet.annotation.MultipartConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -180,9 +181,13 @@ public class GalleryController {
 		return this.galleryService.imageDelete(attachVO);
 	}
 	
-	// 이미지 다중 등록 
+	// 이미지 다중 등록
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
 	@GetMapping("/register")
 	public String register(Model model) {
+		
+		log.info("들어오나");
 		
 		model.addAttribute("bodyTitle", "이미지 등록");
 		

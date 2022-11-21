@@ -83,13 +83,9 @@
 						<div class="input-group-append">
 							<span class="input-group-text" id="uploadBtn" style="cursor: pointer;">Upload</span>
 						</div>
-					 	<button type="button" class="btn btn-success swalDefaultSuccess">
-		                  Launch Success Toast
-		                </button>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<div class="row">
@@ -205,6 +201,7 @@ $(function() {
 		console.log("bookId : " , bookId);
 		
 		formData.append("bookId", bookId);
+		
 		// ATTACH 테이블의 seq 컬럼의 데이터는 1부터 1씩 자동증가
 		$.ajax({
 			url : "/gallery/uploadAjaxAction",
@@ -246,12 +243,21 @@ $(function() {
 		
 		let data = {"title":searchVal};
 		
+		// 스프링 시큐리티를 위한 토큰 처리(csrf)
+		let header = "${_csrf.headerName}";
+		let token = "${_csrf.token}";
+		
+		console.log("header : ", header , "token : ", token);
+		
 		$.ajax({
 			url : "/gallery/registPost",
 			contentType : "application/json;charset=utf-8",
 			data : JSON.stringify(data),
 			type : "post",
 			dataType : "json",
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header,token);
+			},
 			success : function(result) {
 				console.log("result : " + JSON.stringify(result[0].title));
 				
