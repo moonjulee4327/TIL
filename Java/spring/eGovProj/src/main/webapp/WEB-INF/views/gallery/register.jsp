@@ -202,6 +202,9 @@ $(function() {
 		
 		formData.append("bookId", bookId);
 		
+		let header = "${_csrf.headerName}";
+		let token = "${_csrf.token}";
+		
 		// ATTACH 테이블의 seq 컬럼의 데이터는 1부터 1씩 자동증가
 		$.ajax({
 			url : "/gallery/uploadAjaxAction",
@@ -210,6 +213,9 @@ $(function() {
 			data : formData,
 			dataType : "json",
 			type : "post",
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header,token);
+			},
 			success : function(result) {
 				console.log("result : ", JSON.stringify(result));
 				

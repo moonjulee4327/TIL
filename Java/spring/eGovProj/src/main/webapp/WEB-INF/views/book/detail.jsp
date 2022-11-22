@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <script src="/resources/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <script src="/resources/ckeditor/ckeditor.js"></script>
 
@@ -51,7 +52,7 @@
 					<input type="text" id="insertDate" name="insertDate" class="form-control" value="${date}" readonly="readonly"/>
 				</div>
 			</div>
-			
+			<sec:csrfInput/>
 		</form>
 	</div>
 	<!-- 일반모드 시작 -->

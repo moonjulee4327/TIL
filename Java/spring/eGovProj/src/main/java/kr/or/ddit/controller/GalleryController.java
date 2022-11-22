@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -66,10 +67,15 @@ public class GalleryController {
 	// 파라미터 : attachVO{"userNo" : "3", "seq" : "5"} + 파일 객체 (name은 uploadFile)
 	@ResponseBody
 	@PostMapping("/updatePost")
-	public AttachVO updatePost(MultipartFile[] uploadFile, @ModelAttribute AttachVO attachVO) {
+	public AttachVO updatePost(MultipartFile[] uploadFile, @ModelAttribute AttachVO attachVO, HttpServletRequest req) {
 		log.info("uploadFile : " + uploadFile + ", attachVO : " + attachVO);
 		
-		String uploadFolder = "C:\\eGovFrameDev-3.10.0-64bit\\workspace\\eGovProj\\src\\main\\webapp\\resources\\upload";
+//		String uploadFolder = "C:\\eGovFrameDev-3.10.0-64bit\\workspace\\eGovProj\\src\\main\\webapp\\resources\\upload";
+		String absolutePath = req.getRealPath(req.getContextPath());
+		log.info("absolutePath : " + absolutePath);
+		
+		String uploadFolder = absolutePath + "\\resources\\upload";
+		log.info("uploadFolder : " + uploadFolder);
 		
 		// 연월일 폴더 생성
 		File uploadPath = new File(uploadFolder, getFolder());
@@ -211,7 +217,7 @@ public class GalleryController {
 	 * */
 	@ResponseBody
 	@PostMapping("/uploadAjaxAction")
-	public Map<String, String> uploadAjaxAction(MultipartFile[] uploadFile, @RequestParam String bookId) {
+	public Map<String, String> uploadAjaxAction(MultipartFile[] uploadFile, @RequestParam String bookId, HttpServletRequest req) {
 		log.info("uploadFile[0].getOriginalFilename() : " + uploadFile[0].getOriginalFilename() + ", bookId : " + bookId);
 		
 		List<AttachVO> attachVOList = new ArrayList<AttachVO>();
@@ -222,7 +228,10 @@ public class GalleryController {
 		
 		// 파일 업로드 + 썸네일 이미지
 		// 윈도우 업로드 경로 설정
-		String uploadFolder = "C:\\eGovFrameDev-3.10.0-64bit\\workspace\\eGovProj\\src\\main\\webapp\\resources\\upload";
+//		String uploadFolder = "C:\\eGovFrameDev-3.10.0-64bit\\workspace\\eGovProj\\src\\main\\webapp\\resources\\upload";
+		String absolutePath = req.getRealPath(req.getContextPath());
+		
+		String uploadFolder = absolutePath + "\\resourses\\upload";
 		
 		// 연월일 폴더 생성
 		File uploadPath = new File(uploadFolder, getFolder());

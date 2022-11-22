@@ -81,9 +81,13 @@ public class BookController {
 		
 		log.info("bookVO : " + bookVO.toString());
 		
+		int bookId = bookVO.getBookId();
+		
 		int result = this.bookService.update(bookVO);
 		
-		return "redirect:/book/detail?bookId=" + bookVO.getBookId();
+		log.info("result : " + result);
+		
+		return "redirect:/book/detail?bookId=" + bookId;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

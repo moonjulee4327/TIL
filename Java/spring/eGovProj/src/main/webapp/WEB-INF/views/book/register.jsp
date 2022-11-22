@@ -39,7 +39,7 @@
 					<textarea id="content" name="content" class="form-control" rows="4"></textarea>
 				</div>
 			</div>
-			
+			<sec:csrfInput/>
 		</form>
 	</div>
 	<div style="float: right;">
